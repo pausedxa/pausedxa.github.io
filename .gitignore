@@ -2,3 +2,5 @@ iterations/
 .DS_Store
 *.asd
 assets-unused/
+palettes.html
+fonts.html

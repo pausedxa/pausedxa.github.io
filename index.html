@@ -10,15 +10,16 @@
 <meta property="og:image" content="https://pausedxa.github.io/assets/nomads-stepwell-duo.jpg">
 <meta property="og:url" content="https://pausedxa.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230e0e0e%27/%3E%3Crect x=%2730%27 y=%2726%27 width=%2714%27 height=%2748%27 rx=%277%27 fill=%27%237fe3cf%27/%3E%3Crect x=%2756%27 y=%2726%27 width=%2714%27 height=%2748%27 rx=%277%27 fill=%27%23ff9d88%27/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%231d1e1c%27/%3E%3Crect x=%2730%27 y=%2726%27 width=%2714%27 height=%2748%27 rx=%277%27 fill=%27%23c7f80a%27/%3E%3Crect x=%2756%27 y=%2726%27 width=%2714%27 height=%2748%27 rx=%277%27 fill=%27%23f9bdc6%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#0e0e0e; --ink:#0e0e0e; --lime:#7fe3cf; --pink:#ff9d88; --sun:#ffd06e;
-  --cream:#fbfaf6; --sky:#b9d3ff; --violet:#b9a6ff;
-  --shade:#0e0e0e;
+  --blue:#898b86; --ink:#1d1e1c; --lime:#c7f80a; --pink:#f9bdc6; --sun:#bfc0bb;
+  --cream:#f4f3f0; --sky:#dcdcd7; --violet:#e4e3de;
+  --shade:#1d1e1c;
+  /* palette from @kanishyamo's Pantone reel (Vinyl Hangout poster): Pigeon 15-4704, Almond Blossom 13-2006, Acid Lime 14-0340 */
   --display:"Bricolage Grotesque", "Arial Black", Impact, system-ui, sans-serif;
   --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
   --mono:"Space Mono", ui-monospace, Menlo, monospace;
@@ -123,15 +124,15 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-block:2px solid var(--ink);background:var(--ink);gap:3px}
 .stat{background:var(--cream);padding:28px var(--g) 24px;text-align:center}
 .stat b{display:block;font-size:clamp(56px,7vw,110px);line-height:.85;font-weight:800;letter-spacing:-.05em;font-stretch:75%}
-.stat:nth-child(1) b{color:var(--blue)} .stat:nth-child(2) b{color:#f0735c} .stat:nth-child(3) b{color:var(--ink)} .stat:nth-child(4) b{color:#2bb89c} .stat:nth-child(5) b{color:var(--ink)}
+.stat:nth-child(1) b{color:var(--blue)} .stat:nth-child(2) b{color:#e0899a} .stat:nth-child(3) b{color:var(--ink)} .stat:nth-child(4) b{color:#6f9200} .stat:nth-child(5) b{color:var(--ink)}
 
 
 /* stepwell band + filmstrip */
 .band{position:relative;min-height:min(92vh,900px);padding:0;display:grid;align-items:end;overflow:hidden;isolation:isolate;background:var(--ink);color:var(--cream)}
 .band img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;z-index:-2;will-change:transform}
-.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,14,14,0) 45%,rgba(14,14,14,.85))}
+.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(29,30,28,0) 45%,rgba(29,30,28,.85))}
 .band-txt{padding:0 var(--g) clamp(40px,7vh,80px)}
-.band-big{margin:0 0 12px;font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:-.045em;line-height:.82;font-size:clamp(60px,11vw,190px);text-shadow:0 .02em .3em rgba(14,14,14,.5)}
+.band-big{margin:0 0 12px;font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:-.045em;line-height:.82;font-size:clamp(60px,11vw,190px);text-shadow:0 .02em .3em rgba(29,30,28,.5)}
 .band-big .serif{text-transform:none;color:var(--lime);font-stretch:100%;letter-spacing:-.02em}
 .film{overflow:hidden;background:var(--ink);padding:18px 0;border-block:2px solid var(--ink)}
 .film-track{display:flex;gap:14px;width:max-content;animation:mq 70s linear infinite}
@@ -152,14 +153,14 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .proj p{margin:12px 0 0;max-width:46ch}
 .proj .mono{margin-bottom:auto;align-self:flex-start;background:var(--cream);color:var(--ink);padding:6px 10px;border-radius:99px}
 .proj.bsf{grid-column:span 7;min-height:520px;color:var(--cream)}
-.proj.bsf::before{background:linear-gradient(180deg,rgba(52,64,110,.1),rgba(14,14,14,.92))}
+.proj.bsf::before{background:linear-gradient(180deg,rgba(52,64,110,.1),rgba(29,30,28,.92))}
 .proj.bsf h3{color:var(--lime)}
 .proj.tsiy{grid-column:span 5;background:var(--sun)}
 .proj .inset{width:100%;aspect-ratio:16/10;object-fit:cover;border:2px solid var(--ink);border-radius:16px;margin-bottom:18px;transform:rotate(-1.5deg)}
 .proj.tsiy .mono{margin-bottom:12px}
 .proj.dnd{grid-column:span 5;background:var(--pink)}
 .proj.cym{grid-column:span 7;color:var(--cream)}
-.proj.cym::before{background:linear-gradient(90deg,rgba(14,14,14,.9),rgba(14,14,14,.2))}
+.proj.cym::before{background:linear-gradient(90deg,rgba(29,30,28,.9),rgba(29,30,28,.2))}
 .proj.cym h3{color:var(--lime)}
 .proj.gaza{grid-column:span 12;min-height:auto;background:var(--sky);flex-direction:row;flex-wrap:wrap;align-items:center;gap:18px 40px}
 .proj.gaza h3{flex:1 1 280px}
@@ -171,7 +172,7 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 
 
 /* BEDTIME SONIC FABLES deep dive */
-.bsfx{background:#0b0d14;color:var(--cream);overflow:hidden;isolation:isolate}
+.bsfx{background:#151614;color:var(--cream);overflow:hidden;isolation:isolate}
 .bsfx-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.3;filter:saturate(1.1)}
 .bsfx h2{color:var(--sky)} .bsfx h2 .serif{color:var(--lime)}
 .bsfx-tag{margin:-8px 0 40px;color:var(--sky)}
@@ -180,7 +181,7 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .cover{position:relative;margin:0;transform:rotate(-3deg);max-width:440px}
 .cover img{border:3px solid var(--cream);border-radius:6px;box-shadow:10px 10px 0 var(--pink)}
 .cover .sticker{color:var(--ink)}
-.sleep{margin-top:clamp(56px,9vh,110px);background:rgba(14,14,14,.72);border:3px solid var(--sky);border-radius:28px;padding:clamp(20px,3vw,36px);backdrop-filter:blur(6px)}
+.sleep{margin-top:clamp(56px,9vh,110px);background:rgba(29,30,28,.72);border:3px solid var(--sky);border-radius:28px;padding:clamp(20px,3vw,36px);backdrop-filter:blur(6px)}
 .sleep-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
 .sleep h3{margin:0;font-size:clamp(28px,3.4vw,52px);text-transform:uppercase;letter-spacing:-.03em;line-height:.9;font-stretch:80%}
 .hypno{width:100%;height:clamp(160px,22vw,260px);display:block}
@@ -189,7 +190,7 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .hypno .lbl text{font-family:var(--mono);font-size:13px;fill:var(--sky);text-transform:uppercase}
 .hypno .trace{fill:none;stroke:rgba(255,244,220,.35);stroke-width:3}
 .hypno .segs line{stroke:transparent;stroke-width:14;stroke-linecap:round;transition:stroke .4s}
-.hypno .segs line.on{stroke:var(--lime);filter:drop-shadow(0 0 8px rgba(127,227,207,.6))}
+.hypno .segs line.on{stroke:var(--lime);filter:drop-shadow(0 0 8px rgba(199,248,10,.55))}
 .hypno .moon{fill:var(--pink);stroke:var(--cream);stroke-width:3;transition:cx .9s cubic-bezier(.5,0,.3,1),cy .9s cubic-bezier(.5,0,.3,1)}
 .stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
 @media (max-width:620px){.stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -210,9 +211,9 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .pillar h3{margin:0 0 10px;font-size:clamp(40px,4vw,64px);line-height:.85;text-transform:uppercase;letter-spacing:-.04em;font-stretch:78%}
 .pillar h3 .serif{display:block;text-transform:none;font-size:.5em;letter-spacing:0;font-stretch:100%;color:var(--lime)}
 .pillar p{margin:0}
-.pillar.dh>div{background:linear-gradient(180deg,transparent,rgba(14,14,14,.9) 22%);color:var(--cream);padding-top:80px}
-.pillar.cy>div{background:linear-gradient(180deg,transparent,rgba(14,14,14,.92) 22%);color:var(--cream);padding-top:80px}
-.pillar.el .notes{margin:auto 18px 18px;padding:0;display:flex;background:#111;border:6px solid var(--lime);color:#f2f2ea;font-family:var(--mono);font-size:13px;line-height:1.5}
+.pillar.dh>div{background:linear-gradient(180deg,transparent,rgba(29,30,28,.9) 22%);color:var(--cream);padding-top:80px}
+.pillar.cy>div{background:linear-gradient(180deg,transparent,rgba(29,30,28,.92) 22%);color:var(--cream);padding-top:80px}
+.pillar.el .notes{margin:auto 18px 18px;padding:0;display:flex;background:#151614;border:6px solid var(--lime);color:var(--cream);font-family:var(--mono);font-size:13px;line-height:1.5}
 .pillar.el .notes .side{writing-mode:vertical-rl;transform:rotate(180deg);background:var(--sun);color:var(--ink);font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:12px 6px;font-size:14px}
 .pillar.el .notes>div{padding:12px 14px}
 .pillar.el .notes b{display:block;background:var(--cream);color:var(--ink);text-align:center;margin:-12px -14px 10px;padding:6px;font-family:var(--display);letter-spacing:.06em}
@@ -226,7 +227,7 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .journey{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;margin:36px 0 50px}
 @media (max-width:860px){.journey{grid-template-columns:1fr}}
 .journey img{border:2px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--shade);transform:rotate(-1.5deg)}
-.journey h3 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.01em;color:#2bb89c}
+.journey h3 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.01em;color:#6f9200}
 .journey h3{margin:0 0 16px;font-size:clamp(40px,5vw,80px);line-height:.85;text-transform:uppercase;letter-spacing:-.04em;font-stretch:78%}
 .cities,.venues{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .cities li{font-weight:800;font-size:clamp(16px,1.4vw,22px);text-transform:uppercase;letter-spacing:-.01em;padding:6px 12px;background:var(--cream);color:var(--ink);border:1.5px solid var(--ink)}
@@ -307,7 +308,7 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .presses a:hover{background:var(--ink);color:var(--lime)}
 
 /* CONTACT */
-.contact{background:var(--blue);color:var(--cream);text-align:center;overflow:hidden;padding-block:clamp(110px,18vh,200px)}
+.contact{background:var(--ink);color:var(--cream);text-align:center;overflow:hidden;padding-block:clamp(110px,18vh,200px)}
 .contact h2{font-size:clamp(64px,14vw,240px);color:var(--cream);text-shadow:.03em .03em 0 var(--pink)}
 .contact h2 .serif{color:var(--lime)}
 .contact p{max-width:40ch;margin:0 auto 32px;font-size:clamp(19px,1.6vw,24px)}
@@ -332,6 +333,77 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
 }
+
+/* brand name is always lowercase, even inside uppercase labels */
+.brand,nav a.logo{text-transform:none}
+
+/* ================= CALM LAYER =================
+   Same content and palette, slower and quieter: no flicker, no tilts, no hard shadows,
+   lighter headlines, more space, lime used as a detail rather than a floodlight. */
+body::after{animation:none;opacity:.035}
+body{line-height:1.6}
+section{padding-block:clamp(110px,16vh,190px)}
+.hero h1{text-shadow:none;text-transform:none}
+.hero h1 span{transition:transform 1.2s ease,color 1.2s ease}
+.hero h1 span:hover{transform:translateY(-.04em);color:var(--lime)}
+.contact h2{text-shadow:none}
+.band-big{text-shadow:none}
+/* scrolling bands: slow, slim, quiet */
+.marquee{font-size:clamp(18px,2.2vw,30px);padding:12px 0;border-block-width:1px;background:var(--cream);color:var(--ink)}
+.marquee .track{animation-duration:140s}
+.marquee.ink{background:var(--ink);color:var(--cream)}
+.marquee .star{color:#9fbf2a}
+/* no tilts, no bounce, no hard offset shadows */
+.photo-stack .p1,.photo-stack .p2,.cover,.journey img,.tour-poster,.tile,.tile:nth-child(3n),.tile:nth-child(4n),.strip img,.strip img:nth-child(odd),.strip img:nth-child(even),.proj .inset,.sticker,.s1,.s2,.cities li,.cities li:nth-child(odd),.cities li:nth-child(3n){transform:none}
+.person:hover,.proj:hover,.photo-stack figure:hover,.tile:hover,.strip img:hover,.tour-poster:hover,.stages button:hover{transform:none}
+*,*::before,*::after{box-shadow:none!important}
+.photo-stack figure,.cover img,.journey img,.tour-poster,.person,.card,.trk,.vid,.pillar,.proj,.radio{box-shadow:0 18px 40px -24px rgba(29,30,28,.35)!important}
+.person,.card,.trk,.vid,.pillar,.tile,.strip img,.journey img,.tour-poster,.photo-stack figure,.years button,.gig a,.pill,.venues li,.cities li,.presses a,.links a,.sticker{border-width:1px}
+.proj,.cover img{border-width:1px}
+.person,.card,.proj,.pillar,.trk,.vid{transition:transform .8s ease}
+.rv{transform:translateY(24px);transition:opacity 1.6s ease,transform 1.6s ease}
+.rv.in{transform:none}
+/* lime as a detail: the big blocks go soft */
+.offer{background:#e9ecdf}
+.person:nth-child(2){background:#eef3dc}
+.cities li:nth-child(5n+2){background:#eef3dc}
+.cities li:nth-child(4n+4){background:var(--ink);color:var(--cream)}
+.pill.solid{background:var(--cream);color:var(--ink);border-color:var(--ink)}
+.years button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.stages button[aria-selected="true"]{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.hypno .segs line.on{stroke:#c7f80a;filter:none}
+.gig:hover{background:#eef3dc;padding-left:6px}
+.proj.dnd{background:#f3d9dd}
+.proj.tsiy{background:var(--violet)}
+.orb{opacity:.18;animation-duration:30s}
+/* slow down the remaining motion */
+.drone-btn svg{animation-duration:40s}
+.drone-btn.on svg{animation-duration:14s}
+.drone-btn:hover{transform:none}
+.hero .dot{color:var(--pink)}
+
+/* ================= TYPE: Fraunces (soft) =================
+   Relaxing but fancy: a soft, rounded old-style serif for every headline and display line.
+   Body copy stays in the clean sans. No all-caps on display type. */
+:root{--head:"Fraunces", "Iowan Old Style", Georgia, serif}
+.hero h1,h2,.hero-sub,.big-p,.person h3,.proj h3,.sleep h3,.stages button b,.pillar h3,.journey h3,.gig .w,.trk h3,.vid .lbl b,.radio b,.card h3,.stat b,.marquee,.cities li,.email b,.stage-desc,.serif,.contact h2{
+  font-family:var(--head);font-variation-settings:"SOFT" 100,"opsz" 96;font-stretch:100%;text-transform:none}
+.hero h1{font-weight:350;letter-spacing:-.03em;line-height:.9;font-size:clamp(64px,15vw,240px)}
+h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7.2vw,116px)}
+.contact h2{font-size:clamp(54px,10.5vw,176px)}
+.serif{font-style:italic;font-weight:300}
+.hero-sub{font-weight:300;letter-spacing:-.01em}
+.big-p{font-weight:300;letter-spacing:-.01em;line-height:1.28}
+.person h3,.proj h3,.pillar h3,.card h3,.trk h3,.journey h3,.sleep h3{font-weight:400;letter-spacing:-.02em;line-height:1}
+.pillar h3 .serif{font-size:.55em}
+.stages button b,.stat b{font-weight:300;letter-spacing:-.03em}
+.gig .w{font-weight:400;letter-spacing:-.015em}
+.gig .w small{font-family:var(--head);font-style:italic;font-weight:300}
+.vid .lbl b,.radio b{font-weight:400;letter-spacing:-.01em}
+.marquee{font-weight:300;font-style:italic;letter-spacing:0}
+.cities li{font-weight:400;letter-spacing:0}
+.email b{font-weight:350;letter-spacing:-.02em}
+.stage-desc{font-weight:300}
 </style>
 </head>
 <body>
@@ -358,14 +430,14 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
       <a class="pill solid" href="#listen">▶ Listen now</a>
     </div>
   </div>
-  <p class="hint mono">↖ move your cursor: the sand settles into cymatic patterns. press the coral button for a real pause.dxa drone; the sand listens ↘</p>
+  <p class="hint mono">↖ move your cursor: the sand settles into cymatic patterns. press the pink button for a real <span class="brand">pause.dxa</span> drone; the sand listens ↘</p>
   <button class="drone-btn" id="droneBtn" aria-pressed="false" aria-label="Play a pause.dxa drone excerpt">
     <svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ" textLength="236" lengthAdjust="spacing">press to drone ✺ press to drone ✺</textPath></text></svg>
     <span class="ic" id="droneIc">▶</span>
   </button>
 </header>
 
-<div class="marquee tilt" aria-hidden="true"><div class="track" id="mq1"></div></div>
+<div class="marquee" aria-hidden="true"><div class="track" id="mq1"></div></div>
 
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
@@ -381,14 +453,12 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
           <span class="mono">vocalist · pianist · arts manager · researcher</span>
           <h3>Sahitya</h3>
           <p>Practises Dhrupad as a disciple of <b>Ustad Wasifuddin Dagar</b> in the Dagarvani tradition. Her practice is grounded in the philosophy of the Dagar gharana, with a focus on <i>alaap</i>: vocal improvisation and the subtlety of vocal sound. She's a Music Therapy graduate and explored the work of sound further through Svaram's Integral Sonic Studies &amp; Practices Program.</p>
-          <p class="mono"><a href="https://www.instagram.com/sahityarajagopal/" target="_blank" rel="noopener">@sahityarajagopal ↗</a></p>
         </article>
         <article class="person">
           <img class="portrait" src="assets/deck-harsh.jpg" alt="Harsh smiling at a synth keyboard." loading="lazy">
           <span class="mono">maths teacher · sound artist · accidental musician</span>
           <h3>Harsh</h3>
           <p>Creates electronic soundscapes with modular synthesis on <b>VCV Rack</b> and field recordings. He researches and builds installations based on <b>cymatics</b>, and graduated from the Integral Sonic Studies Program at Svaram, Auroville.</p>
-          <p class="mono"><a href="https://www.instagram.com/bbharsh/" target="_blank" rel="noopener">@bbharsh ↗</a></p>
         </article>
       </div>
     </div>
@@ -409,7 +479,6 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
   <div class="stat"><b>∞</b><span class="mono">sustained Sa</span></div>
 </div>
 
-<div class="marquee pink rev" aria-hidden="true"><div class="track" id="mq2"></div></div>
 
 <!-- ============ STEPWELL BAND ============ -->
 <section class="band" aria-label="Live at the Stepwell, Magnetic Fields Nomads 2026">
@@ -476,7 +545,7 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
     <h2>bedtime <span class="serif">sonic</span> fables</h2>
     <p class="bsfx-tag mono">dhrupad ╱ electronic soundscapes ╱ cymatics &nbsp;·&nbsp; listen and sleep, listen and dream.</p>
     <div class="bsfx-intro">
-      <figure class="cover rv"><img src="assets/deck-bsf-cover.jpg" alt="Bedtime Sonic Fables cover: swirling deep-blue marbled waters with constellations, on violet."><span class="sticker s1">by pause.dxa</span></figure>
+      <figure class="cover rv"><img src="assets/deck-bsf-cover.jpg" alt="Bedtime Sonic Fables cover: swirling deep-blue marbled waters with constellations, on violet."><span class="sticker s1 brand">by pause.dxa</span></figure>
       <div class="rv">
         <p class="big-p">A sonic experience designed to transport you through a <span class="serif">dream-like journey</span>, mirroring the fluid transitions of the sleep cycle.</p>
         <p>We explore dream states through experimental music and sound, bringing together our practices in Dhrupad, electronic soundscapes and live instruments. It's an ambient performance where you're free to experience it however you wish: sitting, lying down, the possibilities are open.</p>
@@ -545,7 +614,6 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
   </div>
 </section>
 
-<div class="marquee pink" aria-hidden="true"><div class="track" id="mq3"></div></div>
 
 <!-- ============ TOUR ============ -->
 <section class="tour" id="tour">
@@ -563,7 +631,7 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
       <div>
         <h3>22 cities, <span class="serif">one drone</span></h3>
         <ul class="cities">
-          <li>Auroville</li><li>Mumbai</li><li>Goa</li><li>Delhi NCR</li><li>Hyderabad</li><li>Chennai</li><li>Bangalore</li><li>Dandeli</li><li>Dharamkot</li><li>Bir</li><li>Raison</li><li>Ludhiana</li><li>Alsisar</li><li>Khetri</li><li>Kalpitiya 🇱🇰</li><li>Bangkok 🇹🇭</li><li>Berlin 🇩🇪</li><li>Ozora 🇭🇺</li><li>Amsterdam 🇳🇱</li><li>The Hague 🇳🇱</li><li>Treviso 🇮🇹</li><li>Porto 🇵🇹</li>
+          <li>Auroville</li><li>Mumbai</li><li>Goa</li><li>Delhi NCR</li><li>Hyderabad</li><li>Chennai</li><li>Bangalore</li><li>Dandeli</li><li>Dharamkot</li><li>Bir</li><li>Raison</li><li>Ludhiana</li><li>Alsisar</li><li>Khetri</li><li>Kalpitiya</li><li>Bangkok</li><li>Berlin</li><li>Ozora</li><li>Amsterdam</li><li>The Hague</li><li>Treviso</li><li>Porto</li>
         </ul>
         <p class="mono">rooms we've filled with sound →</p>
         <ul class="venues">
@@ -602,7 +670,6 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
   </div>
 </section>
 
-<div class="marquee rev" aria-hidden="true"><div class="track" id="mq4"></div></div>
 
 <!-- ============ WALL ============ -->
 <section class="wall" id="wall">
@@ -657,7 +724,7 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
 </section>
 
 <footer class="mono">
-  <span>© <span id="yr">2026</span> pause.dxa · Sahitya &amp; Harsh</span>
+  <span>© <span id="yr">2026</span> <span class="brand">pause.dxa</span> · Sahitya &amp; Harsh</span>
   <span>made in Auroville, India ✺ listen deeply</span>
 </footer>
 
@@ -666,42 +733,42 @@ footer{background:var(--ink);color:var(--cream);padding:26px var(--g) calc(env(s
 const IG = c => `https://www.instagram.com/p/${c}/`;
 const GIGS = [
   // [year, date, what, subtitle, place, flag, link, linkLabel]
-  [2026,'13 Sep','Sonic Distortions ④','live w/ ONNO collective','Method · New Delhi','🇮🇳',IG('Dc8wZYDk9BT'),'post'],
+  [2026,'13 Sep','Sonic Distortions ④','live w/ ONNO collective','Method · New Delhi','',IG('Dc8wZYDk9BT'),'post'],
   [2026,'8 Aug','Point of Listening','ONNO × Radio Alhara','online radio','📻',IG('Dbzl8FpE2FQ'),'post'],
-  [2026,'1 Aug','OZORA Festival','Ambyss Stage · morning set','Dádpuszta · Hungary','🇭🇺','https://2026.ozorafestival.eu/music-and-dance/ambyss/pause-dxa/','ozora'],
-  [2026,'30 Jul','OZORA Festival','Ginko Stage · lay-down set','Dádpuszta · Hungary','🇭🇺',IG('DbYonjfjNCN'),'post'],
-  [2026,'26 Jul','Clorofórmio 06','quadraphonic sound + vegan dinner','Hotelier · Porto','🇵🇹',IG('DaxYN7Pt3va'),'post'],
-  [2026,'18 Jul','Vondelbunker','Bedtime Sonic Fables tour','Amsterdam','🇳🇱',IG('DZQKoE5HS78'),'post'],
-  [2026,'16 Jul','Future Intel','live broadcast','The Hague','🇳🇱','https://www.youtube.com/watch?v=cVjc865nz4I','video'],
-  [2026,'8 Jul','Migas','listening session, in silence','Berlin','🇩🇪',IG('DaNOiUBNrUT'),'post'],
-  [2026,'5 Jul','Sanctum of Sound Festival','Bedtime Sonic Fables tour','MaHalla · Berlin','🇩🇪',IG('DZQKoE5HS78'),'post'],
-  [2026,'3 Jul','Spazio X','Bedtime Sonic Fables tour','Treviso · Italy','🇮🇹',IG('DZQKoE5HS78'),'post'],
-  [2026,'28 Jun','Amsterdam Roots Festival','Lalaland presents','Amsterdam','🇳🇱',IG('DZ5brySl-mb'),'post'],
+  [2026,'1 Aug','OZORA Festival','Ambyss Stage · morning set','Dádpuszta · Hungary','','https://2026.ozorafestival.eu/music-and-dance/ambyss/pause-dxa/','ozora'],
+  [2026,'30 Jul','OZORA Festival','Ginko Stage · lay-down set','Dádpuszta · Hungary','',IG('DbYonjfjNCN'),'post'],
+  [2026,'26 Jul','Clorofórmio 06','quadraphonic sound + vegan dinner','Hotelier · Porto','',IG('DaxYN7Pt3va'),'post'],
+  [2026,'18 Jul','Vondelbunker','Bedtime Sonic Fables tour','Amsterdam','',IG('DZQKoE5HS78'),'post'],
+  [2026,'16 Jul','Future Intel','live broadcast','The Hague','','https://www.youtube.com/watch?v=cVjc865nz4I','video'],
+  [2026,'8 Jul','Migas','listening session, in silence','Berlin','',IG('DaNOiUBNrUT'),'post'],
+  [2026,'5 Jul','Sanctum of Sound Festival','Bedtime Sonic Fables tour','MaHalla · Berlin','',IG('DZQKoE5HS78'),'post'],
+  [2026,'3 Jul','Spazio X','Bedtime Sonic Fables tour','Treviso · Italy','',IG('DZQKoE5HS78'),'post'],
+  [2026,'28 Jun','Amsterdam Roots Festival','Lalaland presents','Amsterdam','',IG('DZ5brySl-mb'),'post'],
   [2026,'22 Jun','Refuge Worldwide','dhrupad and drones · 1hr radio','Berlin (on air)','📻','https://refugeworldwide.com/radio/dhrupad-and-drones-pause-dxa-22-jun-2026','listen'],
-  [2026,'23 May','Bedtime Sonic Fables','free concert · supported by Serendipity','The Indian Sonic Research Organisation','🇮🇳',IG('DYg646iEism'),'post'],
-  [2026,'14 Feb','Magnetic Fields Nomads','Stepwell Stage · 10:30pm','Khetri · Rajasthan','🇮🇳','https://nomads.magneticfields.in/artists/pause-dxa','mf'],
-  [2026,'7 Feb','Omnivoid ed.005','Bedtime Sonic Fables + water cymatics','Aura Studios · Chennai','🇮🇳','https://youtu.be/xvVE1rS0Ldc','video'],
-  [2026,'5 Feb','Bedtime Sonic Fables (debut)','C.A.L.M. · a barn, transformed','Butterfly Barn · Auroville','🇮🇳',IG('DUgPqleExGW'),'post'],
+  [2026,'23 May','Bedtime Sonic Fables','free concert · supported by Serendipity','The Indian Sonic Research Organisation','',IG('DYg646iEism'),'post'],
+  [2026,'14 Feb','Magnetic Fields Nomads','Stepwell Stage · 10:30pm','Khetri · Rajasthan','','https://nomads.magneticfields.in/artists/pause-dxa','mf'],
+  [2026,'7 Feb','Omnivoid ed.005','Bedtime Sonic Fables + water cymatics','Aura Studios · Chennai','','https://youtu.be/xvVE1rS0Ldc','video'],
+  [2026,'5 Feb','Bedtime Sonic Fables (debut)','C.A.L.M. · a barn, transformed','Butterfly Barn · Auroville','',IG('DUgPqleExGW'),'post'],
   [2026,'Jan','Sleep Series for Jñāna','Dhrupad for stillness','online','☾',IG('DUI1STFjDWo'),'post'],
-  [2025,'Dec','Serendipity Arts Festival','On a Barge · Sonic Interventions, curated by Veerangana','Goa','🇮🇳',IG('DTSAprnkzIf'),'post'],
-  [2025,'22 Oct','Bangkok Ritualistic Voices','first time in Thailand','Noise House Lat Phrao · Bangkok','🇹🇭',IG('DQWJynxE_So'),'post'],
-  [2025,'4–5 Oct','GAIA Festival','sound immersion · “see you in the valley”','India','🇮🇳',IG('DOsVao8ksWT'),'post'],
-  [2025,'Aug','O.Z.O.R.A. Festival','Ginko Stage · ft. mouth harp &amp; didgeridoo','Hungary','🇭🇺',IG('DN5A84wE5tv'),'post'],
-  [2025,'3 Aug','Sanctum of Sound','first ever two-hour set','MaHalla · Berlin','🇩🇪',IG('DOG3HrLkwcx'),'post'],
-  [2025,'Jul','Hypnagōgos · Berlin edition','with beatnyk · between waking &amp; sleep','Berlin','🇩🇪',IG('DMNDLRwtQvB'),'post'],
-  [2025,'Jul','The Space Inside You','Dhrupad × electronic sound immersion','Method · Mumbai','🇮🇳',IG('DMnAhXEvG5U'),'post'],
-  [2025,'Jun','The Space Inside You','lie down · five elements','Odd Bird Theatre · Delhi','🇮🇳',IG('DMkXgBtTF4m'),'post'],
+  [2025,'Dec','Serendipity Arts Festival','On a Barge · Sonic Interventions, curated by Veerangana','Goa','',IG('DTSAprnkzIf'),'post'],
+  [2025,'22 Oct','Bangkok Ritualistic Voices','first time in Thailand','Noise House Lat Phrao · Bangkok','',IG('DQWJynxE_So'),'post'],
+  [2025,'4–5 Oct','GAIA Festival','sound immersion · “see you in the valley”','India','',IG('DOsVao8ksWT'),'post'],
+  [2025,'Aug','O.Z.O.R.A. Festival','Ginko Stage · ft. mouth harp &amp; didgeridoo','Hungary','',IG('DN5A84wE5tv'),'post'],
+  [2025,'3 Aug','Sanctum of Sound','first ever two-hour set','MaHalla · Berlin','',IG('DOG3HrLkwcx'),'post'],
+  [2025,'Jul','Hypnagōgos · Berlin edition','with beatnyk · between waking &amp; sleep','Berlin','',IG('DMNDLRwtQvB'),'post'],
+  [2025,'Jul','The Space Inside You','Dhrupad × electronic sound immersion','Method · Mumbai','',IG('DMnAhXEvG5U'),'post'],
+  [2025,'Jun','The Space Inside You','lie down · five elements','Odd Bird Theatre · Delhi','',IG('DMkXgBtTF4m'),'post'],
   [2025,'May','Independent Music Production Grant','grantees, alongside Sound of Women','Serendipity Arts Foundation','🏆',IG('DJoDw-Uv-Nh'),'post'],
-  [2025,'May','Burning Donkey Festival','first international sound immersion','Kalpitiya · Sri Lanka','🇱🇰',IG('DJmcfTlTL-q'),'post'],
-  [2024,'6–8 Dec','Magnetic Fields Festival','the main festival, in a 17th-century palace','Alsisar Mahal · Rajasthan','🇮🇳','https://www.magneticfields.in/','mf'],
-  [2024,'28–29 Sep','GAIA Festival','our first festival session + a Delhi stopover','Neeralaya · Raison, Himachal','🇮🇳',IG('DA7e4Y4Tumi'),'post'],
-  [2024,'21 Sep','The Space Inside You','Sound Immersion: Dhrupad × Ableton','One Design Space · Mumbai','🇮🇳',IG('C_k2GhdSZH0'),'post'],
+  [2025,'May','Burning Donkey Festival','first international sound immersion','Kalpitiya · Sri Lanka','',IG('DJmcfTlTL-q'),'post'],
+  [2024,'6–8 Dec','Magnetic Fields Festival','the main festival, in a 17th-century palace','Alsisar Mahal · Rajasthan','','https://www.magneticfields.in/','mf'],
+  [2024,'28–29 Sep','GAIA Festival','our first festival session + a Delhi stopover','Neeralaya · Raison, Himachal','',IG('DA7e4Y4Tumi'),'post'],
+  [2024,'21 Sep','The Space Inside You','Sound Immersion: Dhrupad × Ableton','One Design Space · Mumbai','',IG('C_k2GhdSZH0'),'post'],
   [2024,'Jul–Aug','Bedtime Sonic Fables I–III','late-night live sessions, DM to join','online','💤',IG('C-HyWK_yhkO'),'post'],
-  [2024,'Jul','Headpod · Lost in Bangalore','soundscape for an interactive installation','Bangalore Creative Circus','🇮🇳',IG('C9MTD2ESo8o'),'post'],
-  [2024,'1 May','Sound Immersion','Dhrupad × Ableton','Harkat Studios · Mumbai','🇮🇳','https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event','press'],
-  [2024,'Feb','Sound immersion','with @circle','Goa','🇮🇳',IG('C3RerLpSgjf'),'post'],
-  [2023,'Jun','Listening session','at Ebb n Flow','Ebb n Flow Café','🇮🇳',IG('Ct5ltZtPNdQ'),'post'],
-  [2023,'Apr','Overnight sound session','one half of us, at Soho House','Mumbai','🇮🇳',IG('CrU-PrkB69l'),'post'],
+  [2024,'Jul','Headpod · Lost in Bangalore','soundscape for an interactive installation','Bangalore Creative Circus','',IG('C9MTD2ESo8o'),'post'],
+  [2024,'1 May','Sound Immersion','Dhrupad × Ableton','Harkat Studios · Mumbai','','https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event','press'],
+  [2024,'Feb','Sound immersion','with @circle','Goa','',IG('C3RerLpSgjf'),'post'],
+  [2023,'Jun','Listening session','at Ebb n Flow','Ebb n Flow Café','',IG('Ct5ltZtPNdQ'),'post'],
+  [2023,'Apr','Overnight sound session','one half of us, at Soho House','Mumbai','',IG('CrU-PrkB69l'),'post'],
   [2023,'Mar','“Go where the sounds take you”','Raga Bihag × Ableton: where it began','Auroville','🌱',IG('CqTA1X4JG_T'),'post'],
 ];
 const TRACKS = [
@@ -749,10 +816,7 @@ const mq = (id, words) => {
   document.getElementById(id).innerHTML = html + html;
 };
 mq('mq1', ['dhrupad','drones','modular synthesis','field recordings','cymatics','alaap','deep listening','lie down','close your eyes']);
-mq('mq2', ['Ozora','Magnetic Fields','MaHalla Berlin','Serendipity Arts','Refuge Worldwide','Amsterdam Roots','Noise House Bangkok','Burning Donkey','Method']);
-mq('mq3', ['now playing: the space inside you','bedtime sonic fables','dhrupad and drones','azhagu bhoomi','tuning out?']);
 mq('mqTags', ['deep listening','hypnagogic state','visual imagery','ambient','experimental','water cymatics','dreams','drones','dhrupad','improvisation','indian classical music']);
-mq('mq4', ['headphones recommended','speakers also fine','the pause is the point','breathe out']);
 
 /* ---------------- hero letters ---------------- */
 const t = document.getElementById('title');
@@ -765,7 +829,7 @@ const renderGigs = y => {
     <li class="gig">
       <span class="d">${g[1]} ${g[0]}</span>
       <span class="w">${g[2]}<small>${g[3]}</small></span>
-      <span class="p"><span class="flag" aria-hidden="true">${g[5]}</span> ${g[4]}</span>
+      <span class="p">${g[4]}</span>
       <a href="${g[6]}" target="_blank" rel="noopener">${g[7]} ↗</a>
     </li>`).join('');
 };
@@ -882,15 +946,15 @@ let W, H, P = [], m = 3, n = 5, tm = 3, tn = 5, energy = 0;
 const size = () => {
   const dpr = Math.min(devicePixelRatio || 1, 1.5);
   W = cv.width = cv.offsetWidth * dpr; H = cv.height = cv.offsetHeight * dpr;
-  const count = Math.min(6500, Math.floor(W * H / 300));
+  const count = Math.min(4200, Math.floor(W * H / 420));
   P = Array.from({length:count}, () => [Math.random(), Math.random()]);
 };
 const chl = (x, y) => Math.cos(n*Math.PI*x)*Math.cos(m*Math.PI*y) - Math.cos(m*Math.PI*x)*Math.cos(n*Math.PI*y);
 const frame = () => {
   m += (tm - m) * .02; n += (tn - n) * .02;
-  cx.fillStyle = 'rgba(14,14,14,.35)'; cx.fillRect(0, 0, W, H);
-  const jitter = .018 + energy * .02;
-  cx.fillStyle = energy > .1 ? 'rgba(127,227,207,.9)' : 'rgba(251,250,246,.72)';
+  cx.fillStyle = 'rgba(137,139,134,.35)'; cx.fillRect(0, 0, W, H);
+  const jitter = .009 + energy * .012;
+  cx.fillStyle = energy > .1 ? 'rgba(199,248,10,.95)' : 'rgba(244,243,240,.75)';
   const s = Math.max(1.4, W / 900);
   for (const p of P) {
     const v = Math.abs(chl(p[0], p[1]));
