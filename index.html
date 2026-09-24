@@ -156,6 +156,8 @@ h2 .serif{text-transform:none;font-stretch:100%;letter-spacing:-.02em}
 .proj.bsf::before{background:linear-gradient(180deg,rgba(52,64,110,.1),rgba(29,30,28,.92))}
 .proj.bsf h3{color:var(--lime)}
 .proj.tsiy{grid-column:span 5;background:var(--sun)}
+.proj.tsiy p+p{margin-top:10px}
+.tsiy-q{margin:16px 0 0;font-family:var(--head,serif);font-style:italic;font-size:1.05em;line-height:1.3}
 .proj .inset{width:100%;aspect-ratio:16/10;object-fit:cover;border:2px solid var(--ink);border-radius:16px;margin-bottom:18px;transform:rotate(-1.5deg)}
 .proj.tsiy .mono{margin-bottom:12px}
 .proj.dnd{grid-column:span 5;background:var(--pink)}
@@ -375,7 +377,13 @@ section{padding-block:clamp(110px,16vh,190px)}
 .gig:hover{background:#eef3dc;padding-left:6px}
 .proj.dnd{background:#f3d9dd}
 .proj.tsiy{background:var(--violet)}
-.orb{opacity:.18;animation-duration:30s}
+/* contact circles: crisp, perfectly round, fully inside the section, clean palette colours */
+.orb{position:absolute;aspect-ratio:1;border-radius:50%;filter:none;mix-blend-mode:normal;opacity:1;z-index:0;pointer-events:none;animation:breathe-o 14s ease-in-out infinite}
+.orb.o1{width:clamp(120px,18vw,260px);left:6%;top:14%;background:var(--pink);opacity:.22}
+.orb.o2{width:clamp(90px,13vw,190px);right:7%;bottom:12%;background:var(--lime);opacity:.16;animation-delay:-5s}
+.orb.o3{width:clamp(50px,6vw,90px);right:18%;top:12%;background:none;border:1px solid var(--cream);opacity:.35;animation-delay:-9s}
+@keyframes breathe-o{50%{transform:scale(1.06)}}
+@media (max-width:700px){.orb.o1{left:-4%;top:6%}.orb.o2{right:-3%;bottom:4%}.orb.o3{display:none}}
 /* slow down the remaining motion */
 .drone-btn svg{animation-duration:40s}
 .drone-btn.on svg{animation-duration:14s}
@@ -404,6 +412,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .cities li{font-weight:400;letter-spacing:0}
 .email b{font-weight:350;letter-spacing:-.02em}
 .stage-desc{font-weight:300}
+
 </style>
 </head>
 <body>
@@ -465,17 +474,17 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
     <div class="photo-stack rv">
       <figure class="p1"><img src="assets/deck-story.jpg" alt="Sahitya singing and Harsh at a modular synth rig under violet light, blue-and-white striped stage front."><figcaption>live, bathed in violet</figcaption></figure>
       <figure class="p2"><img src="assets/duo.jpg" alt="Sahitya and Harsh on a dim stage, chimes and percussion laid out on a rug."><figcaption>chimes on the rug</figcaption></figure>
-      <span class="sticker s1">✺ 8 countries · 20+ cities</span>
+      <span class="sticker s1">✺ 10 countries · 24 cities</span>
       <span class="sticker s2">☾ made for lying down</span>
     </div>
   </div>
 </section>
 
 <div class="stats" aria-label="In numbers">
-  <div class="stat"><b data-count="8">8</b><span class="mono">countries played</span></div>
+  <div class="stat"><b data-count="10">10</b><span class="mono">countries played</span></div>
   <div class="stat"><b data-count="7">7</b><span class="mono">stops on the 2026 EU tour</span></div>
   <div class="stat"><b>2h</b><span class="mono">longest set · MaHalla Berlin</span></div>
-  <div class="stat"><b data-count="22">22</b><span class="mono">cities &amp; counting</span></div>
+  <div class="stat"><b data-count="24">24</b><span class="mono">cities &amp; counting</span></div>
   <div class="stat"><b>∞</b><span class="mono">sustained Sa</span></div>
 </div>
 
@@ -511,10 +520,13 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <a class="pill solid more" href="#bsf">↓ dive into the dream</a>
       </article>
       <article class="proj tsiy rv">
-        <img class="inset" src="assets/nomads-immersion-3.jpg" alt="Listeners lying on rugs and cushions during a sound immersion." loading="lazy">
-        <span class="mono">◎ sound immersion</span>
+        <img class="inset" src="assets/tsiy-garden-duo.jpg" alt="Harsh at a laptop and controller and Sahitya singing, seated on a small outdoor stage under a macramé canopy among trees at GAIA Festival." loading="lazy">
+        <span class="mono">◎ dhrupad × ableton · sound immersion</span>
         <h3>The Space Inside You</h3>
-        <p>“This is not a performance, but a listening space.” You lie down and listen with your whole body as the session moves through the five elements. It has run at Method Mumbai, Odd Bird Theatre, One Design Space and more.</p>
+        <p>Our flagship experience: Dhrupad-inspired vocal improvisation with a live set on Ableton Live and VCV Rack, synthesising elemental soundscapes alongside acoustic instruments. <i>A space for one to come, lay down, and enter a journey with sounds.</i></p>
+        <p>The drones draw on the five elements: the Panchamahabhutas of Ayurveda (space, air, fire, water, earth) and the five elements of Traditional Chinese Medicine, with sections of the alaap linked to each. Each session offers a moment of introspection: to pause, listen, and feel rejuvenated.</p>
+        <ul><li>40+ sessions</li><li>1000+ listeners</li><li>deep relaxation</li><li>hypnagogic state</li><li>inward journey</li></ul>
+        <blockquote class="tsiy-q">“A whole new world where ancient melodies and modern soundscapes blend seamlessly.”</blockquote>
       </article>
       <article class="proj dnd rv">
         <span class="mono">∿ radio · live</span>
@@ -627,15 +639,15 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       <img class="tour-poster rv" src="assets/ig-eu-tour-2026.jpg" alt="Bedtime Sonic Fables Europe Tour 2026 poster: Amsterdam Roots Festival, Spazio X Treviso, Sanctum of Sound Berlin, Migas Berlin, Vondelbunker Amsterdam, Clorofórmio Porto, Ozora Festival Hungary." loading="lazy">
     </div>
     <div class="journey rv">
-      <img src="assets/deck-journey-map.jpg" alt="Our journey map: Berlin, Hungary (Ozora Festival), Dharamkot, Bir, Ludhiana, Raison, Delhi NCR, Alsisar, Hyderabad, Mumbai, Goa, Dandeli, Auroville, Bangkok, and Kalpitiya, Sri Lanka (Burning Donkey Festival)." loading="lazy">
+      <img src="assets/journey-map-2026.jpg" alt="Our journey map. Europe: Netherlands (Amsterdam, The Hague), Berlin, Switzerland (Kaleido Retreat), Austria (Graz), Hungary (Ozora Festival), Italy (Treviso), Portugal (Porto). Asia: Dharamkot, Bir, Ludhiana, Raison, Delhi NCR, Alsisar, Hyderabad, Mumbai, Goa, Dandeli, Auroville, Bangkok, and Kalpitiya, Sri Lanka (Burning Donkey Festival)." loading="lazy">
       <div>
-        <h3>22 cities, <span class="serif">one drone</span></h3>
+        <h3>24 cities, <span class="serif">one drone</span></h3>
         <ul class="cities">
-          <li>Auroville</li><li>Mumbai</li><li>Goa</li><li>Delhi NCR</li><li>Hyderabad</li><li>Chennai</li><li>Bangalore</li><li>Dandeli</li><li>Dharamkot</li><li>Bir</li><li>Raison</li><li>Ludhiana</li><li>Alsisar</li><li>Khetri</li><li>Kalpitiya</li><li>Bangkok</li><li>Berlin</li><li>Ozora</li><li>Amsterdam</li><li>The Hague</li><li>Treviso</li><li>Porto</li>
+          <li>Auroville</li><li>Mumbai</li><li>Goa</li><li>Delhi NCR</li><li>Hyderabad</li><li>Chennai</li><li>Bangalore</li><li>Dandeli</li><li>Dharamkot</li><li>Bir</li><li>Raison</li><li>Ludhiana</li><li>Alsisar</li><li>Khetri</li><li>Kalpitiya</li><li>Bangkok</li><li>Berlin</li><li>Ozora</li><li>Amsterdam</li><li>The Hague</li><li>Treviso</li><li>Porto</li><li>Hasliberg</li><li>Graz</li>
         </ul>
         <p class="mono">rooms we've filled with sound →</p>
         <ul class="venues">
-          <li>MaHalla</li><li>Magnetic Fields</li><li>Serendipity Arts Festival</li><li>G5A</li><li>_subko</li><li>Piramal Art Gallery · Dilli</li><li>W.I.P Labs</li><li>Harkat Studios</li><li>Odd Bird Theatre</li><li>GAIA Festival</li><li>Method</li><li>Noise House</li><li>Aura Studios</li><li>Refuge Worldwide</li>
+          <li>MaHalla</li><li>Magnetic Fields</li><li>Serendipity Arts Festival</li><li>G5A</li><li>_subko</li><li>Piramal Art Gallery · Dilli</li><li>W.I.P Labs</li><li>Harkat Studios</li><li>Odd Bird Theatre</li><li>GAIA Festival</li><li>Method</li><li>Noise House</li><li>Aura Studios</li><li>Refuge Worldwide</li><li>Kaleido Retreat</li><li>Bewusstseinsatelier</li>
         </ul>
       </div>
     </div>
@@ -706,9 +718,9 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
-  <span class="orb" style="width:340px;height:340px;background:var(--pink);left:-80px;top:10%"></span>
-  <span class="orb" style="width:280px;height:280px;background:var(--lime);right:-60px;bottom:8%;animation-delay:-5s"></span>
-  <span class="orb" style="width:200px;height:200px;background:var(--sky);left:40%;top:-60px;animation-delay:-8s"></span>
+  <span class="orb o1" aria-hidden="true"></span>
+  <span class="orb o2" aria-hidden="true"></span>
+  <span class="orb o3" aria-hidden="true"></span>
   <div class="wrap">
     <h2>take a <span class="serif">pause.</span></h2>
     <p>Bookings, collaborations, sound immersions in your space. Write to us; we reply (slowly, mindfully).</p>
@@ -734,6 +746,8 @@ const IG = c => `https://www.instagram.com/p/${c}/`;
 const GIGS = [
   // [year, date, what, subtitle, place, flag, link, linkLabel]
   [2026,'13 Sep','Sonic Distortions ④','live w/ ONNO collective','Method · New Delhi','',IG('Dc8wZYDk9BT'),'post'],
+  [2026,'19–23 Aug','Kaleido Retreat','9th edition · “From the Edges to the Center”','Hasliberg · Switzerland','',  'https://kaleido.community/retreats/from-the-edges-to-the-center/','kaleido'],
+  [2026,'12 Aug','Electroacoustic Dhrupad','neo-classical Indian concert · benefit for Sadhana Forest · w/ Jakob (didgeridoo, tanpura santoor)','Bewusstseinsatelier · Graz, Austria','','https://www.instagram.com/p/DcGW6WCiNDO/','post'],
   [2026,'8 Aug','Point of Listening','ONNO × Radio Alhara','online radio','📻',IG('Dbzl8FpE2FQ'),'post'],
   [2026,'1 Aug','OZORA Festival','Ambyss Stage · morning set','Dádpuszta · Hungary','','https://2026.ozorafestival.eu/music-and-dance/ambyss/pause-dxa/','ozora'],
   [2026,'30 Jul','OZORA Festival','Ginko Stage · lay-down set','Dádpuszta · Hungary','',IG('DbYonjfjNCN'),'post'],
@@ -779,6 +793,7 @@ const TRACKS = [
   ['binaural + other','2024','binaural-other'],
 ];
 const WALL = [
+  ['ig-graz','DcGW6WCiNDO','Electroacoustic Dhrupad · Graz'],
   ['deck-gaia-forest',null,'lying down in the forest · GAIA'],
   ['deck-palace',null,'palace arches, pink light'],
   ['deck-hands',null,'hands, keys, rug'],
@@ -889,6 +904,8 @@ document.getElementById('copyMail').addEventListener('click', e => {
   setTimeout(() => b.textContent = 'copy', 2200);
 });
 document.getElementById('yr').textContent = new Date().getFullYear();
+
+
 
 
 /* ---------------- filmstrip ---------------- */
