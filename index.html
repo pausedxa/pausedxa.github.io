@@ -445,6 +445,9 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 @media (max-width:880px){.tanpura,.tanpura-lbl{display:none}}
 .band-credit{opacity:.6;font-size:10px;margin-top:-4px}
 .band-link{margin-top:14px;color:var(--cream)}
+.tour-photo{margin:0;width:min(100%,460px)}
+.tour-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:18px;box-shadow:0 18px 40px -24px rgba(29,30,28,.35)}
+.tour-photo figcaption{margin-top:10px;opacity:.7;text-transform:none}
 </style>
 </head>
 <body>
@@ -689,7 +692,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <h2>performances</h2>
         <p class="big-p">Upcoming and past performances, 2023 to 2026.</p>
       </div>
-      <img class="tour-poster rv" src="assets/ig-eu-tour-2026.jpg" alt="Bedtime Sonic Fables Europe Tour 2026 poster: Amsterdam Roots Festival, Spazio X Treviso, Sanctum of Sound Berlin, Migas Berlin, Vondelbunker Amsterdam, Clorofórmio Porto, Ozora Festival Hungary." loading="lazy">
+      <figure class="tour-photo rv"><img src="assets/deck-omnivoid-duo.jpg" alt="Sahitya and Harsh performing under a projected cymatics pattern at Omnivoid ed.005, Aura Studios, Chennai." loading="lazy"><figcaption class="mono">live at omnivoid ed.005 · aura studios, chennai · feb 2026</figcaption></figure>
     </div>
     <div class="journey rv">
       <img src="assets/journey-map-2026.jpg" alt="Our journey map. Europe: Netherlands (Amsterdam, The Hague), Berlin, Switzerland (Kaleido Retreat), Austria (Graz), Hungary (Ozora Festival), Italy (Treviso), Portugal (Porto). Asia: Dharamkot, Bir, Ludhiana, Raison, Delhi NCR, Alsisar, Hyderabad, Mumbai, Goa, Dandeli, Auroville, Bangkok, and Kalpitiya, Sri Lanka (Burning Donkey Festival)." loading="lazy">
@@ -855,7 +858,6 @@ const WALL = [
   ['deck-gaia-dance',null,'GAIA · dusk'],
   ['circle-goa-discs',null,'@circle · Goa'],
   ['nomads-immersion-4',null,'sound immersion · Nomads'],
-  ['deck-omnivoid-duo',null,'Omnivoid · Chennai'],
   ['ozora25-harsh','DN5A84wE5tv','Ozora 2025 · Ginko Stage'],
   ['ozora25-sahitya',null,'Ozora 2025 · Sahitya'],
   ['ig-bedtime-launch','DUOJaSVk7Pq','C.A.L.M. · Bedtime Sonic Fables'],
