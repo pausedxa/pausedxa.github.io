@@ -402,6 +402,7 @@ section{padding-block:clamp(110px,16vh,190px)}
 .hero h1{font-weight:350;letter-spacing:-.03em;line-height:.9;font-size:clamp(64px,15vw,240px)}
 h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7.2vw,116px)}
 .contact h2{font-size:clamp(54px,10.5vw,176px)}
+.band-big{font-family:var(--head);font-variation-settings:"SOFT" 100,"opsz" 96;font-stretch:100%;text-transform:none;font-weight:350;letter-spacing:-.03em;line-height:.9}
 .serif{font-style:italic;font-weight:300}
 .hero-sub{font-weight:300;letter-spacing:-.01em}
 .big-p{font-weight:300;letter-spacing:-.01em;line-height:1.28}
@@ -416,6 +417,34 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .email b{font-weight:350;letter-spacing:-.02em}
 .stage-desc{font-weight:300}
 
+
+/* dhrupad section */
+.dhr{background:var(--ink);color:var(--cream);overflow:hidden;isolation:isolate}
+.dhr h2{color:var(--cream)}
+.dhr-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+@media (max-width:880px){.dhr-grid{grid-template-columns:1fr}}
+@media (min-width:881px){.dhr-grid{padding-right:clamp(90px,11vw,190px)}}
+.dhr p{max-width:56ch}
+.dhr b{font-weight:500;color:var(--lime)}
+.syll{margin:0 0 14px;display:flex;flex-wrap:wrap;gap:.15em .55em;font-family:var(--head,serif);font-style:italic;font-weight:300;font-size:clamp(40px,5.4vw,84px);line-height:1;color:var(--cream)}
+.syll span{opacity:.35;animation:syl 12s ease-in-out infinite}
+.syll span:nth-child(2){animation-delay:2s}.syll span:nth-child(3){animation-delay:4s}.syll span:nth-child(4){animation-delay:6s}.syll span:nth-child(5){animation-delay:8s}.syll span:nth-child(6){animation-delay:10s}
+@keyframes syl{0%,100%{opacity:.35}8%,22%{opacity:1}}
+.syll-note{color:#a9aaa5;max-width:52ch;line-height:1.6;text-transform:none;letter-spacing:.02em}
+.unfold{list-style:none;margin:34px 0 12px;padding:0;border-left:1px solid rgba(244,243,240,.25)}
+.unfold li{position:relative;padding:0 0 22px 26px}
+.unfold li::before{content:"";position:absolute;left:-5px;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--ink);border:1px solid var(--cream)}
+.unfold li:first-child::before{background:var(--lime);border-color:var(--lime)}
+.unfold b{display:block;font-family:var(--head,serif);font-size:clamp(24px,2.2vw,32px);font-weight:400;color:var(--cream);line-height:1.1}
+.unfold span{color:#cfd0cb}
+.tanpura{position:absolute;right:clamp(8px,4vw,60px);top:0;height:100%;width:clamp(60px,9vw,130px);z-index:-1;opacity:.18}
+.tanpura line{stroke:var(--cream);stroke-width:1.2;vector-effect:non-scaling-stroke;animation:str 9s ease-in-out infinite}
+.tanpura line:nth-child(2){animation-delay:-2.2s}.tanpura line:nth-child(3){animation-delay:-4.5s}.tanpura line:nth-child(4){animation-delay:-6.7s}
+@keyframes str{0%,100%{transform:translateX(0)}50%{transform:translateX(1.5px)}}
+.tanpura-lbl{position:absolute;right:clamp(8px,4vw,60px);bottom:14px;width:clamp(60px,9vw,130px);display:flex;justify-content:space-around;margin:0;color:#8a8b86;font-size:10px}
+@media (max-width:880px){.tanpura,.tanpura-lbl{display:none}}
+.band-credit{opacity:.6;font-size:10px;margin-top:-4px}
+.band-link{margin-top:14px;color:var(--cream)}
 </style>
 </head>
 <body>
@@ -423,11 +452,12 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <nav aria-label="Main">
   <a class="logo" href="#top">pause.dxa</a>
   <a href="#about">About</a>
+  <a href="#dhrupad">Dhrupad</a>
   <a href="#projects">Projects</a>
   <a href="#bsf">BSF</a>
-  <a href="#tour">Tour</a>
+  <a href="#tour">Performances</a>
   <a class="k" href="#listen">Listen</a>
-  <a href="#contact">Book</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -435,16 +465,16 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <canvas id="chladni" aria-hidden="true"></canvas>
   <div>
     <h1 id="title" aria-label="pause.dxa">pause<span class="dot">.</span>dxa</h1>
-    <p class="hero-sub">dhrupad <span class="serif">meets</span> drones, <span class="serif">modular synths,</span><br>field recordings <span class="serif">&amp;</span> cymatics</p>
+    <p class="hero-sub">dhrupad <span class="serif">and</span> electronic soundscapes</p>
     <div class="hero-meta">
-      <span class="pill">✺ Sahitya &amp; Harsh</span>
-      <span class="pill">⌖ Auroville, India</span>
-      <a class="pill solid" href="#listen">▶ Listen now</a>
+      <span class="pill">Sahitya &amp; Harsh</span>
+      <span class="pill">Auroville, India</span>
+      <a class="pill solid" href="#listen">▶ Listen</a>
     </div>
   </div>
-  <p class="hint mono">↖ move your cursor: the sand settles into cymatic patterns. press the pink button for a real <span class="brand">pause.dxa</span> drone; the sand listens ↘</p>
+  <p class="hint mono">the pattern follows your cursor, like sand on a vibrating plate. the round button plays an excerpt of our music.</p>
   <button class="drone-btn" id="droneBtn" aria-pressed="false" aria-label="Play a pause.dxa drone excerpt">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ" textLength="236" lengthAdjust="spacing">press to drone ✺ press to drone ✺</textPath></text></svg>
+    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ" textLength="236" lengthAdjust="spacing">press to listen · press to listen ·</textPath></text></svg>
     <span class="ic" id="droneIc">▶</span>
   </button>
 </header>
@@ -455,53 +485,74 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <section class="about" id="about">
   <div class="wrap about-grid">
     <div class="rv">
-      <span class="kicker">01 / who</span>
-      <h2>two humans, <span class="serif">one</span> long drone</h2>
+      <span class="kicker">01 / about</span>
+      <h2>about <span class="serif">us</span></h2>
       <p class="big-p">We bring together our individual practices of <span class="serif">Dhrupad</span> and electronic sound synthesis. As our moniker suggests, we create long-form ambient listening experiences: <span class="serif">a space for one to slow down.</span></p>
-      <p>Our sets are listening spaces more than concerts. Sit, lie down, close your eyes and drift. So far we've done it on a barge in Goa, in a 130-year-old Berlin hall, under the trees at Ozora and in a barn in Auroville.</p>
+      <p>Our performances are long-form listening sessions. Listeners are welcome to sit or lie down. We perform at festivals, venues and retreats in India and abroad, and also make soundscapes and installations.</p>
       <div class="people">
         <article class="person">
           <img class="portrait" src="assets/deck-sahitya.jpg" alt="Sahitya singing into a microphone, eyes closed." loading="lazy">
-          <span class="mono">vocalist · pianist · arts manager · researcher</span>
+          <span class="mono">vocalist · pianist · researcher</span>
           <h3>Sahitya</h3>
           <p>Practises Dhrupad as a disciple of <b>Ustad Wasifuddin Dagar</b> in the Dagarvani tradition. Her practice is grounded in the philosophy of the Dagar gharana, with a focus on <i>alaap</i>: vocal improvisation and the subtlety of vocal sound. She's a Music Therapy graduate and explored the work of sound further through Svaram's Integral Sonic Studies &amp; Practices Program.</p>
         </article>
         <article class="person">
           <img class="portrait" src="assets/deck-harsh.jpg" alt="Harsh smiling at a synth keyboard." loading="lazy">
-          <span class="mono">maths teacher · sound artist · accidental musician</span>
+          <span class="mono">sound artist · maths teacher</span>
           <h3>Harsh</h3>
           <p>Creates electronic soundscapes with modular synthesis on <b>VCV Rack</b> and field recordings. He researches and builds installations based on <b>cymatics</b>, and graduated from the Integral Sonic Studies Program at Svaram, Auroville.</p>
         </article>
       </div>
     </div>
     <div class="photo-stack rv">
-      <figure class="p1"><img src="assets/deck-story.jpg" alt="Sahitya singing and Harsh at a modular synth rig under violet light, blue-and-white striped stage front."><figcaption>live, bathed in violet</figcaption></figure>
-      <figure class="p2"><img src="assets/duo.jpg" alt="Sahitya and Harsh on a dim stage, chimes and percussion laid out on a rug."><figcaption>chimes on the rug</figcaption></figure>
-      <span class="sticker s1">✺ 10 countries · 24 cities</span>
-      <span class="sticker s2">☾ made for lying down</span>
+      <figure class="p1"><img src="assets/deck-story.jpg" alt="Sahitya singing and Harsh at a modular synth rig under violet light, blue-and-white striped stage front."><figcaption>live</figcaption></figure>
+      <figure class="p2"><img src="assets/duo.jpg" alt="Sahitya and Harsh on a dim stage, chimes and percussion laid out on a rug."><figcaption>instruments</figcaption></figure>
     </div>
   </div>
 </section>
 
-<div class="stats" aria-label="In numbers">
-  <div class="stat"><b data-count="10">10</b><span class="mono">countries played</span></div>
-  <div class="stat"><b data-count="7">7</b><span class="mono">stops on the 2026 EU tour</span></div>
-  <div class="stat"><b>2h</b><span class="mono">longest set · MaHalla Berlin</span></div>
-  <div class="stat"><b data-count="24">24</b><span class="mono">cities &amp; counting</span></div>
-  <div class="stat"><b>∞</b><span class="mono">sustained Sa</span></div>
-</div>
 
 
-<!-- ============ STEPWELL BAND ============ -->
-<section class="band" aria-label="Live at the Stepwell, Magnetic Fields Nomads 2026">
+<!-- ============ DHRUPAD ============ -->
+<section class="dhr" id="dhrupad">
+  <svg class="tanpura" viewBox="0 0 400 1000" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="80" y1="0" x2="80" y2="1000"/><line x1="160" y1="0" x2="160" y2="1000"/><line x1="240" y1="0" x2="240" y2="1000"/><line x1="320" y1="0" x2="320" y2="1000"/>
+  </svg>
+  <div class="wrap dhr-grid">
+    <div class="rv">
+      <span class="kicker">02 / dhrupad</span>
+      <h2>dhrupad</h2>
+      <p class="big-p">Dhrupad is one of the oldest surviving forms of Hindustani classical music. Its name joins <span class="serif">dhruva</span>, steady, and <span class="serif">pada</span>, verse.</p>
+      <p>It is sung slowly and with restraint, with close attention to each note, to the breath, and to the resonance of the voice against the drone of the tanpura. Sahitya learns in the Dagarvani tradition, one of the principal lineages of Dhrupad, under Ustad F. Wasifuddin Dagar.</p>
+      <p>Our music stays mostly in the <b>alaap</b>, the unhurried opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.</p>
+    </div>
+    <div class="rv">
+      <p class="syll" aria-label="Syllables sung in the alaap: a, re, ne, na, nom, tom"><span>ā</span><span>re</span><span>ne</span><span>na</span><span>nom</span><span>tom</span></p>
+      <p class="mono syll-note">the alaap is sung on syllables such as these, traditionally said to come from the invocation <i>om ananta narayana hari</i>.</p>
+      <ol class="unfold">
+        <li><b>alaap</b><span>slow and unmetered; the raag is introduced note by note.</span></li>
+        <li><b>madhya</b><span>a gentle pulse appears and the phrases begin to move.</span></li>
+        <li><b>drut</b><span>the pace quickens and the phrases gather.</span></li>
+        <li><b>bandish</b><span>the composed verse, sung with the pakhawaj.</span></li>
+      </ol>
+      <p class="mono syll-note">how a dhrupad performance unfolds. our work is rooted in the first stages.</p>
+    </div>
+  </div>
+  <p class="tanpura-lbl mono" aria-hidden="true"><span>pa</span><span>sa</span><span>sa</span><span>sa</span></p>
+</section>
+
+<!-- ============ UPCOMING BAND ============ -->
+<section class="band" aria-label="Upcoming: Wonderfruit 2026, Enfold stage">
   <picture>
     <source media="(max-width: 700px)" srcset="assets/nomads-stepwell-stripes.jpg">
     <img src="assets/nomads-stepwell-duo.jpg" alt="Sahitya singing and Harsh at the synths under deep-blue light in the stepwell arches at Magnetic Fields Nomads 2026." loading="lazy">
   </picture>
   <div class="band-txt">
-    <span class="kicker">live · 14.02.26</span>
-    <p class="band-big">the stepwell,<br><span class="serif">10:30 pm</span></p>
-    <p class="mono">magnetic fields nomads · khetri, rajasthan · 📷 shrey gupta</p>
+    <span class="kicker">upcoming · 3–7 dec 2026</span>
+    <p class="band-big">wonderfruit</p>
+    <p class="mono">enfold stage · the fields at siam country club, chonburi, thailand</p>
+    <p class="mono band-credit">photo: magnetic fields nomads 2026 · shrey gupta</p>
+    <a class="pill band-link" href="https://wonderfruit.co/venues/enfold" target="_blank" rel="noopener">wonderfruit ↗</a>
   </div>
 </section>
 <div class="film" aria-label="Photos from recent sets">
@@ -511,41 +562,40 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ PROJECTS ============ -->
 <section class="projects" id="projects">
   <div class="wrap">
-    <span class="kicker">02 / what we make</span>
+    <span class="kicker">03 / projects</span>
     <h2>projects</h2>
     <div class="proj-grid">
       <article class="proj bsf rv">
         <img class="bg" src="assets/deck-omnivoid-crowd.jpg" alt="" loading="lazy">
-        <span class="mono">☾ the big one · 2026</span>
+        <span class="mono">audio-visual performance · 2026</span>
         <h3>Bedtime Sonic Fables</h3>
         <p>A dream-like journey composed to mirror the fluid transitions of the sleep cycle. It's Dhrupad, electronics and live water-cymatics visuals, often in quadraphonic sound. It started as late-night online sessions in 2024 and was built out with the <b>Serendipity Arts Foundation's Independent Music Production Grant 2025</b>. The debut was in a transformed barn in Auroville, and it toured Europe in summer 2026.</p>
         <ul><li>Butterfly Barn</li><li>Omnivoid ed.005</li><li>ISRO</li><li>EU tour</li><li>quadraphonic</li></ul>
-        <a class="pill solid more" href="#bsf">↓ dive into the dream</a>
+        <a class="pill solid more" href="#bsf">↓ more about this project</a>
       </article>
       <article class="proj tsiy rv">
         <img class="inset" src="assets/tsiy-garden-duo.jpg" alt="Harsh at a laptop and controller and Sahitya singing, seated on a small outdoor stage under a macramé canopy among trees at GAIA Festival." loading="lazy">
-        <span class="mono">◎ dhrupad × ableton · sound immersion</span>
+        <span class="mono">sound immersion</span>
         <h3>The Space Inside You</h3>
-        <p>Our flagship experience: Dhrupad-inspired vocal improvisation with a live set on Ableton Live and VCV Rack, synthesising elemental soundscapes alongside acoustic instruments. <i>A space for one to come, lay down, and enter a journey with sounds.</i></p>
+        <p>A sound immersion combining Dhrupad-inspired vocal improvisation with a live set on Ableton Live and VCV Rack, synthesising elemental soundscapes alongside acoustic instruments. <i>A space for one to come, lay down, and enter a journey with sounds.</i></p>
         <p>The drones draw on the five elements: the Panchamahabhutas of Ayurveda (space, air, fire, water, earth) and the five elements of Traditional Chinese Medicine, with sections of the alaap linked to each. Each session offers a moment of introspection: to pause, listen, and feel rejuvenated.</p>
-        <ul><li>40+ sessions</li><li>1000+ listeners</li><li>deep relaxation</li><li>hypnagogic state</li><li>inward journey</li></ul>
-        <blockquote class="tsiy-q">“A whole new world where ancient melodies and modern soundscapes blend seamlessly.”</blockquote>
+                <blockquote class="tsiy-q">“A whole new world where ancient melodies and modern soundscapes blend seamlessly.”</blockquote>
       </article>
       <article class="proj dnd rv">
-        <span class="mono">∿ radio · live</span>
+        <span class="mono">radio</span>
         <h3>dhrupad &amp; drones <span class="serif">(dnd)</span></h3>
-        <p>A conversation between modular-synth drones and alaap: pure tones and voice journeying together for an hour. It premiered on Refuge Worldwide, Berlin.</p>
-        <a class="pill more" href="https://refugeworldwide.com/radio/dhrupad-and-drones-pause-dxa-22-jun-2026" target="_blank" rel="noopener">▶ stream on refuge ↗</a>
+        <p>An hour-long piece for modular-synth drones and alaap, first broadcast on Refuge Worldwide, Berlin, in June 2026.</p>
+        <a class="pill more" href="https://refugeworldwide.com/radio/dhrupad-and-drones-pause-dxa-22-jun-2026" target="_blank" rel="noopener">▶ listen on refuge ↗</a>
       </article>
       <article class="proj cym rv">
         <img class="bg" src="assets/ig-cymatics.jpg" alt="" loading="lazy">
-        <span class="mono">⌇ sound → shape</span>
+        <span class="mono">installation</span>
         <h3>Cymatics installations</h3>
-        <p>Harsh's research made visible. Water, light and vibration turn the music into living, hypnotic patterns that sit at the heart of the space during performances.</p>
+        <p>A water-and-light cymatics installation developed by Harsh, in which the music shapes patterns on the surface of water during performances.</p>
       </article>
       <article class="proj gaza rv">
-        <h3>Azhagu Bhoomi <span class="serif">— pretty earth</span></h3>
-        <p>A piece shared with <b>Love Letter for Gaza</b> as a prayer and a sonic remembrance for those surviving, in hope for the end of an extremely unjust time. <a href="https://soundcloud.com/dxa770/azhagu-bhoomi-loop-one" target="_blank" rel="noopener">Listen to the loop ↗</a></p>
+        <h3>Azhagu Bhoomi <span class="serif">(pretty earth)</span></h3>
+        <p>A piece shared with <b>Love Letter for Gaza</b> as a prayer and a remembrance for those surviving. <a href="https://soundcloud.com/dxa770/azhagu-bhoomi-loop-one" target="_blank" rel="noopener">Listen to the loop ↗</a></p>
       </article>
     </div>
   </div>
@@ -556,22 +606,22 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <section class="bsfx" id="bsf">
   <img class="bsfx-bg" src="assets/deck-bsf-marble.jpg" alt="" aria-hidden="true">
   <div class="wrap">
-    <span class="kicker">03 / the big one</span>
+    <span class="kicker">04 / bedtime sonic fables</span>
     <h2>bedtime <span class="serif">sonic</span> fables</h2>
-    <p class="bsfx-tag mono">dhrupad ╱ electronic soundscapes ╱ cymatics &nbsp;·&nbsp; listen and sleep, listen and dream.</p>
+    <p class="bsfx-tag mono">dhrupad · electronic soundscapes · cymatics</p>
     <div class="bsfx-intro">
       <figure class="cover rv"><img src="assets/deck-bsf-cover.jpg" alt="Bedtime Sonic Fables cover: swirling deep-blue marbled waters with constellations, on violet."><span class="sticker s1 brand">by pause.dxa</span></figure>
       <div class="rv">
-        <p class="big-p">A sonic experience designed to transport you through a <span class="serif">dream-like journey</span>, mirroring the fluid transitions of the sleep cycle.</p>
-        <p>We explore dream states through experimental music and sound, bringing together our practices in Dhrupad, electronic soundscapes and live instruments. It's an ambient performance where you're free to experience it however you wish: sitting, lying down, the possibilities are open.</p>
-        <p>As an audio-visual set, it comes with an installation of <b>live water-cymatics visuals</b> projected through the room, so you can actually <i>see</i> the sound, through water and light.</p>
+        <p class="big-p">An hour-long performance that follows the stages of the <span class="serif">sleep cycle</span>.</p>
+        <p>We explore dream states through experimental music and sound, bringing together our practices in Dhrupad, electronic soundscapes and live instruments. Listeners can sit or lie down.</p>
+        <p>The set includes live water-cymatics visuals, projected in the room.</p>
       </div>
     </div>
 
     <div class="sleep rv" id="sleep">
       <div class="sleep-head">
         <h3>stages of a sleep cycle</h3>
-        <button class="pill solid" id="dreamBtn">▶ drift through it</button>
+        <button class="pill solid" id="dreamBtn">▶ play through the cycle</button>
       </div>
       <svg class="hypno" viewBox="0 0 1000 260" preserveAspectRatio="none" role="img" aria-label="Hypnogram: wake, N1, N2, N3, N2, REM, N1">
         <g class="grid">
@@ -602,7 +652,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 
 <section class="pillars">
   <div class="wrap">
-    <span class="kicker">what the dream is made of</span>
+    <span class="kicker">elements of the performance</span>
     <div class="pillar-grid">
       <article class="pillar dh rv">
         <img src="assets/deck-trees.jpg" alt="" loading="lazy">
@@ -635,22 +685,22 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <div class="wrap">
     <div class="tour-head">
       <div class="rv">
-        <span class="kicker">04 / where we've drifted</span>
-        <h2>on the <span class="serif">road</span></h2>
-        <p class="big-p">From a café in Mumbai to the Ambyss stage at Ozora, in three years.</p>
+        <span class="kicker">05 / performances</span>
+        <h2>performances</h2>
+        <p class="big-p">Upcoming and past performances, 2023 to 2026.</p>
       </div>
       <img class="tour-poster rv" src="assets/ig-eu-tour-2026.jpg" alt="Bedtime Sonic Fables Europe Tour 2026 poster: Amsterdam Roots Festival, Spazio X Treviso, Sanctum of Sound Berlin, Migas Berlin, Vondelbunker Amsterdam, Clorofórmio Porto, Ozora Festival Hungary." loading="lazy">
     </div>
     <div class="journey rv">
       <img src="assets/journey-map-2026.jpg" alt="Our journey map. Europe: Netherlands (Amsterdam, The Hague), Berlin, Switzerland (Kaleido Retreat), Austria (Graz), Hungary (Ozora Festival), Italy (Treviso), Portugal (Porto). Asia: Dharamkot, Bir, Ludhiana, Raison, Delhi NCR, Alsisar, Hyderabad, Mumbai, Goa, Dandeli, Auroville, Bangkok, and Kalpitiya, Sri Lanka (Burning Donkey Festival)." loading="lazy">
       <div>
-        <h3>24 cities, <span class="serif">one drone</span></h3>
+        <h3>places</h3>
         <ul class="cities">
           <li>Auroville</li><li>Mumbai</li><li>Goa</li><li>Delhi NCR</li><li>Hyderabad</li><li>Chennai</li><li>Bangalore</li><li>Dandeli</li><li>Dharamkot</li><li>Bir</li><li>Raison</li><li>Ludhiana</li><li>Alsisar</li><li>Khetri</li><li>Kalpitiya</li><li>Bangkok</li><li>Berlin</li><li>Ozora</li><li>Amsterdam</li><li>The Hague</li><li>Treviso</li><li>Porto</li><li>Hasliberg</li><li>Graz</li>
         </ul>
-        <p class="mono">rooms we've filled with sound →</p>
+        <p class="mono">venues &amp; festivals</p>
         <ul class="venues">
-          <li>MaHalla</li><li>Magnetic Fields</li><li>Serendipity Arts Festival</li><li>G5A</li><li>_subko</li><li>Piramal Art Gallery · Dilli</li><li>W.I.P Labs</li><li>Harkat Studios</li><li>Odd Bird Theatre</li><li>GAIA Festival</li><li>Method</li><li>Noise House</li><li>Aura Studios</li><li>Refuge Worldwide</li><li>Kaleido Retreat</li><li>Bewusstseinsatelier</li>
+          <li>MaHalla</li><li>Magnetic Fields</li><li>Serendipity Arts Festival</li><li>G5A</li><li>_subko</li><li>Piramal Art Gallery · Dilli</li><li>W.I.P Labs</li><li>Harkat Studios</li><li>Odd Bird Theatre</li><li>GAIA Festival</li><li>Method</li><li>Noise House</li><li>Aura Studios</li><li>Refuge Worldwide</li><li>Wonderfruit</li><li>Kaleido Retreat</li><li>Bewusstseinsatelier</li>
         </ul>
       </div>
     </div>
@@ -668,14 +718,14 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ LISTEN ============ -->
 <section class="listen" id="listen">
   <div class="wrap">
-    <span class="kicker">05 / put your headphones on</span>
+    <span class="kicker">06 / listen</span>
     <h2>listen <span class="serif">&amp;</span> watch</h2>
     <div class="listen-grid">
       <div class="tracks" id="tracks"></div>
       <div class="videos">
         <div class="vid" data-yt="xvVE1rS0Ldc"><button aria-label="Play: Live at OMNIVOID ed 005"><img src="https://i.ytimg.com/vi/xvVE1rS0Ldc/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>Live at Omnivoid ed.005<br><span class="mono">Aura Studios, Chennai</span></b><span class="play">▶</span></span></button></div>
         <div class="vid" data-yt="cVjc865nz4I"><button aria-label="Play: Future Intel, The Hague"><img src="https://i.ytimg.com/vi/cVjc865nz4I/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>Future Intel ═ 16.07.26<br><span class="mono">The Hague</span></b><span class="play">▶</span></span></button></div>
-        <div class="vid" data-yt="kc267TA9Xo0"><button aria-label="Play: Pause, 19 minutes"><img src="https://i.ytimg.com/vi/kc267TA9Xo0/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>Pause <span class="serif">(19 minutes)</span><br><span class="mono">the original sound immersion</span></b><span class="play">▶</span></span></button></div>
+        <div class="vid" data-yt="kc267TA9Xo0"><button aria-label="Play: Pause, 19 minutes"><img src="https://i.ytimg.com/vi/kc267TA9Xo0/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>Pause <span class="serif">(19 minutes)</span><br><span class="mono">an early sound immersion</span></b><span class="play">▶</span></span></button></div>
         <a class="radio" href="https://refugeworldwide.com/radio/dhrupad-and-drones-pause-dxa-22-jun-2026" target="_blank" rel="noopener">
           <img src="assets/ig-refuge.jpg" alt="" loading="lazy">
           <span><span class="mono">refuge worldwide · 22.06.26 · 60 min</span><b>dhrupad and drones ↗</b></span>
@@ -689,8 +739,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ WALL ============ -->
 <section class="wall" id="wall">
   <div class="wrap">
-    <span class="kicker">06 / from the feed</span>
-    <h2>the <span class="serif">scrapbook</span></h2>
+    <span class="kicker">07 / photos</span>
+    <h2>photos</h2>
     <div class="wall-grid" id="wallGrid"></div>
   </div>
 </section>
@@ -698,16 +748,16 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ OFFER ============ -->
 <section class="offer" id="work">
   <div class="wrap">
-    <span class="kicker">07 / invite us</span>
-    <h2>bring the <span class="serif">pause</span> to you</h2>
+    <span class="kicker">08 / work with us</span>
+    <h2>work <span class="serif">with</span> us</h2>
     <div class="offer-grid">
-      <div class="card rv"><img class="cimg" src="assets/deck-palace.jpg" alt="A pause.dxa set in a palace courtyard under pink-lit arches, audience in silhouette." loading="lazy"><h3>Festivals &amp; clubs</h3><p>Ambient sets from 1 to 2+ hours, from lay-down sunrise sets to late-night stepwells.</p></div>
-      <div class="card rv"><img class="cimg" src="assets/nomads-immersion-2.jpg" alt="Singing bowls, a frame drum and chimes laid out on a rug." loading="lazy"><h3>Sound immersions</h3><p>Intimate listening sessions with mats, darkness and five elements. Studios, retreats, homes, barns.</p></div>
-      <div class="card rv"><img class="cimg" src="assets/deck-cymatics-blue.jpg" alt="Electric-blue water cymatics in a glass dish." loading="lazy"><h3>Cymatics installs</h3><p>Water-and-light cymatics that make sound visible, as a stage centrepiece or a standalone work.</p></div>
-      <div class="card rv"><img class="cimg" src="assets/deck-hands.jpg" alt="Hands on a MIDI keyboard beside a laptop running Ableton, on a rug." loading="lazy"><h3>Scores &amp; workshops</h3><p>Soundscapes for films, installations and new-media art. Deep-listening and Dhrupad workshops.</p></div>
+      <div class="card rv"><img class="cimg" src="assets/deck-palace.jpg" alt="A pause.dxa set in a palace courtyard under pink-lit arches, audience in silhouette." loading="lazy"><h3>Live performances</h3><p>Sets of one to two hours for festivals, venues and cultural spaces.</p></div>
+      <div class="card rv"><img class="cimg" src="assets/nomads-immersion-2.jpg" alt="Singing bowls, a frame drum and chimes laid out on a rug." loading="lazy"><h3>Sound immersions</h3><p>Listening sessions for studios, retreats and smaller spaces.</p></div>
+      <div class="card rv"><img class="cimg" src="assets/deck-cymatics-blue.jpg" alt="Electric-blue water cymatics in a glass dish." loading="lazy"><h3>Cymatics installs</h3><p>A water-and-light installation, alongside a performance or on its own.</p></div>
+      <div class="card rv"><img class="cimg" src="assets/deck-hands.jpg" alt="Hands on a MIDI keyboard beside a laptop running Ableton, on a rug." loading="lazy"><h3>Scores &amp; workshops</h3><p>Soundscapes for film, installations and new-media art, and workshops on listening and Dhrupad.</p></div>
     </div>
     <div class="presses">
-      <span class="mono" style="align-self:center">played / supported by →</span>
+      <span class="mono" style="align-self:center">selected festivals &amp; partners</span>
       <a href="https://nomads.magneticfields.in/artists/pause-dxa" target="_blank" rel="noopener">Magnetic Fields</a>
       <a href="https://2026.ozorafestival.eu/music-and-dance/ambyss/pause-dxa/" target="_blank" rel="noopener">Ozora</a>
       <a href="https://serendipityarts.org/grant/independent-music-production-grant-2025" target="_blank" rel="noopener">Serendipity Arts</a>
@@ -726,7 +776,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <span class="orb o3" aria-hidden="true"></span>
   <div class="wrap">
     <h2>take a <span class="serif">pause.</span></h2>
-    <p>Bookings, collaborations, sound immersions in your space. Write to us; we reply (slowly, mindfully).</p>
+    <p>For performances, sound immersions and collaborations, please write to us.</p>
     <p class="email"><span class="mono">mail us</span><b id="mail">pause.dxa@gmail.com</b><button class="pill solid" id="copyMail" type="button">copy</button></p>
     <div class="links">
       <a href="mailto:pause.dxa@gmail.com">Email ↗</a>
@@ -740,13 +790,14 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 
 <footer class="mono">
   <span>© <span id="yr">2026</span> <span class="brand">pause.dxa</span> · Sahitya &amp; Harsh</span>
-  <span>made in Auroville, India ✺ listen deeply</span>
+  <span>Auroville, India</span>
 </footer>
 
 <script>
 /* ---------------- data ---------------- */
 const IG = c => `https://www.instagram.com/p/${c}/`;
 const GIGS = [
+  [2026,'3–7 Dec','Wonderfruit','upcoming · Enfold stage','The Fields at Siam Country Club · Chonburi, Thailand','','https://wonderfruit.co/venues/enfold','wonderfruit'],
   // [year, date, what, subtitle, place, flag, link, linkLabel]
   [2026,'13 Sep','Sonic Distortions ④','live w/ ONNO collective','Method · New Delhi','',IG('Dc8wZYDk9BT'),'post'],
   [2026,'19–23 Aug','Kaleido Retreat','9th edition · “From the Edges to the Center”','Hasliberg · Switzerland','',  'https://kaleido.community/retreats/from-the-edges-to-the-center/','kaleido'],
@@ -765,28 +816,28 @@ const GIGS = [
   [2026,'23 May','Bedtime Sonic Fables','free concert · supported by Serendipity','The Indian Sonic Research Organisation','',IG('DYg646iEism'),'post'],
   [2026,'14 Feb','Magnetic Fields Nomads','Stepwell Stage · 10:30pm','Khetri · Rajasthan','','https://nomads.magneticfields.in/artists/pause-dxa','mf'],
   [2026,'7 Feb','Omnivoid ed.005','Bedtime Sonic Fables + water cymatics','Aura Studios · Chennai','','https://youtu.be/xvVE1rS0Ldc','video'],
-  [2026,'5 Feb','Bedtime Sonic Fables (debut)','C.A.L.M. · a barn, transformed','Butterfly Barn · Auroville','',IG('DUgPqleExGW'),'post'],
+  [2026,'5 Feb','Bedtime Sonic Fables (debut)','debut performance','Butterfly Barn · Auroville','',IG('DUgPqleExGW'),'post'],
   [2026,'Jan','Sleep Series for Jñāna','Dhrupad for stillness','online','☾',IG('DUI1STFjDWo'),'post'],
   [2025,'Dec','Serendipity Arts Festival','On a Barge · Sonic Interventions, curated by Veerangana','Goa','',IG('DTSAprnkzIf'),'post'],
-  [2025,'22 Oct','Bangkok Ritualistic Voices','first time in Thailand','Noise House Lat Phrao · Bangkok','',IG('DQWJynxE_So'),'post'],
-  [2025,'4–5 Oct','GAIA Festival','sound immersion · “see you in the valley”','India','',IG('DOsVao8ksWT'),'post'],
+  [2025,'22 Oct','Bangkok Ritualistic Voices','Bangkok Ritualistic Voices','Noise House Lat Phrao · Bangkok','',IG('DQWJynxE_So'),'post'],
+  [2025,'4–5 Oct','GAIA Festival','sound immersion','India','',IG('DOsVao8ksWT'),'post'],
   [2025,'Aug','O.Z.O.R.A. Festival','Ginko Stage · ft. mouth harp &amp; didgeridoo','Hungary','',IG('DN5A84wE5tv'),'post'],
-  [2025,'3 Aug','Sanctum of Sound','first ever two-hour set','MaHalla · Berlin','',IG('DOG3HrLkwcx'),'post'],
+  [2025,'3 Aug','Sanctum of Sound','two-hour set','MaHalla · Berlin','',IG('DOG3HrLkwcx'),'post'],
   [2025,'Jul','Hypnagōgos · Berlin edition','with beatnyk · between waking &amp; sleep','Berlin','',IG('DMNDLRwtQvB'),'post'],
   [2025,'Jul','The Space Inside You','Dhrupad × electronic sound immersion','Method · Mumbai','',IG('DMnAhXEvG5U'),'post'],
-  [2025,'Jun','The Space Inside You','lie down · five elements','Odd Bird Theatre · Delhi','',IG('DMkXgBtTF4m'),'post'],
+  [2025,'Jun','The Space Inside You','sound immersion','Odd Bird Theatre · Delhi','',IG('DMkXgBtTF4m'),'post'],
   [2025,'May','Independent Music Production Grant','grantees, alongside Sound of Women','Serendipity Arts Foundation','🏆',IG('DJoDw-Uv-Nh'),'post'],
-  [2025,'May','Burning Donkey Festival','first international sound immersion','Kalpitiya · Sri Lanka','',IG('DJmcfTlTL-q'),'post'],
-  [2024,'6–8 Dec','Magnetic Fields Festival','the main festival, in a 17th-century palace','Alsisar Mahal · Rajasthan','','https://www.magneticfields.in/','mf'],
-  [2024,'28–29 Sep','GAIA Festival','our first festival session + a Delhi stopover','Neeralaya · Raison, Himachal','',IG('DA7e4Y4Tumi'),'post'],
+  [2025,'May','Burning Donkey Festival','sound immersion','Kalpitiya · Sri Lanka','',IG('DJmcfTlTL-q'),'post'],
+  [2024,'6–8 Dec','Magnetic Fields Festival','Alsisar Mahal','Alsisar Mahal · Rajasthan','','https://www.magneticfields.in/','mf'],
+  [2024,'28–29 Sep','GAIA Festival','sound immersion','Neeralaya · Raison, Himachal','',IG('DA7e4Y4Tumi'),'post'],
   [2024,'21 Sep','The Space Inside You','Sound Immersion: Dhrupad × Ableton','One Design Space · Mumbai','',IG('C_k2GhdSZH0'),'post'],
-  [2024,'Jul–Aug','Bedtime Sonic Fables I–III','late-night live sessions, DM to join','online','💤',IG('C-HyWK_yhkO'),'post'],
+  [2024,'Jul–Aug','Bedtime Sonic Fables I–III','online live sessions','online','💤',IG('C-HyWK_yhkO'),'post'],
   [2024,'Jul','Headpod · Lost in Bangalore','soundscape for an interactive installation','Bangalore Creative Circus','',IG('C9MTD2ESo8o'),'post'],
   [2024,'1 May','Sound Immersion','Dhrupad × Ableton','Harkat Studios · Mumbai','','https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event','press'],
   [2024,'Feb','Sound immersion','with @circle','Goa','',IG('C3RerLpSgjf'),'post'],
   [2023,'Jun','Listening session','at Ebb n Flow','Ebb n Flow Café','',IG('Ct5ltZtPNdQ'),'post'],
-  [2023,'Apr','Overnight sound session','one half of us, at Soho House','Mumbai','',IG('CrU-PrkB69l'),'post'],
-  [2023,'Mar','“Go where the sounds take you”','Raga Bihag × Ableton: where it began','Auroville','🌱',IG('CqTA1X4JG_T'),'post'],
+  [2023,'Apr','Overnight sound session','overnight sound session','Mumbai','',IG('CrU-PrkB69l'),'post'],
+  [2023,'Mar','“Go where the sounds take you”','Raag Bihag with Ableton','Auroville','🌱',IG('CqTA1X4JG_T'),'post'],
 ];
 const TRACKS = [
   ['Pause','sound immersion · 2023','track-1'],
@@ -833,8 +884,8 @@ const mq = (id, words) => {
   const html = words.map(w => `<span>${w}</span><span class="star">✺</span>`).join('');
   document.getElementById(id).innerHTML = html + html;
 };
-mq('mq1', ['dhrupad','drones','modular synthesis','field recordings','cymatics','alaap','deep listening','lie down','close your eyes']);
-mq('mqTags', ['deep listening','hypnagogic state','visual imagery','ambient','experimental','water cymatics','dreams','drones','dhrupad','improvisation','indian classical music']);
+mq('mq1', ['ā','re','ne','na','ri','nom','tom','ā','re','ne','na','ri','nom','tom']);
+mq('mqTags', ['dhrupad','alaap','drones','modular synthesis','field recordings','water cymatics','listening']);
 
 /* ---------------- hero letters ---------------- */
 const t = document.getElementById('title');
@@ -952,10 +1003,10 @@ setStage('N1');
 let dreamT = null;
 const order = ['N1','N2','N3','N2','REM','N1'];
 const dreamBtn = document.getElementById('dreamBtn');
-function stopDream(){ clearInterval(dreamT); dreamT = null; dreamBtn.textContent = '▶ drift through it'; }
+function stopDream(){ clearInterval(dreamT); dreamT = null; dreamBtn.textContent = '▶ play through the cycle'; }
 dreamBtn.addEventListener('click', () => {
   if (dreamT) return stopDream();
-  let i = 0; setStage(order[0]); dreamBtn.textContent = '❚❚ pause the dream';
+  let i = 0; setStage(order[0]); dreamBtn.textContent = '❚❚ pause';
   dreamT = setInterval(() => { i = (i + 1) % order.length; setStage(order[i]); }, 2600);
 });
 
