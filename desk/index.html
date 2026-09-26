@@ -315,7 +315,7 @@ const COLLS = {
     {k:"name",l:"Name"},{k:"email",l:"Email",half:true},{k:"phone",l:"Phone",half:true},{k:"region",l:"Region",list:true,half:true},{k:"area",l:"Area",half:true},
     {k:"type",l:"Type",list:true},{k:"address",l:"Address",type:"area"},{k:"notes",l:"Notes",type:"area"}]},
 };
-const TABS = [["overview","Overview","var(--lime)"],["tasks","Tasks","var(--pink)"],["outreach","Outreach","var(--sky)"],["brands","Brands","var(--orange)"],["library","Library","var(--lime)"],["money","Money","var(--yellow)"],["people","People","var(--violet)"]];
+const TABS = [["overview","Overview","var(--lime)"],["tasks","Tasks","var(--pink)"],["outreach","Outreach","var(--sky)"],["brands","Brands","var(--orange)"],["library","Library","var(--lime)"],["money","Money","var(--yellow)"],["people","People","var(--violet)"],["website","Website","var(--mint)"]];
 const PCOLS = ["var(--pink)","var(--sky)","var(--yellow)","var(--mint)","var(--orange)","var(--violet)"];
 const pcol = name => PCOLS[[...String(name)].reduce((h,c) => (h*31 + c.charCodeAt(0)) >>> 0, 7) % PCOLS.length];
 
@@ -472,10 +472,26 @@ function updateCounts(){
   document.querySelectorAll("[data-count]").forEach(el => el.textContent = c[el.dataset.count] ?? "");
 }
 function render(){ const m = $("#main"); m.innerHTML = VIEWS[ui.tab].shell(); VIEWS[ui.tab].bind?.(m); bindQuick(m); renderBody(); }
+
+/* ---------------- website tab data ---------------- */
+const WEB = {site:null, gigs:null, commits:[], started:false, done:false};
+async function loadWeb(){
+  WEB.started = true;
+  const get = u => fetch(u, {cache:"no-cache"}).then(r => r.ok ? r.json() : null).catch(() => null);
+  const [site, gigs, commits] = await Promise.all([
+    get("../content/site.json"),
+    get("../content/gigs.json"),
+    get("https://api.github.com/repos/pausedxa/pausedxa.github.io/commits?path=content&per_page=8"),
+  ]);
+  WEB.site = site; WEB.gigs = gigs;
+  WEB.commits = Array.isArray(commits) ? commits.map(c => ({date: c.commit.author.date, msg: c.commit.message.split("\n")[0]})) : [];
+  WEB.done = true;
+  if (ui.tab === "website") renderBody();
+}
 function renderBody(){
   updateCounts(); updateTicker();
   const body = $("#body"); if (!body) return;
-  body.innerHTML = !loaded.size ? offlineNote() : VIEWS[ui.tab].body();
+  body.innerHTML = (!loaded.size && !VIEWS[ui.tab].standalone) ? offlineNote() : VIEWS[ui.tab].body();
   VIEWS[ui.tab].after?.(body);
 }
 function offlineNote(){
@@ -684,6 +700,41 @@ function bindTicks(root){
 }
 
 const VIEWS = {
+website:{
+  // Works without the Google Sheet: reads the site's own content files and GitHub's public history.
+  standalone: true,
+  shell: () => `<div class="head"><h2>The <em>website</em></h2><span class="sp"></span><a class="btn" style="text-decoration:none" href="../" target="_blank" rel="noopener">Open the site ↗</a></div><div id="body"></div>`,
+  body(){
+    const C = "https://app.pagescms.org/pausedxa/pausedxa.github.io/main/file/";
+    const site = WEB.site || {}, up = site.upcoming || {}, gigs = (WEB.gigs && WEB.gigs.performances) || [];
+    const plain = t => esc(String(t ?? "").replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
+    const when = d => { const t = new Date(d), days = Math.floor((Date.now() - t) / 864e5); return days < 1 ? "today" : days < 2 ? "yesterday" : days < 30 ? days + " days ago" : t.toLocaleDateString("en-IN", {day:"numeric", month:"short", year:"numeric"}); };
+    const last = WEB.commits[0];
+    const loading = !WEB.done ? `<p class="empty">Loading the site…</p>` : "";
+    return `
+    <div class="stats">
+      <a class="panel stat" href="${C}site" target="_blank" rel="noopener" style="text-decoration:none"><div class="l">✎ Edit</div><div class="v">Text</div><div class="s">about · dhrupad · projects · upcoming show · contact ↗</div></a>
+      <a class="panel stat" href="${C}performances" target="_blank" rel="noopener" style="text-decoration:none"><div class="l">✎ Edit</div><div class="v">Gigs</div><div class="s">performances list, newest first ↗</div></a>
+      <a class="panel stat" href="${C}site" target="_blank" rel="noopener" style="text-decoration:none"><div class="l">Upcoming on the site</div><div class="v" style="font-size:clamp(28px,3vw,42px)">${plain(up.title) || "—"}</div><div class="s">${plain(up.label)}</div></a>
+      <div class="panel stat"><div class="l">Last website change</div><div class="v" style="font-size:clamp(28px,3vw,42px)">${last ? when(last.date) : "—"}</div><div class="s">${last ? esc(last.msg) : ""}</div></div>
+    </div>
+    ${loading}
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px">
+      <section class="panel card"><h3>Latest performances on the site</h3><ul class="mini">${gigs.slice(0, 6).map(g => `<li style="cursor:default;align-items:flex-start"><b style="min-width:96px;font:700 12px var(--mono);padding-top:3px">${esc(g.date)} ${esc(g.year)}</b><span>${esc(g.title)}<br><small style="opacity:.7">${esc(g.subtitle)}${g.subtitle && g.place ? " · " : ""}${esc(g.place)}</small></span></li>`).join("") || `<li style="cursor:default">—</li>`}</ul>
+        <p style="margin:14px 0 0"><a class="btn" style="text-decoration:none;display:inline-block" href="${C}performances" target="_blank" rel="noopener">Add or edit a performance ↗</a></p></section>
+      <section class="panel card"><h3>Recent website changes</h3><ul class="mini">${WEB.commits.slice(0, 6).map(c => `<li style="cursor:default;align-items:flex-start"><b style="min-width:96px;font:700 12px var(--mono);padding-top:3px">${when(c.date)}</b><span>${esc(c.msg)}</span></li>`).join("") || `<li style="cursor:default">${WEB.done ? "Couldn't load the history right now." : "…"}</li>`}</ul></section>
+      <section class="panel card"><h3>How to edit</h3>
+        <ol style="margin:0;padding-left:20px;line-height:1.55">
+          <li>Click <b>Text</b> or <b>Gigs</b> above. It opens Pages CMS.</li>
+          <li>If asked, sign in with GitHub as <b>pausedxa</b>.</li>
+          <li>Change the words in the boxes and press <b>Save</b> (top right).</li>
+          <li>The site updates in about a minute. Refresh it with <b>Cmd + Shift + R</b>.</li>
+        </ol>
+        <p style="margin:14px 0 0;font-size:14px;opacity:.85"><b>*word*</b> shows in the italic serif, <b>**word**</b> in bold. Add new performances at the <b>top</b> of the list; the year buttons update themselves. Keep “pause.dxa” lowercase, and no phone numbers.</p></section>
+    </div>`;
+  },
+  after(){ if (!WEB.started) loadWeb(); }
+},
 overview:{
   shell: () => `<div class="head"><h2>Hey Sahitya <em>&amp;</em> Harsh</h2><span class="sp"></span><button class="btn primary" data-new="tasks">New task</button></div><form class="quick" id="quick" autocomplete="off"><input id="quick-in" placeholder="Type a task roughly, e.g. harsh send tech rider to wonderfruit by friday" aria-label="Quick add a task"><button class="btn primary" type="submit">Add</button><div class="hint" id="quick-hint">Sorted into a project, owner and due date for you</div></form><div id="body"></div>`,
   bind: m => { m.addEventListener("click", e => { const n = e.target.closest("[data-new]"); if (n) openEditor(n.dataset.new); }); bindTicks(m); bindRows(m, "tasks"); },
