@@ -1,0 +1,242 @@
+# Pages CMS configuration: lets Sahitya & Harsh edit the website text at https://app.pagescms.org
+# Formatting inside text: *word* = serif italic, **word** = bold.
+content:
+  - name: site
+    label: Website text
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: opening
+        label: "Opening screen"
+        type: object
+        fields:
+          - name: tagline
+            label: "Line under pause.dxa"
+            type: string
+      - name: about
+        label: "About us"
+        type: object
+        fields:
+          - name: heading
+            label: "Heading"
+            type: string
+          - name: intro
+            label: "Opening paragraph (large text)"
+            type: text
+          - name: text
+            label: "Paragraph"
+            type: text
+          - name: sahitya_roles
+            label: "Sahitya: roles line"
+            type: string
+          - name: sahitya_bio
+            label: "Sahitya: bio"
+            type: text
+          - name: harsh_roles
+            label: "Harsh: roles line"
+            type: string
+          - name: harsh_bio
+            label: "Harsh: bio"
+            type: text
+      - name: dhrupad
+        label: "Dhrupad section"
+        type: object
+        fields:
+          - name: intro
+            label: "Opening paragraph (large text)"
+            type: text
+          - name: text_1
+            label: "Paragraph 1"
+            type: text
+          - name: text_2
+            label: "Paragraph 2"
+            type: text
+          - name: syllables_note
+            label: "Note under the syllables"
+            type: text
+          - name: stage_1_name
+            label: "Stage 1: name"
+            type: string
+          - name: stage_1_text
+            label: "Stage 1: text"
+            type: string
+          - name: stage_2_name
+            label: "Stage 2: name"
+            type: string
+          - name: stage_2_text
+            label: "Stage 2: text"
+            type: string
+          - name: stage_3_name
+            label: "Stage 3: name"
+            type: string
+          - name: stage_3_text
+            label: "Stage 3: text"
+            type: string
+          - name: stage_4_name
+            label: "Stage 4: name"
+            type: string
+          - name: stage_4_text
+            label: "Stage 4: text"
+            type: string
+          - name: stages_note
+            label: "Note under the stages"
+            type: text
+      - name: upcoming
+        label: "Upcoming show (band with photo)"
+        type: object
+        fields:
+          - name: label
+            label: "Small label above the title"
+            type: string
+          - name: title
+            label: "Big title"
+            type: string
+          - name: details
+            label: "Details line (stage, venue, place)"
+            type: string
+          - name: photo_credit
+            label: "Photo credit"
+            type: string
+          - name: link
+            label: "Button link (web address)"
+            type: string
+          - name: link_text
+            label: "Button text"
+            type: string
+      - name: projects
+        label: "Projects"
+        type: object
+        fields:
+          - name: bsf_label
+            label: "Bedtime Sonic Fables: label"
+            type: string
+          - name: bsf_title
+            label: "Bedtime Sonic Fables: title"
+            type: string
+          - name: bsf_text
+            label: "Bedtime Sonic Fables: paragraph"
+            type: text
+          - name: tsiy_label
+            label: "The Space Inside You: label"
+            type: string
+          - name: tsiy_title
+            label: "The Space Inside You: title"
+            type: string
+          - name: tsiy_text_1
+            label: "The Space Inside You: paragraph 1"
+            type: text
+          - name: tsiy_text_2
+            label: "The Space Inside You: paragraph 2"
+            type: text
+          - name: tsiy_quote
+            label: "The Space Inside You: quote"
+            type: text
+          - name: dnd_label
+            label: "dhrupad & drones: label"
+            type: string
+          - name: dnd_title
+            label: "dhrupad & drones: title"
+            type: string
+          - name: dnd_text
+            label: "dhrupad & drones: paragraph"
+            type: text
+          - name: cymatics_label
+            label: "Cymatics: label"
+            type: string
+          - name: cymatics_title
+            label: "Cymatics: title"
+            type: string
+          - name: cymatics_text
+            label: "Cymatics: paragraph"
+            type: text
+          - name: azhagu_title
+            label: "Azhagu Bhoomi: title"
+            type: string
+          - name: azhagu_text
+            label: "Azhagu Bhoomi: paragraph"
+            type: text
+      - name: bedtime_sonic_fables
+        label: "Bedtime Sonic Fables section"
+        type: object
+        fields:
+          - name: intro
+            label: "Opening paragraph (large text)"
+            type: string
+          - name: text_1
+            label: "Paragraph 1"
+            type: text
+          - name: text_2
+            label: "Paragraph 2"
+            type: string
+      - name: performances
+        label: "Performances section"
+        type: object
+        fields:
+          - name: intro
+            label: "Opening paragraph (large text)"
+            type: string
+          - name: photo_caption
+            label: "Caption under the photo"
+            type: string
+          - name: places
+            label: "Places (one per item)"
+            type: string
+            list: true
+          - name: venues
+            label: "Venues & festivals (one per item)"
+            type: string
+            list: true
+      - name: work_with_us
+        label: "Work with us"
+        type: object
+        fields:
+          - name: card_1_title
+            label: "Card 1: title"
+            type: string
+          - name: card_1_text
+            label: "Card 1: text"
+            type: string
+          - name: card_2_title
+            label: "Card 2: title"
+            type: string
+          - name: card_2_text
+            label: "Card 2: text"
+            type: string
+          - name: card_3_title
+            label: "Card 3: title"
+            type: string
+          - name: card_3_text
+            label: "Card 3: text"
+            type: string
+          - name: card_4_title
+            label: "Card 4: title"
+            type: string
+          - name: card_4_text
+            label: "Card 4: text"
+            type: text
+      - name: contact
+        label: "Contact"
+        type: object
+        fields:
+          - name: text
+            label: "Paragraph"
+            type: text
+  - name: performances
+    label: Performances list
+    type: file
+    path: content/gigs.json
+    format: json
+    fields:
+      - name: performances
+        label: "Performances (newest first; add new ones at the top)"
+        type: object
+        list: true
+        fields:
+          - { name: year, label: Year, type: number }
+          - { name: date, label: "Date (e.g. 3–7 Dec)", type: string }
+          - { name: title, label: "Name of event / venue", type: string }
+          - { name: subtitle, label: "Small line under the name", type: string }
+          - { name: place, label: "Place (venue · city)", type: string }
+          - { name: link, label: "Link (web address)", type: string }
+          - { name: link_label, label: "Link button text (e.g. post, video)", type: string }

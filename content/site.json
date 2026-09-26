@@ -1,0 +1,122 @@
+{
+  "opening": {
+    "tagline": "dhrupad *and* electronic soundscapes"
+  },
+  "about": {
+    "heading": "about *us*",
+    "intro": "We bring together our individual practices of *Dhrupad* and electronic sound synthesis. As our moniker suggests, we create long-form ambient listening experiences: *a space for one to slow down.*",
+    "text": "Our performances are long-form listening sessions. Listeners are welcome to sit or lie down. We perform at festivals, venues and retreats in India and abroad, and also make soundscapes and installations.",
+    "sahitya_roles": "vocalist · pianist · researcher",
+    "sahitya_bio": "Practises Dhrupad as a disciple of **Ustad Wasifuddin Dagar** in the Dagarvani tradition. Her practice is grounded in the philosophy of the Dagar gharana, with a focus on *alaap*: vocal improvisation and the subtlety of vocal sound. She's a Music Therapy graduate and explored the work of sound further through Svaram's Integral Sonic Studies & Practices Program.",
+    "harsh_roles": "sound artist · maths teacher",
+    "harsh_bio": "Creates electronic soundscapes with modular synthesis on **VCV Rack** and field recordings. He researches and builds installations based on **cymatics**, and graduated from the Integral Sonic Studies Program at Svaram, Auroville."
+  },
+  "dhrupad": {
+    "intro": "Dhrupad is one of the oldest surviving forms of Hindustani classical music. Its name joins *dhruva*, steady, and *pada*, verse.",
+    "text_1": "It is sung slowly and with restraint, with close attention to each note, to the breath, and to the resonance of the voice against the drone of the tanpura. Sahitya learns in the Dagarvani tradition, one of the principal lineages of Dhrupad, under Ustad F. Wasifuddin Dagar.",
+    "text_2": "Our music stays mostly in the **alaap**, the unhurried opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.",
+    "syllables_note": "the alaap is sung on syllables such as these, traditionally said to come from the invocation *om ananta narayana hari*.",
+    "stage_1_name": "alaap",
+    "stage_1_text": "slow and unmetered; the raag is introduced note by note.",
+    "stage_2_name": "madhya",
+    "stage_2_text": "a gentle pulse appears and the phrases begin to move.",
+    "stage_3_name": "drut",
+    "stage_3_text": "the pace quickens and the phrases gather.",
+    "stage_4_name": "bandish",
+    "stage_4_text": "the composed verse, sung with the pakhawaj.",
+    "stages_note": "how a dhrupad performance unfolds. our work is rooted in the first stages."
+  },
+  "upcoming": {
+    "label": "upcoming · 3–7 dec 2026",
+    "title": "wonderfruit",
+    "details": "enfold stage · the fields at siam country club, chonburi, thailand",
+    "photo_credit": "photo: magnetic fields nomads 2026 · shrey gupta",
+    "link": "https://wonderfruit.co/venues/enfold",
+    "link_text": "wonderfruit"
+  },
+  "projects": {
+    "bsf_label": "audio-visual performance · 2026",
+    "bsf_title": "Bedtime Sonic Fables",
+    "bsf_text": "A dream-like journey composed to mirror the fluid transitions of the sleep cycle. It's Dhrupad, electronics and live water-cymatics visuals, often in quadraphonic sound. It started as late-night online sessions in 2024 and was built out with the **Serendipity Arts Foundation's Independent Music Production Grant 2025**. The debut was in a transformed barn in Auroville, and it toured Europe in summer 2026.",
+    "tsiy_label": "sound immersion",
+    "tsiy_title": "The Space Inside You",
+    "tsiy_text_1": "A sound immersion combining Dhrupad-inspired vocal improvisation with a live set on Ableton Live and VCV Rack, synthesising elemental soundscapes alongside acoustic instruments. *A space for one to come, lay down, and enter a journey with sounds.*",
+    "tsiy_text_2": "The drones draw on the five elements: the Panchamahabhutas of Ayurveda (space, air, fire, water, earth) and the five elements of Traditional Chinese Medicine, with sections of the alaap linked to each. Each session offers a moment of introspection: to pause, listen, and feel rejuvenated.",
+    "tsiy_quote": "“A whole new world where ancient melodies and modern soundscapes blend seamlessly.”",
+    "dnd_label": "radio",
+    "dnd_title": "dhrupad & drones *(dnd)*",
+    "dnd_text": "An hour-long piece for modular-synth drones and alaap, first broadcast on Refuge Worldwide, Berlin, in June 2026.",
+    "cymatics_label": "installation",
+    "cymatics_title": "Cymatics installations",
+    "cymatics_text": "A water-and-light cymatics installation developed by Harsh, in which the music shapes patterns on the surface of water during performances.",
+    "azhagu_title": "Azhagu Bhoomi *(pretty earth)*",
+    "azhagu_text": "A piece shared with **Love Letter for Gaza** as a prayer and a remembrance for those surviving."
+  },
+  "bedtime_sonic_fables": {
+    "intro": "An hour-long performance that follows the stages of the *sleep cycle*.",
+    "text_1": "We explore dream states through experimental music and sound, bringing together our practices in Dhrupad, electronic soundscapes and live instruments. Listeners can sit or lie down.",
+    "text_2": "The set includes live water-cymatics visuals, projected in the room."
+  },
+  "performances": {
+    "intro": "Upcoming and past performances, 2023 to 2026.",
+    "photo_caption": "live at omnivoid ed.005 · aura studios, chennai · feb 2026",
+    "places": [
+      "Auroville",
+      "Mumbai",
+      "Goa",
+      "Delhi NCR",
+      "Hyderabad",
+      "Chennai",
+      "Bangalore",
+      "Dandeli",
+      "Dharamkot",
+      "Bir",
+      "Raison",
+      "Ludhiana",
+      "Alsisar",
+      "Khetri",
+      "Kalpitiya",
+      "Bangkok",
+      "Berlin",
+      "Ozora",
+      "Amsterdam",
+      "The Hague",
+      "Treviso",
+      "Porto",
+      "Hasliberg",
+      "Graz"
+    ],
+    "venues": [
+      "MaHalla",
+      "Magnetic Fields",
+      "Serendipity Arts Festival",
+      "G5A",
+      "_subko",
+      "Piramal Art Gallery · Dilli",
+      "W.I.P Labs",
+      "Harkat Studios",
+      "Odd Bird Theatre",
+      "GAIA Festival",
+      "Method",
+      "Noise House",
+      "Aura Studios",
+      "Refuge Worldwide",
+      "Wonderfruit",
+      "Kaleido Retreat",
+      "Bewusstseinsatelier"
+    ]
+  },
+  "work_with_us": {
+    "card_1_title": "Live performances",
+    "card_1_text": "Sets of one to two hours for festivals, venues and cultural spaces.",
+    "card_2_title": "Sound immersions",
+    "card_2_text": "Listening sessions for studios, retreats and smaller spaces.",
+    "card_3_title": "Cymatics installs",
+    "card_3_text": "A water-and-light installation, alongside a performance or on its own.",
+    "card_4_title": "Scores & workshops",
+    "card_4_text": "Soundscapes for film, installations and new-media art, and workshops on listening and Dhrupad."
+  },
+  "contact": {
+    "text": "For performances, sound immersions and collaborations, please write to us."
+  }
+}
