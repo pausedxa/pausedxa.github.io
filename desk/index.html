@@ -132,6 +132,14 @@ select.pill{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right
 .quick input::placeholder{color:var(--muted)}
 .quick .hint{flex-basis:100%;font:700 10.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:0 10px}
 .quick.busy{opacity:.7}
+.mailbtn{border:2px solid var(--line);background:var(--surface);border-radius:99px;padding:3px 9px;font:700 12px var(--mono);line-height:1.2}
+.mailbtn:hover{background:var(--lime);color:#0C0A2A}
+.drawer.wide{width:min(720px,calc(100% - 24px))}
+.drawer textarea.mailbody{min-height:320px;font:15px/1.5 var(--body)}
+.att{display:flex;flex-direction:column;gap:6px}
+.att label.a{display:flex;gap:8px;align-items:center;font:500 13.5px var(--body);text-transform:none;letter-spacing:0}
+.att label.a input{width:auto}
+.drawer .hintline{grid-column:span 2;color:var(--muted);font-size:13px;margin:0}
 /* tasks */
 .projects{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));align-items:start}
 .proj{overflow:hidden}
@@ -299,6 +307,10 @@ const COLLS = {
   library:{label:"link", fields:[
     {k:"title",l:"Name"},{k:"kind",l:"Section",opts:LIB_KINDS,half:true},{k:"project",l:"Project / event",list:true,half:true},
     {k:"link",l:"Drive / Canva / Docs link"},{k:"date",l:"Date (roughly)",half:true},{k:"notes",l:"Notes",type:"area"}]},
+  templates:{label:"template", fields:[
+    {k:"name",l:"Template name"},{k:"use",l:"Used for",opts:["First email","Follow-up","Update","Other"],half:true},
+    {k:"subject",l:"Subject"},{k:"body",l:"Email text  ·  {greeting} {name} {city} {country} are filled in for you",type:"area"},
+    {k:"attachments",l:"Attach from Drive (one link per line)",type:"area"}]},
   contacts:{label:"contact", fields:[
     {k:"name",l:"Name"},{k:"email",l:"Email",half:true},{k:"phone",l:"Phone",half:true},{k:"region",l:"Region",list:true,half:true},{k:"area",l:"Area",half:true},
     {k:"type",l:"Type",list:true},{k:"address",l:"Address",type:"area"},{k:"notes",l:"Notes",type:"area"}]},
@@ -560,6 +572,91 @@ function guessLibKind(u){
   if (/document|spreadsheets/.test(u||"")) return "Docs & sheets";
   return "";
 }
+/* ---------- outreach email ---------- */
+const daysSince = iso => iso ? Math.round((new Date(todayISO()+"T00:00") - new Date(iso+"T00:00")) / 864e5) : null;
+const needsFollowUp = o => ["Awaiting reply","Auto-reply","Follow-up sent","Applied"].includes(o.status) && o.email && (daysSince(o.contacted) ?? 0) >= 10;
+function outreachRows(){
+  const rank = s => [5,0,3,2,1,4,6,7,8,9][OUT_STATUS.indexOf(s)] ?? 9;
+  return data.outreach
+    .filter(o => (!ui.outKind || o.kind === ui.outKind) && matches(o, ui.q.outreach, ["name","city","country","notes","email"]))
+    .filter(o => !ui.outStatus || (ui.outStatus === "__fu" ? needsFollowUp(o) : o.status === ui.outStatus))
+    .sort((a,b) => rank(a.status)-rank(b.status) || (b.contacted||"").localeCompare(a.contacted||""));
+}
+function fillTemplate(t, lead){
+  const v = {greeting: "Dear team", name: lead.name || "", city: lead.city || "", country: lead.country || ""};
+  return String(t || "").replace(/\{(greeting|name|city|country)\}/g, (_, k) => v[k]);
+}
+const attList = s => String(s || "").split(/[\n,]+/).map(x => x.trim()).filter(x => /^https?:\/\//.test(x));
+function libTitle(u){ const k = (u.match(/\/(?:d|folders)\/([\w-]{10,})/) || [])[1]; const hit = k && data.library.find(l => (l.link||"").includes(k)); return hit ? hit.title : u.replace(/^https?:\/\//, "").slice(0, 48) + "…"; }
+let lastTplId = "";
+function openCompose(leadId, tplId){
+  const lead = data.outreach.find(o => o.id === leadId); if (!lead) return;
+  const tpls = data.templates.slice().sort(byOrder);
+  const auto = tplId || (["Awaiting reply","Auto-reply","Follow-up sent","Applied"].includes(lead.status) ? (tpls.find(t => t.use === "Follow-up") || {}).id : "") || lastTplId || (tpls.find(t => t.use === "First email") || tpls[0] || {}).id || "";
+  const tpl = tpls.find(t => t.id === auto) || {};
+  const isFollow = tpl.use === "Follow-up";
+  const subj = isFollow && lead.lastSubject ? "Re: " + lead.lastSubject.replace(/^Re:\s*/i, "") : fillTemplate(tpl.subject, lead);
+  const atts = attList(tpl.attachments);
+  const queue = outreachRows().filter(o => o.email), qi = queue.findIndex(o => o.id === leadId), next = qi >= 0 ? queue[qi + 1] : null;
+  $("#layer").innerHTML = `<div class="scrim" data-close></div>
+    <aside class="drawer wide" role="dialog" aria-modal="true" aria-label="Email ${esc(lead.name)}">
+      <header><h2>Email ${esc(lead.name)}</h2><button class="x-btn" data-close aria-label="Close">×</button></header>
+      <form id="mail">
+        <div class="f half"><label for="m-tpl">Template</label><select id="m-tpl"><option value="">— blank —</option>${tpls.map(t => `<option value="${t.id}" ${t.id===auto?"selected":""}>${esc(t.name)}${t.use?` (${esc(t.use)})`:""}</option>`).join("")}</select></div>
+        <div class="f half"><label for="m-status">Lead status</label><input id="m-status" value="${esc(lead.status||"To contact")}" disabled></div>
+        <div class="f half"><label for="m-to">To</label><input id="m-to" type="email" multiple value="${esc(lead.email||"")}" placeholder="their@email.com" required></div>
+        <div class="f half"><label for="m-cc">Cc</label><input id="m-cc" type="email" multiple placeholder="optional"></div>
+        <div class="f"><label for="m-subj">Subject</label><input id="m-subj" value="${esc(subj)}" required></div>
+        <div class="f"><label for="m-body">Email</label><textarea id="m-body" class="mailbody">${esc(fillTemplate(tpl.body, lead))}</textarea></div>
+        <div class="f"><label>Attachments from Drive</label><div class="att" id="m-att">${atts.length ? atts.map((u,i) => `<label class="a"><input type="checkbox" checked value="${esc(u)}"> ${esc(libTitle(u))}</label>`).join("") : `<span class="sub">None. Add Drive links to the template to attach files.</span>`}</div></div>
+        <p class="hintline">Sends from pause.dxa@gmail.com. The lead is marked ${isFollow || lead.status && lead.status !== "To contact" ? "“Follow-up sent”" : "“Awaiting reply”"} with today’s date.${lead.notes ? " Check the lead’s notes for context first." : ""}</p>
+      </form>
+      <footer><button class="btn" type="button" id="m-draft">Save as Gmail draft</button><span class="sp"></span>${next ? `<button class="btn" type="button" id="m-next" title="Send, then open ${esc(next.name)}">Send &amp; next</button>` : ""}<button class="btn primary" form="mail" type="submit" id="m-send">Send</button></footer>
+    </aside>`;
+  const layer = $("#layer"), close = () => { layer.innerHTML = ""; };
+  layer.querySelectorAll("[data-close]").forEach(b => b.onclick = close);
+  $("#m-tpl").onchange = e => { lastTplId = e.target.value; openCompose(leadId, e.target.value || "_blank"); };
+  const go = async (mode) => {
+    const to = $("#m-to").value.trim();
+    if (!/@/.test(to)){ $("#m-to").focus(); toast("Add an email address."); return; }
+    const btns = layer.querySelectorAll("footer .btn"); btns.forEach(b => b.disabled = true);
+    const payload = {to, cc: $("#m-cc").value.trim(), subject: $("#m-subj").value.trim(), body: $("#m-body").value,
+      attachments: [...layer.querySelectorAll("#m-att input:checked")].map(i => i.value), draft: mode === "draft"};
+    try {
+      await call("email", payload);
+      const was = lead.status || "To contact";
+      const status = mode === "draft" ? was : (["To contact","","Next year"].includes(was) ? "Awaiting reply" : ["Declined","In talks","Confirmed"].includes(was) ? was : "Follow-up sent");
+      const note = `${todayISO()}: ${mode === "draft" ? "draft saved" : "emailed"} – "${payload.subject}"`;
+      const {id:_, ...rest} = lead;
+      await write("outreach", lead.id, {...rest, email: lead.email || to, status, contacted: mode === "draft" ? lead.contacted : todayISO(), lastSubject: payload.subject, notes: ((lead.notes || "") + "\n" + note).trim()});
+      toast(mode === "draft" ? "Saved as a draft in Gmail" : `Sent to ${to}`);
+      if (mode === "next" && next){ lastTplId = $("#m-tpl").value; openCompose(next.id, lastTplId || undefined); } else close();
+    } catch (e){
+      btns.forEach(b => b.disabled = false);
+      const m = e.message || "";
+      toast(m.startsWith("attachment_unavailable") ? "A Drive attachment couldn’t be opened – check the link or untick it." : m === "not_configured" ? "Connect the desk first (⚙)." : m.includes("Invalid argument") ? "That email address looks wrong." : "Didn’t send: " + m);
+    }
+  };
+  $("#mail").onsubmit = e => { e.preventDefault(); go("send"); };
+  $("#m-draft").onclick = () => go("draft");
+  if ($("#m-next")) $("#m-next").onclick = () => go("next");
+  setTimeout(() => ($("#m-to").value ? $("#m-body") : $("#m-to")).focus(), 30);
+}
+function openTemplates(){
+  const tpls = data.templates.slice().sort(byOrder);
+  $("#layer").innerHTML = `<div class="scrim" data-close></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-label="Email templates">
+      <header><h2>Templates</h2><button class="x-btn" data-close aria-label="Close">×</button></header>
+      <div style="flex:1;overflow-y:auto;padding:12px 20px"><ul class="mini">${tpls.map(t => `<li data-t="${t.id}"><span class="x"><b>${esc(t.name)}</b><small>${esc(t.use||"")} · ${esc((t.subject||"").slice(0,70))}</small></span><span class="due">${attList(t.attachments).length} att.</span></li>`).join("") || `<li>No templates yet.</li>`}</ul>
+      <p class="sub" style="margin-top:14px">In the text, {greeting}, {name}, {city} and {country} are filled in from the lead. Put Drive file links in “Attach from Drive” to send them as attachments.</p></div>
+      <footer><span class="sp"></span><button class="btn primary" type="button" id="t-new">New template</button></footer>
+    </aside>`;
+  const layer = $("#layer");
+  layer.querySelectorAll("[data-close]").forEach(b => b.onclick = () => layer.innerHTML = "");
+  layer.querySelectorAll("[data-t]").forEach(li => li.onclick = () => openEditor("templates", li.dataset.t));
+  $("#t-new").onclick = () => openEditor("templates", null, {use:"First email"});
+}
+
 /* ---------- views ---------- */
 function dueInfo(t){
   if (!t.due || t.status === "done") return {cls:"", text: t.timeline || ""};
@@ -646,29 +743,34 @@ tasks:{
 },
 
 outreach:{
-  shell: () => `<div class="head"><h2>Venues <em>&amp;</em> festivals</h2><span class="sp"></span>${exportBtn("outreach")}<button class="btn primary" data-new>New lead</button></div>
+  shell: () => `<div class="head"><h2>Venues <em>&amp;</em> festivals</h2><span class="sp"></span>${exportBtn("outreach")}<button class="btn" data-tpl>Templates</button><button class="btn primary" data-new>New lead</button></div>
     <div class="tools">${searchBox("outreach","Search name, city, country, notes")}<div id="kinds"></div></div><div id="statuses" class="tools"></div><div id="body"></div>`,
   bind(m){
     bindSearch(m, "outreach"); bindRows(m, "outreach"); bindChips(m, "st", "outStatus"); bindChips(m, "kind", "outKind");
-    m.addEventListener("click", e => { if (e.target.closest("[data-new]")) openEditor("outreach", null, {status:"To contact", kind:"Venue"}); });
+    m.addEventListener("click", e => {
+      if (e.target.closest("[data-new]")) openEditor("outreach", null, {status:"To contact", kind:"Venue"});
+      if (e.target.closest("[data-tpl]")) openTemplates();
+      const mb = e.target.closest("[data-mail]"); if (mb){ e.stopPropagation(); openCompose(mb.dataset.mail); }
+    }, true);
   },
   body(){
     const base = data.outreach.filter(o => (!ui.outKind || o.kind === ui.outKind) && matches(o, ui.q.outreach, ["name","city","country","notes","email"]));
-    $("#statuses").innerHTML = chipRow("st", [["","All",base.length], ...OUT_STATUS.map(s => [s, s, base.filter(o => o.status===s).length]).filter(x => x[2])], ui.outStatus);
+    const fu = base.filter(needsFollowUp);
+    $("#statuses").innerHTML = chipRow("st", [["","All",base.length], ...(fu.length ? [["__fu","⟳ Needs follow-up",fu.length]] : []), ...OUT_STATUS.map(s => [s, s, base.filter(o => o.status===s).length]).filter(x => x[2])], ui.outStatus);
     const kinds = [...new Set(data.outreach.map(o => o.kind).filter(Boolean))].sort();
     $("#kinds").innerHTML = chipRow("kind", [["","All"], ...kinds.map(k => [k, k, data.outreach.filter(o => o.kind === k).length])], ui.outKind);
-    const rank = s => [5,0,3,2,1,4,6,7,8,9][OUT_STATUS.indexOf(s)] ?? 9;
-    const rows = base.filter(o => !ui.outStatus || o.status === ui.outStatus).sort((a,b) => rank(a.status)-rank(b.status) || (b.contacted||"").localeCompare(a.contacted||""));
+    const rows = outreachRows();
     if (!rows.length) return `<div class="panel empty">No leads match.</div>`;
-    return `<div class="panel tablebox"><table><thead><tr><th>Name</th><th>Where</th><th>Status</th><th class="hide-sm">Contacted</th><th class="hide-sm">Notes</th></tr></thead><tbody>
-      ${rows.map(o => `<tr data-id="${o.id}"><td><b>${esc(o.name)}</b>${/^https?:\/\//.test(o.link||"")?` <a class="ext" href="${esc(o.link)}" target="_blank" rel="noopener" aria-label="Open link">↗</a>`:""}<div class="sub">${esc(o.kind||"")}${o.email?` · ${esc(o.email)}`:""}</div></td>
+    return `<div class="panel tablebox"><table><thead><tr><th>Name</th><th>Where</th><th>Status</th><th class="hide-sm">Contacted</th><th class="hide-sm">Notes</th><th aria-label="Email"></th></tr></thead><tbody>
+      ${rows.map(o => { const d = daysSince(o.contacted);
+        return `<tr data-id="${o.id}"><td><b>${esc(o.name)}</b>${/^https?:\/\//.test(o.link||"")?` <a class="ext" href="${esc(o.link)}" target="_blank" rel="noopener" aria-label="Open link">↗</a>`:""}<div class="sub">${esc(o.kind||"")}${o.email?` · ${esc(o.email)}`:""}</div></td>
         <td>${esc([o.city,o.country].filter(Boolean).join(", ")) || "—"}</td>
         <td>${statusSelect("status", OUT_STATUS, o.status)}</td>
-        <td class="hide-sm due">${o.contacted?fmtDate(o.contacted):"—"}</td>
-        <td class="clip hide-sm"><div>${esc(o.notes||"")}</div></td></tr>`).join("")}</tbody></table></div>`;
+        <td class="hide-sm due">${o.contacted ? `${fmtDate(o.contacted)}<div class="sub">${d === 0 ? "today" : d + "d ago"}</div>` : "—"}</td>
+        <td class="clip hide-sm"><div>${esc(o.notes||"")}</div></td>
+        <td><button class="mailbtn" data-mail="${o.id}" title="${o.email ? "Email " + esc(o.email) : "Write an email (add their address)"}" aria-label="Email ${esc(o.name)}">✉</button></td></tr>`; }).join("")}</tbody></table></div>`;
   }
 },
-
 brands:{
   shell: () => `<div class="head"><h2>Brand <em>collabs</em></h2><span class="sp"></span>${exportBtn("brands")}<button class="btn" data-newp>New pitch</button><button class="btn primary" data-new>New brand</button></div>
     <div class="tools">${searchBox("brands","Search brands, categories, contacts")}</div><div id="body"></div>`,
