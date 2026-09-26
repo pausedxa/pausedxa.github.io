@@ -219,6 +219,16 @@ select.pill{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right
 
 /* drawer */
 .scrim{position:fixed;inset:0;background:rgba(12,10,42,.55);z-index:40}
+body.locked #tabs,body.locked #syncbtn,body.locked #gear,body.locked .marquee{display:none}
+.login{max-width:520px;margin:6vh auto 0;padding:28px 26px 26px}
+.login h2{font:400 clamp(44px,9vw,72px)/.9 var(--display);margin:0 0 6px;text-transform:uppercase}
+.login h2 em{font-family:var(--serif, Georgia),serif;text-transform:none;color:var(--pink)}
+.login p{margin:0 0 18px;color:var(--muted)}
+.login form{display:grid;gap:14px}
+.login label{display:block;font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.login input{width:100%}
+.login .keyrow{display:flex;gap:8px}.login .keyrow input{flex:1}
+.login .err{color:var(--red);font-weight:700;margin:0}
 .drawer{position:fixed;z-index:41;top:12px;right:12px;bottom:12px;width:min(480px,calc(100% - 24px));background:var(--surface);border:3px solid var(--line);border-radius:24px;box-shadow:8px 8px 0 var(--pink);display:flex;flex-direction:column;overflow:hidden;margin-top:env(safe-area-inset-top,0px);margin-bottom:env(safe-area-inset-bottom,0px)}
 .drawer header{display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:3px solid var(--line);background:var(--cobalt);color:var(--cream)}
 .drawer header h2{font-size:clamp(30px,4vw,40px);flex:1;color:var(--cream);text-shadow:.04em .04em 0 var(--pink)}
@@ -345,12 +355,8 @@ function setSync(state, text){ const el = $("#sync"); el.className = "sync " + s
 /* ---------- data (Google Sheet via Apps Script) ---------- */
 (function readLinkConfig(){
   if (location.hash === "#website"){ ui.tab = "website"; saveUI(); }
-  const h = new URLSearchParams(location.hash.slice(1));
-  if (h.get("u") && h.get("k")){
-    API = {url: h.get("u"), key: h.get("k")};
-    try { localStorage.setItem("pd.api", JSON.stringify(API)); } catch {}
-    history.replaceState(null, "", location.pathname + location.search);
-  }
+  // Old share links carried the key in the address. They are no longer accepted; just clear them.
+  if (/[#&](u|k)=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
 })();
 async function call(action, extra = {}){
   if (!API.url || !API.key) throw new Error("not_configured");
@@ -360,26 +366,74 @@ async function call(action, extra = {}){
   if (!j.ok) throw new Error(j.error || "error");
   return j;
 }
+// The Sheet stores every cell as text, so turn the money/count fields back into numbers.
+const NUMERIC = ["sessions","participants","fee","total","venueShare","fund","amount","order"];
+function toNumbers(d){
+  for (const k of NUMERIC){
+    if (!(k in d)) continue;
+    const n = typeof d[k] === "number" ? d[k] : parseFloat(String(d[k]).replace(/[₹,\s]/g, ""));
+    if (Number.isFinite(n)) d[k] = n; else delete d[k];
+  }
+  return d;
+}
+let unlocked = false;
+function lock(msg){
+  unlocked = false; loaded.clear();
+  for (const c of Object.keys(COLLS)) data[c] = [];
+  document.body.classList.add("locked"); $("#layer").innerHTML = "";
+  renderLogin(msg);
+}
+function unlock(){
+  if (unlocked) return;
+  unlocked = true; document.body.classList.remove("locked");
+  renderTabs(); render();
+}
+function renderLogin(msg){
+  $("#main").innerHTML = `<section class="panel login">
+      <h2>Log <em>in</em></h2>
+      <p>Enter the desk address and key to open the desk on this device.</p>
+      <form id="login" autocomplete="off">
+        ${msg ? `<p class="err" role="alert">${esc(msg)}</p>` : ""}
+        <div><label for="lg-url">Desk address</label><input id="lg-url" value="${esc(API.url)}" placeholder="https://script.google.com/macros/s/…/exec" spellcheck="false" required></div>
+        <div><label for="lg-key">Desk key</label><div class="keyrow"><input id="lg-key" type="password" placeholder="Desk key" spellcheck="false" required><button class="btn" type="button" id="lg-show">Show</button></div></div>
+        <button class="btn primary" type="submit" id="lg-go">Open the desk</button>
+      </form></section>`;
+  $("#lg-show").onclick = () => { const k = $("#lg-key"); k.type = k.type === "password" ? "text" : "password"; $("#lg-show").textContent = k.type === "password" ? "Show" : "Hide"; };
+  $("#login").onsubmit = async e => {
+    e.preventDefault();
+    API = {url: $("#lg-url").value.trim(), key: $("#lg-key").value.trim()};
+    $("#lg-go").disabled = true; $("#lg-go").textContent = "Checking…";
+    try { localStorage.setItem("pd.api", JSON.stringify(API)); } catch {}
+    await refresh();
+  };
+  setTimeout(() => ($("#lg-url").value ? $("#lg-key") : $("#lg-url")).focus(), 30);
+}
+function logout(){
+  API = {url: API.url, key: ""};
+  try { localStorage.setItem("pd.api", JSON.stringify(API)); } catch {}
+  setSync("off", "Logged out"); lock();
+}
 let refreshing = false;
 async function refresh(quiet){
   if (refreshing) return; refreshing = true;
   try {
     if (!quiet) setSync("", "Loading…");
     const j = await call("list");
-    for (const c of Object.keys(COLLS)){ data[c] = (j.data[c] || []).sort(byOrder); loaded.add(c); }
+    for (const c of Object.keys(COLLS)){ data[c] = (j.data[c] || []).map(toNumbers).sort(byOrder); loaded.add(c); }
     meta = j.meta || {};
     setSync("live", "Connected");
-    showSyncState(); scheduleRender();
+    unlock(); showSyncState(); scheduleRender();
   } catch (e){
     const m = e.message;
-    if (m === "not_configured"){ setSync("off", "Not connected"); if (ui.tab !== "website") openSettings(); }
-    else if (m === "bad_key"){ setSync("off", "Wrong desk key"); openSettings("That desk key didn’t work. Copy it again from the Sheet."); }
-    else setSync("off", "Can’t reach the Sheet");
-    scheduleRender();
+    if (m === "not_configured"){ setSync("off", "Not connected"); lock(); }
+    else if (m === "bad_key"){ setSync("off", "Wrong desk key"); lock("That key didn’t work. Check it and try again."); }
+    else if (!unlocked){ setSync("off", "Can’t reach the Sheet"); lock("Couldn’t reach the desk. Check the address and your internet connection."); }
+    else { setSync("off", "Can’t reach the Sheet"); scheduleRender(); }
   } finally { refreshing = false; }
 }
 async function start(){
-  renderTabs(); render();
+  document.body.classList.add("locked");
+  if (API.url && API.key) $("#main").innerHTML = `<div class="panel empty login">Opening the desk…</div>`; else renderLogin();
   $("#syncbtn").onclick = runSync;
   $("#gear").onclick = () => openSettings();
   await refresh();
@@ -440,28 +494,20 @@ async function runSync(){
   }
   b.disabled = false; showSyncState();
 }
-function openSettings(msg){
+function openSettings(){
   $("#layer").innerHTML = `<div class="scrim" data-close></div>
-    <aside class="drawer" role="dialog" aria-modal="true" aria-label="Connect the desk">
-      <header><h2>Connect</h2><button class="x-btn" data-close aria-label="Close">×</button></header>
-      <form id="cfg">
-        ${msg ? `<p class="f" style="color:var(--red);font-weight:700;margin:0">${esc(msg)}</p>` : ""}
-        <div class="f"><label for="cfg-url">Desk address (web app URL)</label><input id="cfg-url" value="${esc(API.url)}" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></div>
-        <div class="f"><label for="cfg-key">Desk key</label><input id="cfg-key" value="${esc(API.key)}" placeholder="In the Sheet: pause desk → Show desk key" autocomplete="off"></div>
-        <p class="f" style="color:var(--muted);font-size:13.5px;margin:0">Both come from the pause desk Google Sheet. They’re saved only in this browser, so enter them once per device.</p>
-        <div class="f" style="margin-top:8px;padding-top:16px;border-top:2px dashed var(--line)"><label>Just editing the website?</label><p style="margin:4px 0 10px;font-size:14px">The Website tab works without connecting.</p><button class="btn primary" type="button" id="go-website">Go to the Website tab →</button></div>
-      </form>
-      <footer><span class="sp"></span><button class="btn" data-close type="button">Later</button><button class="btn primary" form="cfg" type="submit">Connect</button></footer>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-label="Desk connection">
+      <header><h2>Connection</h2><button class="x-btn" data-close aria-label="Close">×</button></header>
+      <div style="flex:1;overflow-y:auto;padding:18px 20px;display:grid;gap:14px;align-content:start">
+        <div class="f"><label>Desk address</label><p style="margin:4px 0 0;font:13px var(--mono);word-break:break-all">${esc(API.url)}</p></div>
+        <p style="margin:0;color:var(--muted);font-size:14px">This device stays logged in until you log out. Log out on shared or borrowed computers.</p>
+        <p style="margin:0;color:var(--muted);font-size:14px">To lock everyone out (e.g. if the key was shared by mistake), make a new key in Apps Script (run <b>resetKey</b>) and log in again with it.</p>
+      </div>
+      <footer><button class="btn" type="button" id="cfg-out">Log out of this device</button><span class="sp"></span><button class="btn primary" data-close type="button">Done</button></footer>
     </aside>`;
-  const layer = $("#layer"), close = () => { layer.innerHTML = ""; };
-  layer.querySelectorAll("[data-close]").forEach(el => el.onclick = close);
-  $("#go-website").onclick = () => { close(); ui.tab = "website"; saveUI(); renderTabs(); render(); window.scrollTo({top:0}); };
-  $("#cfg").onsubmit = async e => {
-    e.preventDefault();
-    API = {url: $("#cfg-url").value.trim(), key: $("#cfg-key").value.trim()};
-    try { localStorage.setItem("pd.api", JSON.stringify(API)); } catch {}
-    close(); await refresh();
-  };
+  const layer = $("#layer");
+  layer.querySelectorAll("[data-close]").forEach(el => el.onclick = () => layer.innerHTML = "");
+  $("#cfg-out").onclick = logout;
 }
 
 /* ---------- shell ---------- */
@@ -474,7 +520,7 @@ function updateCounts(){
   const c = {tasks: open || "", outreach: data.outreach.filter(o => !["Declined","Bounced","Confirmed","Next year"].includes(o.status)).length || ""};
   document.querySelectorAll("[data-count]").forEach(el => el.textContent = c[el.dataset.count] ?? "");
 }
-function render(){ const m = $("#main"); m.innerHTML = VIEWS[ui.tab].shell(); VIEWS[ui.tab].bind?.(m); bindQuick(m); renderBody(); }
+function render(){ if (!unlocked) return; const m = $("#main"); m.innerHTML = VIEWS[ui.tab].shell(); VIEWS[ui.tab].bind?.(m); bindQuick(m); renderBody(); }
 
 /* ---------------- website tab data ---------------- */
 const WEB = {site:null, gigs:null, commits:[], started:false, done:false};
@@ -492,6 +538,7 @@ async function loadWeb(){
   if (ui.tab === "website") renderBody();
 }
 function renderBody(){
+  if (!unlocked) return;
   updateCounts(); updateTicker();
   const body = $("#body"); if (!body) return;
   body.innerHTML = (!loaded.size && !VIEWS[ui.tab].standalone) ? offlineNote() : VIEWS[ui.tab].body();
