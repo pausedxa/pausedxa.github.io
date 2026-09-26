@@ -315,7 +315,7 @@ const COLLS = {
     {k:"name",l:"Name"},{k:"email",l:"Email",half:true},{k:"phone",l:"Phone",half:true},{k:"region",l:"Region",list:true,half:true},{k:"area",l:"Area",half:true},
     {k:"type",l:"Type",list:true},{k:"address",l:"Address",type:"area"},{k:"notes",l:"Notes",type:"area"}]},
 };
-const TABS = [["overview","Overview","var(--lime)"],["tasks","Tasks","var(--pink)"],["outreach","Outreach","var(--sky)"],["brands","Brands","var(--orange)"],["library","Library","var(--lime)"],["money","Money","var(--yellow)"],["people","People","var(--violet)"],["website","Website","var(--mint)"]];
+const TABS = [["overview","Overview","var(--lime)"],["website","Website","var(--mint)"],["tasks","Tasks","var(--pink)"],["outreach","Outreach","var(--sky)"],["brands","Brands","var(--orange)"],["library","Library","var(--lime)"],["money","Money","var(--yellow)"],["people","People","var(--violet)"]];
 const PCOLS = ["var(--pink)","var(--sky)","var(--yellow)","var(--mint)","var(--orange)","var(--violet)"];
 const pcol = name => PCOLS[[...String(name)].reduce((h,c) => (h*31 + c.charCodeAt(0)) >>> 0, 7) % PCOLS.length];
 
@@ -344,6 +344,7 @@ function setSync(state, text){ const el = $("#sync"); el.className = "sync " + s
 
 /* ---------- data (Google Sheet via Apps Script) ---------- */
 (function readLinkConfig(){
+  if (location.hash === "#website"){ ui.tab = "website"; saveUI(); }
   const h = new URLSearchParams(location.hash.slice(1));
   if (h.get("u") && h.get("k")){
     API = {url: h.get("u"), key: h.get("k")};
@@ -371,7 +372,7 @@ async function refresh(quiet){
     showSyncState(); scheduleRender();
   } catch (e){
     const m = e.message;
-    if (m === "not_configured"){ setSync("off", "Not connected"); openSettings(); }
+    if (m === "not_configured"){ setSync("off", "Not connected"); if (ui.tab !== "website") openSettings(); }
     else if (m === "bad_key"){ setSync("off", "Wrong desk key"); openSettings("That desk key didn’t work. Copy it again from the Sheet."); }
     else setSync("off", "Can’t reach the Sheet");
     scheduleRender();
@@ -448,11 +449,13 @@ function openSettings(msg){
         <div class="f"><label for="cfg-url">Desk address (web app URL)</label><input id="cfg-url" value="${esc(API.url)}" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></div>
         <div class="f"><label for="cfg-key">Desk key</label><input id="cfg-key" value="${esc(API.key)}" placeholder="In the Sheet: pause desk → Show desk key" autocomplete="off"></div>
         <p class="f" style="color:var(--muted);font-size:13.5px;margin:0">Both come from the pause desk Google Sheet. They’re saved only in this browser, so enter them once per device.</p>
+        <div class="f" style="margin-top:8px;padding-top:16px;border-top:2px dashed var(--line)"><label>Just editing the website?</label><p style="margin:4px 0 10px;font-size:14px">The Website tab works without connecting.</p><button class="btn primary" type="button" id="go-website">Go to the Website tab →</button></div>
       </form>
       <footer><span class="sp"></span><button class="btn" data-close type="button">Later</button><button class="btn primary" form="cfg" type="submit">Connect</button></footer>
     </aside>`;
   const layer = $("#layer"), close = () => { layer.innerHTML = ""; };
   layer.querySelectorAll("[data-close]").forEach(el => el.onclick = close);
+  $("#go-website").onclick = () => { close(); ui.tab = "website"; saveUI(); renderTabs(); render(); window.scrollTo({top:0}); };
   $("#cfg").onsubmit = async e => {
     e.preventDefault();
     API = {url: $("#cfg-url").value.trim(), key: $("#cfg-key").value.trim()};
