@@ -6,7 +6,7 @@
     "heading": "about *us*",
     "intro": "We bring together our individual practices of *Dhrupad* and electronic sound synthesis. As our moniker suggests, we create long-form ambient listening experiences: *a space for one to slow down.*",
     "text": "Our performances are long-form listening sessions. Listeners are welcome to sit or lie down. We perform at festivals, venues and retreats in India and abroad, and also make soundscapes and installations.",
-    "sahitya_roles": "vocalist · pianist · researcher",
+    "sahitya_roles": "vocalist · piano tutor · arts manager ",
     "sahitya_bio": "Practises Dhrupad as a disciple of **Ustad Wasifuddin Dagar** in the Dagarvani tradition. Her practice is grounded in the philosophy of the Dagar gharana, with a focus on *alaap*: vocal improvisation and the subtlety of vocal sound. She's a Music Therapy graduate and explored the work of sound further through Svaram's Integral Sonic Studies & Practices Program.",
     "harsh_roles": "sound artist · maths teacher",
     "harsh_bio": "Creates electronic soundscapes with modular synthesis on **VCV Rack** and field recordings. He researches and builds installations based on **cymatics**, and graduated from the Integral Sonic Studies Program at Svaram, Auroville."
@@ -14,7 +14,7 @@
   "dhrupad": {
     "intro": "Dhrupad is one of the oldest surviving forms of Hindustani classical music. Its name joins *dhruva*, steady, and *pada*, verse.",
     "text_1": "It is sung slowly and with restraint, with close attention to each note, to the breath, and to the resonance of the voice against the drone of the tanpura. Sahitya learns in the Dagarvani tradition, one of the principal lineages of Dhrupad, under Ustad F. Wasifuddin Dagar.",
-    "text_2": "Our music stays mostly in the **alaap**, the unhurried opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.",
+    "text_2": "Our music stays mostly in the **alaap**, the steady opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.",
     "syllables_note": "the alaap is sung on syllables such as these, traditionally said to come from the invocation *om ananta narayana hari*.",
     "stage_1_name": "alaap",
     "stage_1_text": "slow and unmetered; the raag is introduced note by note.",
@@ -37,7 +37,7 @@
   "projects": {
     "bsf_label": "audio-visual performance · 2026",
     "bsf_title": "Bedtime Sonic Fables",
-    "bsf_text": "A dream-like journey composed to mirror the fluid transitions of the sleep cycle. It's Dhrupad, electronics and live water-cymatics visuals, often in quadraphonic sound. It started as late-night online sessions in 2024 and was built out with the **Serendipity Arts Foundation's Independent Music Production Grant 2025**. The debut was in a transformed barn in Auroville, and it toured Europe in summer 2026.",
+    "bsf_text": "A dream-like journey composed to mirror the fluid transitions of the sleep cycle. It's Dhrupad, electronics and live water-cymatics visuals. It started as late-night online sessions in 2024 and was built out with the **Serendipity Arts Foundation's Independent Music Production Grant 2025**. The debut was in a transformed barn in Auroville, and it toured Europe in summer 2026.",
     "tsiy_label": "sound immersion",
     "tsiy_title": "The Space Inside You",
     "tsiy_text_1": "A sound immersion combining Dhrupad-inspired vocal improvisation with a live set on Ableton Live and VCV Rack, synthesising elemental soundscapes alongside acoustic instruments. *A space for one to come, lay down, and enter a journey with sounds.*",
