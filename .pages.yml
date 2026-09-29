@@ -172,19 +172,19 @@ content:
             label: "Garam Roti: link button text"
             type: string
           - name: jnana_label
-            label: "Jñāna sleep audios: small label"
+            label: "Nāda for Sleep (Jñāna): small label"
             type: string
           - name: jnana_title
-            label: "Jñāna sleep audios: title"
+            label: "Nāda for Sleep (Jñāna): title"
             type: string
           - name: jnana_text
-            label: "Jñāna sleep audios: paragraph"
+            label: "Nāda for Sleep (Jñāna): paragraph"
             type: text
           - name: jnana_link
-            label: "Jñāna sleep audios: link (web address)"
+            label: "Nāda for Sleep (Jñāna): link (web address)"
             type: string
           - name: jnana_link_text
-            label: "Jñāna sleep audios: link button text"
+            label: "Nāda for Sleep (Jñāna): link button text"
             type: string
           - name: film_label
             label: "Song of My Mother’s Soul: small label"
