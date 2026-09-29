@@ -156,6 +156,51 @@ content:
           - name: azhagu_text
             label: "Azhagu Bhoomi: paragraph"
             type: text
+          - name: garam_label
+            label: "Garam Roti: small label"
+            type: string
+          - name: garam_title
+            label: "Garam Roti: title"
+            type: string
+          - name: garam_text
+            label: "Garam Roti: paragraph"
+            type: text
+          - name: garam_link
+            label: "Garam Roti: link (web address)"
+            type: string
+          - name: garam_link_text
+            label: "Garam Roti: link button text"
+            type: string
+          - name: jnana_label
+            label: "Jñāna sleep audios: small label"
+            type: string
+          - name: jnana_title
+            label: "Jñāna sleep audios: title"
+            type: string
+          - name: jnana_text
+            label: "Jñāna sleep audios: paragraph"
+            type: text
+          - name: jnana_link
+            label: "Jñāna sleep audios: link (web address)"
+            type: string
+          - name: jnana_link_text
+            label: "Jñāna sleep audios: link button text"
+            type: string
+          - name: film_label
+            label: "Song of My Mother’s Soul: small label"
+            type: string
+          - name: film_title
+            label: "Song of My Mother’s Soul: title"
+            type: string
+          - name: film_text
+            label: "Song of My Mother’s Soul: paragraph"
+            type: text
+          - name: film_link
+            label: "Song of My Mother’s Soul: link (web address)"
+            type: string
+          - name: film_link_text
+            label: "Song of My Mother’s Soul: link button text"
+            type: string
       - name: bedtime_sonic_fables
         label: "Bedtime Sonic Fables section"
         type: object
