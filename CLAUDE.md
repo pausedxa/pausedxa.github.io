@@ -1,6 +1,6 @@
 # pause.dxa website: instructions for Claude
 
-This is the website of **pause.dxa**, the Dhrupad and electronic soundscapes duo of Sahitya and Harsh, based in Auroville, India. It's live at **https://pausedxa.github.io**, served by GitHub Pages from the `main` branch of this repo. Anything pushed to `main` goes live in about a minute.
+This is the website of **pause.dxa**, the Dhrupad and electronic soundscapes duo of Sahitya and Harsh, based in Auroville, India. It's live at **https://pausedxa.in** (custom domain; pausedxa.github.io redirects there), served by GitHub Pages from the `main` branch of this repo. Anything pushed to `main` goes live in about a minute.
 
 Sahitya and Harsh edit the site by chatting with Claude. They aren't web developers, so explain changes in plain language, show them what changed, and confirm before publishing anything big.
 
@@ -42,3 +42,6 @@ Every published version is kept in the git history, so anything can be rolled ba
 ## Things to remember
 - **Wonderfruit, 3–7 Dec 2026, Enfold stage** is shown as upcoming in the band under the Dhrupad section (`upcoming` in `content/site.json`) and at the top of `content/gigs.json`. After the festival, update the band to the next show and remove "upcoming" from that row.
 - The `desk/` folder is a separate internal tool (the pause desk), built in another session. Don't change it as part of website work.
+
+## Domain
+- **pausedxa.in** is registered at GoDaddy. DNS has four A records for `@` (185.199.108–111.153) and `www` CNAME → pausedxa.github.io. The `CNAME` file in this repo must stay (it holds `pausedxa.in`). HTTPS is enforced in the GitHub Pages settings. og:url and og:image use https://pausedxa.in/.
