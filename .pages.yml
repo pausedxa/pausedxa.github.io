@@ -43,6 +43,9 @@ content:
         label: "Dhrupad section"
         type: object
         fields:
+          - name: heading
+            label: "Heading"
+            type: string
           - name: intro
             label: "Opening paragraph (large text)"
             type: text
@@ -52,6 +55,9 @@ content:
           - name: text_2
             label: "Paragraph 2"
             type: text
+          - name: syllables
+            label: "Syllables (big letters; separate with spaces)"
+            type: string
           - name: syllables_note
             label: "Note under the syllables"
             type: text

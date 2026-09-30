@@ -12,9 +12,11 @@
     "harsh_bio": "Creates electronic soundscapes with modular synthesis on **VCV Rack** and field recordings. He researches and builds installations based on **cymatics**, and graduated from the Integral Sonic Studies Program at Svaram, Auroville."
   },
   "dhrupad": {
+    "heading": "dhrupad",
     "intro": "Dhrupad is one of the oldest surviving forms of Hindustani classical music. Its name joins *dhruva*, steady, and *pada*, verse.",
     "text_1": "It is sung slowly and with restraint, with close attention to each note, to the breath, and to the resonance of the voice against the drone of the tanpura. Sahitya learns in the Dagarvani tradition, one of the principal lineages of Dhrupad, under Ustad F. Wasifuddin Dagar.",
     "text_2": "Our music stays mostly in the **alaap**, the steady opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.",
+    "syllables": "ā re ne na nom tom",
     "syllables_note": "the alaap is sung on syllables such as these, traditionally said to come from the invocation *om ananta narayana hari*.",
     "stage_1_name": "alaap",
     "stage_1_text": "slow and unmetered; the raag is introduced note by note.",

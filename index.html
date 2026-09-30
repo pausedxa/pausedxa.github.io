@@ -534,16 +534,16 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <div class="wrap dhr-grid">
     <div class="rv">
       <span class="kicker">02 / dhrupad</span>
-      <h2>dhrupad</h2>
+      <h2 data-c="dhrupad.heading">dhrupad</h2>
       <p class="big-p" data-c="dhrupad.intro">Dhrupad is one of the oldest surviving forms of Hindustani classical music. Its name joins <span class="serif">dhruva</span>, steady, and <span class="serif">pada</span>, verse.</p>
       <p data-c="dhrupad.text_1">It is sung slowly and with restraint, with close attention to each note, to the breath, and to the resonance of the voice against the drone of the tanpura. Sahitya learns in the Dagarvani tradition, one of the principal lineages of Dhrupad, under Ustad F. Wasifuddin Dagar.</p>
       <p data-c="dhrupad.text_2">Our music stays mostly in the <b data-c="dhrupad.stage_1_name">alaap</b>, the unhurried opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.</p>
     </div>
     <div class="rv">
-      <p class="syll" aria-label="Syllables sung in the alaap: a, re, ne, na, nom, tom"><span>ā</span><span>re</span><span>ne</span><span>na</span><span>nom</span><span>tom</span></p>
+      <p class="syll" data-syll="dhrupad.syllables" aria-label="Syllables sung in the alaap: a, re, ne, na, nom, tom"><span>ā</span><span>re</span><span>ne</span><span>na</span><span>nom</span><span>tom</span></p>
       <p class="mono syll-note" data-c="dhrupad.syllables_note">the alaap is sung on syllables such as these, traditionally said to come from the invocation <i>om ananta narayana hari</i>.</p>
       <ol class="unfold">
-        <li><b>alaap</b><span data-c="dhrupad.stage_1_text">slow and unmetered; the raag is introduced note by note.</span></li>
+        <li><b data-c="dhrupad.stage_1_name">alaap</b><span data-c="dhrupad.stage_1_text">slow and unmetered; the raag is introduced note by note.</span></li>
         <li><b data-c="dhrupad.stage_2_name">madhya</b><span data-c="dhrupad.stage_2_text">a gentle pulse appears and the phrases begin to move.</span></li>
         <li><b data-c="dhrupad.stage_3_name">drut</b><span data-c="dhrupad.stage_3_text">the pace quickens and the phrases gather.</span></li>
         <li><b data-c="dhrupad.stage_4_name">bandish</b><span data-c="dhrupad.stage_4_text">the composed verse, sung with the pakhawaj.</span></li>
@@ -962,6 +962,7 @@ buildYears();
     const site = await fetch('content/site.json', {cache: 'no-cache'}).then(r => r.json());
     document.querySelectorAll('[data-c]').forEach(el => { const v = get(site, el.dataset.c); if (typeof v === 'string' && v.trim()) el.innerHTML = md(v); });
     document.querySelectorAll('[data-c-href]').forEach(el => { const v = get(site, el.dataset.cHref); if (v) el.href = v; });
+    document.querySelectorAll('[data-syll]').forEach(el => { const v = get(site, el.dataset.syll); if (typeof v !== 'string' || !v.trim()) return; const w = v.trim().split(/\s+/); el.innerHTML = w.map(x => `<span>${esc(x)}</span>`).join(''); el.setAttribute('aria-label', 'Syllables sung in the alaap: ' + w.join(', ')); });
     document.querySelectorAll('[data-list]').forEach(el => { const v = get(site, el.dataset.list); if (Array.isArray(v) && v.length) el.innerHTML = v.map(x => `<li>${esc(x)}</li>`).join(''); });
   } catch (e) {}
   try {
