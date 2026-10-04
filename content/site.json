@@ -67,7 +67,9 @@
     "film_title": "Song of My Mother’s Soul",
     "film_text": "Original score by Harsh and vocals by Sahitya for *Song of My Mother’s Soul*, written and directed by Tushar Sheetal Jain: a film about Dina, a sound recordist, and her mother, a classical singer. Premieres at IFFSA Toronto on 10 October 2026.",
     "film_link": "https://iffsatoronto.com/movie/song-of-my-mothers-soul/",
-    "film_link_text": "iffsa toronto"
+    "film_link_text": "iffsa toronto",
+    "collab_heading": "collaborations",
+    "collab_intro": "Work made with and for other artists, filmmakers and platforms."
   },
   "bedtime_sonic_fables": {
     "intro": "An hour-long performance that follows the stages of the *sleep cycle*.",
@@ -135,5 +137,16 @@
   },
   "contact": {
     "text": "For performances, sound immersions and collaborations, please write to us."
+  },
+  "cymatics": {
+    "heading": "cymatics",
+    "intro": "Cymatics is the study of visible sound: how vibration organises matter into pattern.",
+    "text": "Harsh has been researching cymatics at Svaram Sound Experience in Auroville since 2021, building instruments that let you see sound as you hear it. Three of them are below; water cymatics is also part of our live performances.",
+    "water_title": "Water cymatics",
+    "water_text": "A bass shaker sets a shallow vessel of water vibrating. Lit from above, its surface forms patterns that change with every note, from slow rings in low drones to fine, shifting lattices as the sound rises.",
+    "chladni_title": "Chladni plates",
+    "chladni_text": "Metal plates scattered with sand, bowed or driven at a single frequency. The sand leaves the parts of the plate that vibrate and gathers along the still lines, drawing a different figure for each frequency. The method goes back to Ernst Chladni in the 1780s.",
+    "eido_title": "Eidophone *(prototype)*",
+    "eido_text": "A membrane stretched over a vessel, sung into through a tube, so the voice itself draws in the sand or paste on its surface. Our prototype follows the instrument Margaret Watts-Hughes developed in the 1880s to see the shapes of sung notes."
   }
 }

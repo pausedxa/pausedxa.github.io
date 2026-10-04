@@ -458,6 +458,25 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .tour-photo{margin:0;width:min(100%,460px)}
 .tour-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:18px;box-shadow:0 18px 40px -24px rgba(29,30,28,.35)}
 .tour-photo figcaption{margin-top:10px;opacity:.7;text-transform:none}
+
+/* collaborations + cymatics */
+.sub-h{margin:clamp(70px,10vh,120px) 0 6px;font-size:clamp(40px,6vw,90px)}
+.sub-p{margin:0 0 28px;opacity:.75;max-width:52ch}
+@media (max-width:880px){.proj-grid>.proj,.proj-grid>.proj.collab{grid-column:span 12}}
+.cymx{background:var(--cream)}
+.cymx-p{max-width:60ch;margin:0 0 40px}
+.cym-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:880px){.cym-grid{grid-template-columns:1fr}}
+.cym-card{background:#fff;border:1px solid rgba(29,30,28,.55);border-radius:22px;padding:14px 14px 22px;box-shadow:0 18px 40px -24px rgba(29,30,28,.35)}
+.cym-card video{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--ink)}
+.cym-card h3{font-family:var(--head);font-variation-settings:"SOFT" 100,"opsz" 96;font-weight:400;font-size:clamp(26px,2.4vw,36px);margin:18px 6px 8px;line-height:1}
+.cym-card p{margin:0 6px;font-size:.95em}
+.cym-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.cym-photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
+@media (max-width:600px){.cym-photos{grid-template-columns:1fr 1fr}.cym-photos img:last-child{grid-column:span 2;aspect-ratio:2/1}}
+.sub-h3{font-family:var(--head);font-weight:350;font-size:clamp(32px,4vw,56px);margin:56px 0 18px;letter-spacing:-.02em}
+.cym-vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:760px){.cym-vids{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -467,6 +486,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <a href="#about">About</a>
   <a href="#dhrupad">Dhrupad</a>
   <a href="#projects">Projects</a>
+  <a href="#cymatics">Cymatics</a>
   <a href="#bsf">BSF</a>
   <a href="#tour">Performances</a>
   <a class="k" href="#listen">Listen</a>
@@ -606,7 +626,17 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <span class="mono" data-c="projects.cymatics_label">installation</span>
         <h3 data-c="projects.cymatics_title">Cymatics installations</h3>
         <p data-c="projects.cymatics_text">A water-and-light cymatics installation developed by Harsh, in which the music shapes patterns on the surface of water during performances.</p>
+        <a class="pill more" href="#cymatics" style="color:var(--cream)">↓ more on cymatics</a>
       </article>
+      <article class="proj gaza rv">
+        <img class="gaza-img" src="assets/azhagu-bhoomi.jpg" alt="A path through green trees under a blue sky with white clouds, Auroville." loading="lazy">
+        <h3 data-c="projects.azhagu_title">Azhagu Bhoomi <span class="serif">(pretty earth)</span></h3>
+        <p><span data-c="projects.azhagu_text">A piece shared with <b>Love Letter for Gaza</b> as a prayer and a remembrance for those surviving.</span> <a href="https://soundcloud.com/dxa770/azhagu-bhoomi-loop-one" target="_blank" rel="noopener">Listen to the loop ↗</a></p>
+      </article>
+    </div>
+    <h2 class="sub-h" id="collaborations" data-c="projects.collab_heading">collaborations</h2>
+    <p class="sub-p" data-c="projects.collab_intro">Work made with and for other artists, filmmakers and platforms.</p>
+    <div class="proj-grid">
       <article class="proj collab rv">
         <img class="inset" src="assets/collab-garam-roti.jpg" alt="Garam Roti cover artwork: a collage of a woman with a braid and flowers above a vinyl record." loading="lazy" style="object-position:center">
         <span class="mono" data-c="projects.garam_label">theatre soundscape · 2025</span>
@@ -628,11 +658,43 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <p data-c="projects.film_text">Original score by Harsh and vocals by Sahitya for <span class="serif">Song of My Mother’s Soul</span>, written and directed by Tushar Sheetal Jain: a film about Dina, a sound recordist, and her mother, a classical singer. Premieres at IFFSA Toronto on 10 October 2026.</span>, a film by Tushar Singhal about Dina, a sound recordist, and her mother, a classical singer. Selected for IFFSA Toronto 2026.</p>
         <a class="pill more" href="https://iffsatoronto.com/movie/song-of-my-mothers-soul/" target="_blank" rel="noopener" data-c-href="projects.film_link"><span data-c="projects.film_link_text">iffsa toronto</span> ↗</a>
       </article>
-      <article class="proj gaza rv">
-        <img class="gaza-img" src="assets/azhagu-bhoomi.jpg" alt="A path through green trees under a blue sky with white clouds, Auroville." loading="lazy">
-        <h3 data-c="projects.azhagu_title">Azhagu Bhoomi <span class="serif">(pretty earth)</span></h3>
-        <p><span data-c="projects.azhagu_text">A piece shared with <b>Love Letter for Gaza</b> as a prayer and a remembrance for those surviving.</span> <a href="https://soundcloud.com/dxa770/azhagu-bhoomi-loop-one" target="_blank" rel="noopener">Listen to the loop ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CYMATICS ============ -->
+<section class="cymx" id="cymatics">
+  <div class="wrap">
+    <span class="kicker">04 / cymatics</span>
+    <h2 data-c="cymatics.heading">cymatics</h2>
+    <p class="big-p" data-c="cymatics.intro">Cymatics is the study of visible sound: how vibration organises matter into pattern.</p>
+    <p class="cymx-p" data-c="cymatics.text">Harsh has been researching cymatics at Svaram Sound Experience in Auroville since 2021, building instruments that let you see sound as you hear it. Three of them are below; water cymatics is also part of our live performances.</p>
+    <div class="cym-grid">
+      <article class="cym-card rv">
+        <video src="assets/cymatics/water.mp4" poster="assets/cymatics/water.jpg" autoplay muted loop playsinline preload="none" aria-label="Video: lit water in a wooden vessel rippling into patterns with the music."></video>
+        <h3 data-c="cymatics.water_title">Water cymatics</h3>
+        <p data-c="cymatics.water_text">A bass shaker sets a shallow vessel of water vibrating. Lit from above, its surface forms patterns that change with every note, from slow rings in low drones to fine, shifting lattices as the sound rises.</p>
       </article>
+      <article class="cym-card rv">
+        <video src="assets/cymatics/chladni.mp4" poster="assets/cymatics/chladni.jpg" autoplay muted loop playsinline preload="none" aria-label="Video: sand gathering into lines on a metal plate as it is bowed."></video>
+        <h3 data-c="cymatics.chladni_title">Chladni plates</h3>
+        <p data-c="cymatics.chladni_text">Metal plates scattered with sand, bowed or driven at a single frequency. The sand leaves the parts of the plate that vibrate and gathers along the still lines, drawing a different figure for each frequency. The method goes back to Ernst Chladni in the 1780s.</p>
+      </article>
+      <article class="cym-card rv">
+        <video src="assets/cymatics/eidophone.mp4" poster="assets/cymatics/eidophone.jpg" autoplay muted loop playsinline preload="none" aria-label="Video: sand forming a ring on a stretched membrane as someone sings into the instrument."></video>
+        <h3 data-c="cymatics.eido_title">Eidophone <span class="serif">(prototype)</span></h3>
+        <p data-c="cymatics.eido_text">A membrane stretched over a vessel, sung into through a tube, so the voice itself draws in the sand or paste on its surface. Our prototype follows the instrument Margaret Watts-Hughes developed in the 1880s to see the shapes of sung notes.</p>
+      </article>
+    </div>
+    <div class="cym-photos">
+      <img style="object-position:left center" src="assets/cymatics/chladni-plate.jpg" alt="A square metal plate with sand gathered into a pattern of curving lines." loading="lazy">
+      <img src="assets/cymatics/eidophone-playing.jpg" alt="The eidophone prototype: a tube leading to a membrane stretched over a clay pot, with a ring of sand on it." loading="lazy">
+      <img src="assets/cymatics/water-blue.jpg" alt="Blue and green light reflecting off vibrating water in a round vessel." loading="lazy">
+    </div>
+    <h3 class="sub-h3">watch</h3>
+    <div class="cym-vids">
+      <div class="vid" data-yt="ozPMoJTji0E"><button aria-label="Play: The Geometry of Sound: Chladni Patterns and the Science of Vibrations"><img src="https://i.ytimg.com/vi/ozPMoJTji0E/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>The Geometry of Sound<br><span class="mono">chladni patterns · svaram</span></b><span class="play">▶</span></span></button></div>
+      <div class="vid" data-yt="j9kzTVyBo0A"><button aria-label="Play: Sound Has a Hidden Structure"><img src="https://i.ytimg.com/vi/j9kzTVyBo0A/hqdefault.jpg" alt="" loading="lazy"><span class="lbl"><b>Sound Has a Hidden Structure<br><span class="mono">svaram sound experience</span></b><span class="play">▶</span></span></button></div>
     </div>
   </div>
 </section>
@@ -642,7 +704,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <section class="bsfx" id="bsf">
   <img class="bsfx-bg" src="assets/deck-bsf-marble.jpg" alt="" aria-hidden="true">
   <div class="wrap">
-    <span class="kicker">04 / bedtime sonic fables</span>
+    <span class="kicker">05 / bedtime sonic fables</span>
     <h2>bedtime <span class="serif">sonic</span> fables</h2>
     <p class="bsfx-tag mono">dhrupad · electronic soundscapes · cymatics</p>
     <div class="bsfx-intro">
@@ -721,7 +783,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <div class="wrap">
     <div class="tour-head">
       <div class="rv">
-        <span class="kicker">05 / performances</span>
+        <span class="kicker">06 / performances</span>
         <h2>performances</h2>
         <p class="big-p" data-c="performances.intro">Upcoming and past performances, 2023 to 2026.</p>
       </div>
@@ -754,7 +816,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ LISTEN ============ -->
 <section class="listen" id="listen">
   <div class="wrap">
-    <span class="kicker">06 / listen</span>
+    <span class="kicker">07 / listen</span>
     <h2>listen <span class="serif">&amp;</span> watch</h2>
     <div class="listen-grid">
       <div class="tracks" id="tracks"></div>
@@ -775,7 +837,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ WALL ============ -->
 <section class="wall" id="wall">
   <div class="wrap">
-    <span class="kicker">07 / photos</span>
+    <span class="kicker">08 / photos</span>
     <h2>photos</h2>
     <div class="wall-grid" id="wallGrid"></div>
   </div>
@@ -784,7 +846,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ OFFER ============ -->
 <section class="offer" id="work">
   <div class="wrap">
-    <span class="kicker">08 / work with us</span>
+    <span class="kicker">09 / work with us</span>
     <h2>work <span class="serif">with</span> us</h2>
     <div class="offer-grid">
       <div class="card rv"><img class="cimg" src="assets/deck-palace.jpg" alt="A pause.dxa set in a palace courtyard under pink-lit arches, audience in silhouette." loading="lazy"><h3 data-c="work_with_us.card_1_title">Live performances</h3><p data-c="work_with_us.card_1_text">Sets of one to two hours for festivals, venues and cultural spaces.</p></div>

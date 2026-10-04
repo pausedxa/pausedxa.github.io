@@ -207,6 +207,43 @@ content:
           - name: film_link_text
             label: "Song of My Mother’s Soul: link button text"
             type: string
+          - name: collab_heading
+            label: "Collaborations: heading"
+            type: string
+          - name: collab_intro
+            label: "Collaborations: intro line"
+            type: string
+      - name: cymatics
+        label: "Cymatics section"
+        type: object
+        fields:
+          - name: heading
+            label: "Heading"
+            type: string
+          - name: intro
+            label: "Opening line (large)"
+            type: text
+          - name: text
+            label: "Paragraph"
+            type: text
+          - name: water_title
+            label: "Water cymatics: title"
+            type: string
+          - name: water_text
+            label: "Water cymatics: text"
+            type: text
+          - name: chladni_title
+            label: "Chladni plates: title"
+            type: string
+          - name: chladni_text
+            label: "Chladni plates: text"
+            type: text
+          - name: eido_title
+            label: "Eidophone: title"
+            type: string
+          - name: eido_text
+            label: "Eidophone: text"
+            type: text
       - name: bedtime_sonic_fables
         label: "Bedtime Sonic Fables section"
         type: object
