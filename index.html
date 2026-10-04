@@ -437,7 +437,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .dhr p{max-width:56ch}
 .dhr b{font-weight:500;color:var(--lime)}
 .syll{margin:0 0 14px;display:flex;flex-wrap:wrap;gap:.15em .55em;font-family:var(--head,serif);font-style:italic;font-weight:300;font-size:clamp(40px,5.4vw,84px);line-height:1;color:var(--cream)}
-.syll span{opacity:.35;animation:syl 12s ease-in-out infinite}
+.syll span{opacity:.35;animation:syl 8s ease-in-out infinite}
 .syll span:nth-child(2){animation-delay:2s}.syll span:nth-child(3){animation-delay:4s}.syll span:nth-child(4){animation-delay:6s}.syll span:nth-child(5){animation-delay:8s}.syll span:nth-child(6){animation-delay:10s}
 @keyframes syl{0%,100%{opacity:.35}8%,22%{opacity:1}}
 .syll-note{color:#a9aaa5;max-width:52ch;line-height:1.6;text-transform:none;letter-spacing:.02em}
@@ -562,7 +562,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       <p data-c="dhrupad.text_2">Our music stays mostly in the <b data-c="dhrupad.stage_1_name">alaap</b>, the unhurried opening in which a raag is explored note by note, without words or rhythm. The electronic drones in our sets come from the same place as the tanpura: a sustained Sa that everything returns to.</p>
     </div>
     <div class="rv">
-      <p class="syll" data-syll="dhrupad.syllables" aria-label="Syllables sung in the alaap: a, re, ne, na, nom, tom"><span>ā</span><span>re</span><span>ne</span><span>na</span><span>nom</span><span>tom</span></p>
+      <p class="syll" data-syll="dhrupad.syllables" aria-label="Syllables sung in the alaap: a, re, ne, na"><span>ā</span><span>re</span><span>ne</span><span>na</span></p>
       <p class="mono syll-note" data-c="dhrupad.syllables_note">the alaap is sung on syllables such as these, traditionally said to come from the invocation <i>om ananta narayana hari</i>.</p>
       <ol class="unfold">
         <li><b data-c="dhrupad.stage_1_name">alaap</b><span data-c="dhrupad.stage_1_text">slow and unmetered; the raag is introduced note by note.</span></li>
@@ -978,7 +978,7 @@ const mq = (id, words) => {
   const html = words.map(w => `<span>${w}</span><span class="star">✺</span>`).join('');
   document.getElementById(id).innerHTML = html + html;
 };
-mq('mq1', ['ā','re','ne','na','ri','nom','tom','ā','re','ne','na','ri','nom','tom']);
+mq('mq1', ['ā','re','ne','na','ri','ā','re','ne','na','ri']);
 mq('mqTags', ['dhrupad','alaap','drones','modular synthesis','field recordings','water cymatics','listening']);
 
 /* ---------------- hero letters ---------------- */
