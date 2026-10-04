@@ -479,6 +479,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .sub-h3{font-family:var(--head);font-weight:350;font-size:clamp(32px,4vw,56px);margin:56px 0 18px;letter-spacing:-.02em}
 .cym-vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 @media (max-width:760px){.cym-vids{grid-template-columns:1fr}}
+.stage-now{margin:10px 0 0;text-transform:none;letter-spacing:.02em;opacity:.8;font-size:12px}
+.stages button.playing b::after{content:" ♪";font-size:.6em}
 </style>
 </head>
 <body>
@@ -739,6 +741,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <button role="tab" data-s="REM" aria-selected="false"><b>REM</b><span>rem sleep</span></button>
       </div>
       <p class="stage-desc" id="stageDesc" aria-live="polite"></p>
+      <p class="mono stage-now" id="stageNow" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -1043,7 +1046,7 @@ document.getElementById('tracks').innerHTML = TRACKS.map((tr,i) => `
 document.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', () => {
   const box = b.closest('.trk');
   if (box.querySelector('iframe')) return;
-  stopDrone();
+  stopAllMedia();
   const f = document.createElement('iframe');
   f.allow = 'autoplay'; f.title = b.closest('header').querySelector('h3').textContent + ' on SoundCloud';
   f.src = `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dxa770/${b.dataset.sc}&color=%232233ff&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
@@ -1052,8 +1055,8 @@ document.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', 
 
 /* ---------------- youtube (click to load) ---------------- */
 document.querySelectorAll('.vid').forEach(v => v.querySelector('button').addEventListener('click', () => {
-  stopDrone();
-  v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" title="pause.dxa video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  stopAllMedia();
+  v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0&enablejsapi=1" title="pause.dxa video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
 }));
 
 /* ---------------- wall ---------------- */
@@ -1123,17 +1126,57 @@ const setStage = k => {
   moon.setAttribute('cx', moonAt[k][0]); moon.setAttribute('cy', moonAt[k][1]);
   document.getElementById('stageDesc').textContent = `${k} · ${STAGES[k][1]}`;
 };
-document.querySelectorAll('.stages button').forEach(b => b.addEventListener('click', () => { stopDream(); setStage(b.dataset.s); }));
 setStage('N1');
-let dreamT = null;
-const order = ['N1','N2','N3','N2','REM','N1'];
-const dreamBtn = document.getElementById('dreamBtn');
-function stopDream(){ clearInterval(dreamT); dreamT = null; dreamBtn.textContent = '▶ play through the cycle'; }
-dreamBtn.addEventListener('click', () => {
-  if (dreamT) return stopDream();
-  let i = 0; setStage(order[0]); dreamBtn.textContent = '❚❚ pause';
-  dreamT = setInterval(() => { i = (i + 1) % order.length; setStage(order[i]); }, 2600);
+/* dream space audios from the BSF proposal, one per stage */
+const DREAM = {
+  N1:  ['assets/audio/dream-n1.m4a', 'dream space three · synth sounds on VCV Rack, camel bells, rattles, forest recordings'],
+  N2:  ['assets/audio/dream-n2.m4a', 'dream space four · ocean sound samples, vocal hum, rattles, synth sounds'],
+  N3:  ['assets/audio/dream-n3.m4a', 'dream space one · live Dhrupad vocals, electronic tanpura, bass drone'],
+  REM: ['assets/audio/dream-rem.m4a','dream space two · noise, live instruments, electronic synth sounds, vocal hum'],
+};
+const cycleOrder = ['N1','N2','N3','REM'];
+const dreamAudio = new Audio(); dreamAudio.preload = 'none';
+const dreamBtn = document.getElementById('dreamBtn'), stageNow = document.getElementById('stageNow');
+let dreamMode = null, dreamStage = null;
+function markPlaying(){
+  document.querySelectorAll('.stages button').forEach(b => b.classList.toggle('playing', !!dreamMode && b.dataset.s === dreamStage));
+  dreamBtn.textContent = dreamMode === 'cycle' ? '❚❚ pause' : '▶ play through the cycle';
+  stageNow.textContent = dreamMode ? '♪ now playing: ' + DREAM[dreamStage][1] : 'press a stage to hear its dream space, or play through the whole cycle.';
+}
+function playStage(k, mode){
+  stopAllMedia('dream');
+  dreamMode = mode; dreamStage = k; setStage(k);
+  dreamAudio.src = DREAM[k][0]; dreamAudio.play().catch(() => { dreamMode = null; markPlaying(); });
+  markPlaying();
+}
+function stopDream(){ if (!dreamMode) return; dreamAudio.pause(); dreamMode = null; markPlaying(); }
+dreamAudio.addEventListener('ended', () => {
+  if (dreamMode === 'cycle'){ const i = cycleOrder.indexOf(dreamStage); if (i < cycleOrder.length - 1) return playStage(cycleOrder[i + 1], 'cycle'); }
+  dreamMode = null; markPlaying();
 });
+document.querySelectorAll('.stages button').forEach(b => b.addEventListener('click', () => {
+  if (dreamMode && dreamStage === b.dataset.s) return stopDream();
+  playStage(b.dataset.s, 'stage');
+}));
+dreamBtn.addEventListener('click', () => dreamMode === 'cycle' ? stopDream() : playStage('N1', 'cycle'));
+markPlaying();
+
+/* ---------------- one sound at a time ----------------
+   Whenever anything starts (drone, dream spaces, SoundCloud, YouTube, a video with sound), everything else stops. */
+function stopAllMedia(except){
+  if (except !== 'drone') stopDrone();
+  if (except !== 'dream') stopDream();
+  document.querySelectorAll('audio, video').forEach(m => { if (m !== except && !m.muted && !m.paused) m.pause(); });
+  document.querySelectorAll('iframe').forEach(f => {
+    if (f === except) return;
+    try {
+      if (/youtube/.test(f.src)) f.contentWindow.postMessage(JSON.stringify({event:'command', func:'pauseVideo', args:[]}), '*');
+      if (/soundcloud/.test(f.src)) f.contentWindow.postMessage(JSON.stringify({method:'pause'}), '*');
+    } catch (e) {}
+  });
+}
+document.addEventListener('play', e => { if (!e.target.muted) stopAllMedia(e.target); }, true);
+addEventListener('blur', () => setTimeout(() => { const a = document.activeElement; if (a && a.tagName === 'IFRAME') stopAllMedia(a); }, 0));
 
 /* ---------------- CHLADNI / cymatics sand ---------------- */
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1199,6 +1242,7 @@ function synthVoices(dest){
 }
 async function startDrone(){
   if (playing) return;
+  stopAllMedia('drone');
   playing = true; btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); ic.textContent = '❚❚';
   ac = ac || new (window.AudioContext || window.webkitAudioContext)();
   ac.resume();
