@@ -471,6 +471,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .cym-card video{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--ink)}
 .cym-card h3{font-family:var(--head);font-variation-settings:"SOFT" 100,"opsz" 96;font-weight:400;font-size:clamp(26px,2.4vw,36px);margin:18px 6px 8px;line-height:1}
 .cym-card p{margin:0 6px;font-size:.95em}
+.cym-card video.demo{aspect-ratio:4/5;object-fit:cover}
+.cym-grid{align-items:start}
 .cym-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
 .cym-photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
 @media (max-width:600px){.cym-photos{grid-template-columns:1fr 1fr}.cym-photos img:last-child{grid-column:span 2;aspect-ratio:2/1}}
@@ -681,7 +683,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <p data-c="cymatics.chladni_text">Metal plates scattered with sand, bowed or driven at a single frequency. The sand leaves the parts of the plate that vibrate and gathers along the still lines, drawing a different figure for each frequency. The method goes back to Ernst Chladni in the 1780s.</p>
       </article>
       <article class="cym-card rv">
-        <video src="assets/cymatics/eidophone.mp4" poster="assets/cymatics/eidophone.jpg" autoplay muted loop playsinline preload="none" aria-label="Video: sand forming a ring on a stretched membrane as someone sings into the instrument."></video>
+        <video class="demo" src="assets/cymatics/eidophone-demo.mp4" poster="assets/cymatics/eidophone-demo.jpg" controls playsinline preload="none" aria-label="Video with sound: Harsh demonstrating the eidophone prototype, singing into the tube as sand forms patterns on the membrane."></video>
         <h3 data-c="cymatics.eido_title">Eidophone <span class="serif">(prototype)</span></h3>
         <p data-c="cymatics.eido_text">A membrane stretched over a vessel, sung into through a tube, so the voice itself draws in the sand or paste on its surface. Our prototype follows the instrument Margaret Watts-Hughes developed in the 1880s to see the shapes of sung notes.</p>
       </article>
