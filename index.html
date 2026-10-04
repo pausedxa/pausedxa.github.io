@@ -1224,7 +1224,7 @@ document.querySelector('.hero').addEventListener('pointermove', e => {
 const btn = document.getElementById('droneBtn'), ic = document.getElementById('droneIc');
 let ac, master, analyser, nodes = [], playing = false, droneBuf = null, meterRaf = 0;
 const loadDrone = () => droneBuf ? Promise.resolve(droneBuf)
-  : fetch('assets/audio/velvet-frequency-excerpt.m4a').then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); })
+  : fetch('assets/audio/velvet-frequency-excerpt-2.m4a').then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); })
       .then(b => ac.decodeAudioData(b)).then(buf => (droneBuf = buf));
 function synthVoices(dest){
   const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = 6;
@@ -1253,7 +1253,7 @@ async function startDrone(){
   try {
     const buf = await loadDrone();
     if (!playing) return;
-    // "A Velvet Frequency" excerpt (4:33–5:48): ten seconds of drone, then the voice. Plays once.
+    // "A Velvet Frequency" excerpt (4:38–5:48): five seconds of drone, then the voice. Plays once.
     const src = ac.createBufferSource(); src.buffer = buf;
     src.onended = () => { if (playing && nodes.includes(src)) stopDrone(); };
     src.connect(master); src.start(0); nodes.push(src); level = .9;
