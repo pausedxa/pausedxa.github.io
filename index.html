@@ -507,6 +507,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .feat+.feat{margin-top:clamp(40px,6vh,64px);padding-top:clamp(40px,6vh,64px);border-top:1px solid rgba(29,30,28,.2)}
 .feat-img img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 22%;border-radius:18px;display:block}
 @media (min-width:861px){.feat-sm{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}.feat-sm .feat-img img{aspect-ratio:4/3}}
+.gigs-more{margin-top:22px;color:var(--ink);border-color:var(--ink);background:var(--cream);cursor:pointer}
+.gigs-more:hover{background:var(--lime)}
 </style>
 </head>
 <body>
@@ -836,6 +838,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       <button data-y="2023" aria-pressed="false">2023</button>
     </div>
     <ul class="gigs" id="gigs"></ul>
+    <button class="pill gigs-more" id="gigsMore" type="button" aria-controls="gigs" aria-expanded="false" hidden></button>
   </div>
 </section>
 
@@ -1042,8 +1045,17 @@ t.innerHTML = [...'pause.dxa'].map(ch => `<span${ch==='.'?' class="dot"':''} ari
 
 /* ---------------- gigs ---------------- */
 const gigsEl = document.getElementById('gigs');
+const GIG_LIMIT = 10;
+let gigsYear = 'all', gigsOpen = false;
 const renderGigs = y => {
-  gigsEl.innerHTML = GIGS.filter(g => y==='all' || String(g[0])===y).map(g => `
+  if (y !== undefined && y !== gigsYear) { gigsYear = y; gigsOpen = false; }
+  const list = GIGS.filter(g => gigsYear==='all' || String(g[0])===gigsYear);
+  const shown = gigsOpen ? list : list.slice(0, GIG_LIMIT);
+  const more = document.getElementById('gigsMore');
+  more.hidden = list.length <= GIG_LIMIT;
+  more.textContent = gigsOpen ? 'show fewer ↑' : `show all ${list.length} performances ↓`;
+  more.setAttribute('aria-expanded', gigsOpen);
+  gigsEl.innerHTML = shown.map(g => `
     <li class="gig">
       <span class="d">${g[1]} ${g[0]}</span>
       <span class="w">${g[2]}<small>${g[3]}</small></span>
@@ -1062,6 +1074,10 @@ const buildYears = () => {
   renderGigs('all');
 };
 buildYears();
+document.getElementById('gigsMore').addEventListener('click', () => {
+  gigsOpen = !gigsOpen; renderGigs();
+  if (!gigsOpen) document.querySelector('.years').scrollIntoView({block:'start'});
+});
 
 /* ---------------- editable content ----------------
    Text lives in content/site.json and the performances list in content/gigs.json.
