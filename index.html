@@ -483,6 +483,19 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .stages button.playing b::after{content:" ♪";font-size:.6em}
 .listen-links{display:flex;flex-wrap:wrap;gap:10px}
 .trk.bc .n{font-size:12px}
+.src-head{display:flex;align-items:baseline;gap:12px;margin:6px 0 2px}
+.src-head:not(:first-child){margin-top:26px}
+.src-head h3{margin:0;font-family:var(--head);font-weight:350;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.02em}
+.src-head .mono{opacity:.7}
+.bc-card{background:var(--cream);color:var(--ink);border-radius:18px;overflow:hidden;box-shadow:5px 5px 0 var(--lime)}
+.bc-card img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
+.bc-body{padding:16px 18px 18px}
+.bc-body h4{margin:0 0 6px;font-family:var(--head);font-weight:400;font-size:clamp(26px,2.2vw,34px)}
+.bc-body p{margin:0 0 14px;font-size:.95em;max-width:52ch}
+.bc-actions{display:flex;flex-wrap:wrap;gap:10px}
+.bc-actions .pill{color:var(--ink);border-color:var(--ink)}
+.bc-actions .buy{background:var(--lime)}
+.bc-card iframe{display:block;width:100%;height:120px;border:0;border-top:1px solid rgba(29,30,28,.3)}
 </style>
 </head>
 <body>
@@ -1040,26 +1053,32 @@ buildYears();
 })();
 
 /* ---------------- tracks (lazy SoundCloud players) ---------------- */
-document.getElementById('tracks').innerHTML = TRACKS.map((tr,i) => `
+document.getElementById('tracks').innerHTML = `
+  <div class="src-head"><h3>bandcamp</h3><span class="mono">listen &amp; buy</span></div>
+  <div class="bc-card">
+    <img src="assets/bandcamp-pause.jpg" alt="Cover of pause: a performance space washed in violet light, with cymatics projected on the wall." loading="lazy">
+    <div class="bc-body">
+      <h4>pause</h4>
+      <p>Our music is on Bandcamp. Buying a track there is the most direct way to support what we make: most of what you pay comes straight to us, and you keep the download.</p>
+      <div class="bc-actions"><a class="pill solid buy" href="https://pausedxa.bandcamp.com/track/pause" target="_blank" rel="noopener">buy on bandcamp ↗</a><button class="pill" data-bc="2429449998">▶ listen here</button></div>
+    </div>
+  </div>
+  <div class="src-head"><h3>soundcloud</h3><span class="mono">free to stream</span></div>
+` + TRACKS.map((tr,i) => `
   <div class="trk">
     <header><span class="n">${String(i+1).padStart(2,'0')}</span>
       <div><h3>${tr[0]}</h3><span class="mono">${tr[1]}</span></div>
       <button class="pill solid" data-sc="${tr[2]}">▶ play</button></header>
   </div>`).join('') + `
-  <div class="trk bc">
-    <header><span class="n">bc</span>
-      <div><h3>pause</h3><span class="mono">on bandcamp</span></div>
-      <button class="pill solid" data-bc="2429449998">▶ play</button></header>
-  </div>
-  <div class="listen-links"><a class="pill solid" href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">all on soundcloud ↗</a><a class="pill solid" href="https://pausedxa.bandcamp.com/" target="_blank" rel="noopener">bandcamp ↗</a></div>`;
+  <div class="listen-links"><a class="pill solid" href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">all on soundcloud ↗</a></div>`;
 document.querySelectorAll('[data-bc]').forEach(b => b.addEventListener('click', () => {
-  const box = b.closest('.trk');
+  const box = b.closest('.bc-card');
   if (box.querySelector('iframe')) return;
   stopAllMedia();
   const f = document.createElement('iframe');
   f.title = 'pause by pause.dxa on Bandcamp'; f.allow = 'autoplay';
   f.src = `https://bandcamp.com/EmbeddedPlayer/track=${b.dataset.bc}/size=large/bgcol=f4f3f0/linkcol=1d1e1c/tracklist=false/artwork=small/transparent=true/`;
-  box.appendChild(f); b.textContent = '♪ loaded'; b.disabled = true;
+  box.appendChild(f); b.textContent = '♪ player below'; b.disabled = true;
 }));
 document.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', () => {
   const box = b.closest('.trk');
