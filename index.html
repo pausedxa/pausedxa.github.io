@@ -889,19 +889,11 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 </section>
 
 
-<!-- ============ WALL ============ -->
-<section class="wall" id="wall">
-  <div class="wrap">
-    <span class="kicker">09 / photos</span>
-    <h2>photos</h2>
-    <div class="wall-grid" id="wallGrid"></div>
-  </div>
-</section>
 
 <!-- ============ OFFER ============ -->
 <section class="offer" id="work">
   <div class="wrap">
-    <span class="kicker">10 / work with us</span>
+    <span class="kicker">09 / work with us</span>
     <h2>work <span class="serif">with</span> us</h2>
     <div class="offer-grid">
       <div class="card rv"><img class="cimg" src="assets/deck-palace.jpg" alt="A pause.dxa set in a palace courtyard under pink-lit arches, audience in silhouette." loading="lazy"><h3 data-c="work_with_us.card_1_title">Live performances</h3><p data-c="work_with_us.card_1_text">Sets of one to two hours for festivals, venues and cultural spaces.</p></div>
@@ -988,37 +980,6 @@ const TRACKS = [
   ['Azhagu Bhoomi Loop One','pretty earth · 2024','azhagu-bhoomi-loop-one'],
   ['tuning out?','2024','tuning-out'],
   ['binaural + other','2024','binaural-other'],
-];
-const WALL = [
-  ['ig-graz','DcGW6WCiNDO','Electroacoustic Dhrupad · Graz'],
-  ['deck-gaia-forest',null,'lying down in the forest · GAIA'],
-  ['deck-palace',null,'palace arches, pink light'],
-  ['deck-hands',null,'hands, keys, rug'],
-  ['deck-harsh-gaia',null,'Harsh, outdoors'],
-  ['deck-gaia-dance',null,'GAIA · dusk'],
-  ['circle-goa-discs',null,'@circle · Goa'],
-  ['nomads-immersion-4',null,'sound immersion · Nomads'],
-  ['ozora25-harsh','DN5A84wE5tv','Ozora 2025 · Ginko Stage'],
-  ['ozora25-sahitya',null,'Ozora 2025 · Sahitya'],
-  ['ig-bedtime-launch','DUOJaSVk7Pq','C.A.L.M. · Bedtime Sonic Fables'],
-  ['ig-migas-berlin','DaNOiUBNrUT','Migas Berlin · listening'],
-  ['ig-onno-delhi','Dc8wZYDk9BT','Sonic Distortions · Delhi'],
-  ['ig-serendipity-barge','DTSAprnkzIf','on a barge · Serendipity'],
-  ['ig-hypnagogos','DMNDLRwtQvB','Hypnagōgos · Berlin'],
-  ['ig-gaia-2025','DOsVao8ksWT','GAIA Festival 2025'],
-  ['ig-omnivoid','DUZ86pUGto1','Omnivoid ed.005'],
-  ['ig-bangkok-poster','DPvSLiTj5hN','Bangkok Ritualistic Voices'],
-  ['nomads-stepwell-stripes','DU7r4m1DHcP','Magnetic Fields Nomads · Stepwell'],
-  ['ig-sri-lanka','DJmcfTlTL-q','Burning Donkey · Sri Lanka'],
-  ['ig-ozora-2026','DbYonjfjNCN','Ozora 2026 lineup'],
-  ['ig-butterfly-barn','DUgPqleExGW','Butterfly Barn · debut'],
-  ['ig-space-inside-poster','DLCz2gPzUHN','The Space Inside You'],
-  ['ig-berlin','DOG3HrLkwcx','MaHalla · Berlin'],
-  ['ig-bedtime-isro','DYg646iEism','ISRO · May 2026'],
-  ['ig-gaia-2024','DA7e4Y4Tumi','GAIA 2024'],
-  ['ig-bangkok','DQWJynxE_So','Noise House · Bangkok'],
-  ['ig-space-inside-mumbai','DMnAhXEvG5U','Method · Mumbai'],
-  ['ig-refuge','DaHjXbosFkY','Refuge Worldwide'],
 ];
 
 /* ---------------- marquees ---------------- */
@@ -1137,14 +1098,6 @@ document.querySelectorAll('.vid').forEach(v => v.querySelector('button').addEven
   stopAllMedia();
   v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0&enablejsapi=1${v.dataset.start ? `&start=${v.dataset.start}` : ``}" title="pause.dxa video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
 }));
-
-/* ---------------- wall ---------------- */
-const deckShots = WALL.filter(w => !w[1]), mixed = [];
-WALL.filter(w => w[1]).forEach((w, i) => { mixed.push(w); if (i % 3 === 1 && deckShots.length) mixed.push(deckShots.shift()); });
-mixed.push(...deckShots);
-document.getElementById('wallGrid').innerHTML = mixed.map(w => w[1]
-  ? `<a class="tile" href="${IG(w[1])}" target="_blank" rel="noopener"><img src="assets/${w[0]}.jpg" alt="${w[2]}" loading="lazy"><span>${w[2]} ↗</span></a>`
-  : `<figure class="tile"><img src="assets/${w[0]}.jpg" alt="${w[2]}" loading="lazy"><span>${w[2]}</span></figure>`).join('');
 
 /* ---------------- reveal + counters ---------------- */
 const io = new IntersectionObserver(es => es.forEach(e => {
