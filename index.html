@@ -505,10 +505,10 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .feat-links{display:flex;flex-wrap:wrap;gap:10px}
 .feat-links .pill{color:var(--ink);border-color:var(--ink)}
 .feat+.feat{margin-top:clamp(40px,6vh,64px);padding-top:clamp(40px,6vh,64px);border-top:1px solid rgba(29,30,28,.2)}
-.feat-img img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 22%;border-radius:18px;display:block}
-@media (min-width:861px){.feat-sm{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}.feat-sm .feat-img img{aspect-ratio:4/3}}
+.feat-img img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:18px;display:block;box-shadow:0 18px 40px -24px rgba(29,30,28,.35)}
 .gigs-more{margin-top:22px;color:var(--ink);border-color:var(--ink);background:var(--cream);cursor:pointer}
 .gigs-more:hover{background:var(--lime)}
+.photo-stack figure{padding:10px}
 </style>
 </head>
 <body>
@@ -570,8 +570,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       </div>
     </div>
     <div class="photo-stack rv">
-      <figure class="p1"><img src="assets/deck-story.jpg" alt="Sahitya singing and Harsh at a modular synth rig under violet light, blue-and-white striped stage front."><figcaption>live</figcaption></figure>
-      <figure class="p2"><img src="assets/duo.jpg" alt="Sahitya and Harsh on a dim stage, chimes and percussion laid out on a rug."><figcaption>instruments</figcaption></figure>
+      <figure class="p1"><img src="assets/deck-story.jpg" alt="Sahitya singing and Harsh at a modular synth rig under violet light, blue-and-white striped stage front."></figure>
+      <figure class="p2"><img src="assets/duo.jpg" alt="Sahitya and Harsh on a dim stage, chimes and percussion laid out on a rug."></figure>
     </div>
   </div>
 </section>
@@ -856,8 +856,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
         <div class="feat-links"><a class="pill" href="https://www.youtube.com/watch?v=lc6LdH6_oPU&t=714s" target="_blank" rel="noopener">youtube ↗</a><a class="pill" href="https://www.arte.tv/fr/videos/126484-038-A/tracks/" target="_blank" rel="noopener">arte.tv ↗</a></div>
       </div>
     </article>
-    <article class="feat feat-sm rv">
-      <a class="feat-img" href="https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event" target="_blank" rel="noopener"><img src="assets/homegrown-feature.jpg" alt="Harsh at a laptop running Ableton with a controller, during a sound immersion at night." loading="lazy"></a>
+    <article class="feat rv">
+      <a class="feat-img" href="https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event" target="_blank" rel="noopener"><img src="assets/homegrown-full.jpg" alt="Sahitya playing chimes over listeners lying down at night, and Harsh at a laptop running Ableton with a controller." loading="lazy"></a>
       <div class="feat-body">
         <span class="mono" data-c="features.homegrown_label">Homegrown · April 2024</span>
         <h3 data-c="features.homegrown_title">Classic meets avant-garde: Dhrupad × Ableton</h3>
