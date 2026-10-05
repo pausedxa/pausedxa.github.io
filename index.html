@@ -481,6 +481,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 @media (max-width:760px){.cym-vids{grid-template-columns:1fr}}
 .stage-now{margin:10px 0 0;text-transform:none;letter-spacing:.02em;opacity:.8;font-size:12px}
 .stages button.playing b::after{content:" ♪";font-size:.6em}
+.listen-links{display:flex;flex-wrap:wrap;gap:10px}
+.trk.bc .n{font-size:12px}
 </style>
 </head>
 <body>
@@ -880,6 +882,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       <a href="mailto:pause.dxa@gmail.com">Email ↗</a>
       <a href="https://www.instagram.com/pause.dxa/" target="_blank" rel="noopener">Instagram ↗</a>
       <a href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">SoundCloud ↗</a>
+      <a href="https://pausedxa.bandcamp.com/" target="_blank" rel="noopener">Bandcamp ↗</a>
       <a href="https://youtube.com/@pause.dxa1" target="_blank" rel="noopener">YouTube ↗</a>
       <a href="https://linktr.ee/pause.dxa" target="_blank" rel="noopener">Linktree ↗</a>
     </div>
@@ -1042,7 +1045,22 @@ document.getElementById('tracks').innerHTML = TRACKS.map((tr,i) => `
     <header><span class="n">${String(i+1).padStart(2,'0')}</span>
       <div><h3>${tr[0]}</h3><span class="mono">${tr[1]}</span></div>
       <button class="pill solid" data-sc="${tr[2]}">▶ play</button></header>
-  </div>`).join('') + `<a class="pill solid" style="justify-self:start" href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">all on soundcloud ↗</a>`;
+  </div>`).join('') + `
+  <div class="trk bc">
+    <header><span class="n">bc</span>
+      <div><h3>pause</h3><span class="mono">on bandcamp</span></div>
+      <button class="pill solid" data-bc="2429449998">▶ play</button></header>
+  </div>
+  <div class="listen-links"><a class="pill solid" href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">all on soundcloud ↗</a><a class="pill solid" href="https://pausedxa.bandcamp.com/" target="_blank" rel="noopener">bandcamp ↗</a></div>`;
+document.querySelectorAll('[data-bc]').forEach(b => b.addEventListener('click', () => {
+  const box = b.closest('.trk');
+  if (box.querySelector('iframe')) return;
+  stopAllMedia();
+  const f = document.createElement('iframe');
+  f.title = 'pause by pause.dxa on Bandcamp'; f.allow = 'autoplay';
+  f.src = `https://bandcamp.com/EmbeddedPlayer/track=${b.dataset.bc}/size=large/bgcol=f4f3f0/linkcol=1d1e1c/tracklist=false/artwork=small/transparent=true/`;
+  box.appendChild(f); b.textContent = '♪ loaded'; b.disabled = true;
+}));
 document.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', () => {
   const box = b.closest('.trk');
   if (box.querySelector('iframe')) return;
@@ -1172,6 +1190,7 @@ function stopAllMedia(except){
     try {
       if (/youtube/.test(f.src)) f.contentWindow.postMessage(JSON.stringify({event:'command', func:'pauseVideo', args:[]}), '*');
       if (/soundcloud/.test(f.src)) f.contentWindow.postMessage(JSON.stringify({method:'pause'}), '*');
+      if (/bandcamp\.com\/EmbeddedPlayer/.test(f.src)) f.src = f.src;
     } catch (e) {}
   });
 }
