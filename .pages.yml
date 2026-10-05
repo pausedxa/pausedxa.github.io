@@ -244,6 +244,31 @@ content:
           - name: eido_text
             label: "Eidophone: text"
             type: text
+      - name: features
+        label: "Features (press)"
+        type: object
+        fields:
+          - name: heading
+            label: "Heading"
+            type: string
+          - name: arte_label
+            label: "ARTE: small label"
+            type: string
+          - name: arte_title
+            label: "ARTE: title"
+            type: string
+          - name: arte_text
+            label: "ARTE: text"
+            type: text
+          - name: homegrown_label
+            label: "Homegrown: small label"
+            type: string
+          - name: homegrown_title
+            label: "Homegrown: title"
+            type: string
+          - name: homegrown_text
+            label: "Homegrown: text"
+            type: text
       - name: bedtime_sonic_fables
         label: "Bedtime Sonic Fables section"
         type: object

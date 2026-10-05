@@ -496,6 +496,17 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 .bc-actions .pill{color:var(--ink);border-color:var(--ink)}
 .bc-actions .buy{background:var(--lime)}
 .bc-card iframe{display:block;width:100%;height:120px;border:0;border-top:1px solid rgba(29,30,28,.3)}
+.features{background:var(--cream)}
+.feat{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+@media (max-width:860px){.feat{grid-template-columns:1fr}}
+.feat-vid{box-shadow:0 18px 40px -24px rgba(29,30,28,.35)}
+.feat-body h3{font-family:var(--head);font-weight:400;font-size:clamp(30px,3vw,46px);line-height:1.02;margin:10px 0 12px;letter-spacing:-.02em}
+.feat-body p{margin:0 0 18px;max-width:46ch}
+.feat-links{display:flex;flex-wrap:wrap;gap:10px}
+.feat-links .pill{color:var(--ink);border-color:var(--ink)}
+.feat+.feat{margin-top:clamp(40px,6vh,64px);padding-top:clamp(40px,6vh,64px);border-top:1px solid rgba(29,30,28,.2)}
+.feat-img img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 22%;border-radius:18px;display:block}
+@media (min-width:861px){.feat-sm{grid-template-columns:minmax(0,.8fr) minmax(0,1fr)}.feat-sm .feat-img img{aspect-ratio:4/3}}
 </style>
 </head>
 <body>
@@ -506,8 +517,8 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   <a href="#dhrupad">Dhrupad</a>
   <a href="#projects">Projects</a>
   <a href="#cymatics">Cymatics</a>
-  <a href="#bsf">BSF</a>
   <a href="#tour">Performances</a>
+  <a href="#features">Features</a>
   <a class="k" href="#listen">Listen</a>
   <a href="#contact">Contact</a>
 </nav>
@@ -828,10 +839,36 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
   </div>
 </section>
 
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="wrap">
+    <span class="kicker">07 / features</span>
+    <h2 data-c="features.heading">features</h2>
+    <article class="feat rv">
+      <div class="vid feat-vid" data-yt="lc6LdH6_oPU" data-start="714"><button aria-label="Play: ARTE Tracks, Trois jours d'ambient non-stop, from the pause.dxa segment"><img src="assets/arte-tracks-sahitya.jpg" alt="Sahitya singing into a microphone, in the ARTE Tracks documentary." loading="lazy"><span class="lbl"><b>watch our segment<br><span class="mono">from 11:54</span></b><span class="play">▶</span></span></button></div>
+      <div class="feat-body">
+        <span class="mono" data-c="features.arte_label">ARTE · Tracks · October 2026</span>
+        <h3 data-c="features.arte_title">Trois jours d’ambient non-stop</h3>
+        <p data-c="features.arte_text">A documentary on ambient music filmed at the Sanctum of Sound festival at MaHalla, Berlin. We speak about Dhrupad, improvisation and slowing down, alongside JEENA and Philipp Johann Thimm.</p>
+        <div class="feat-links"><a class="pill" href="https://www.youtube.com/watch?v=lc6LdH6_oPU&t=714s" target="_blank" rel="noopener">youtube ↗</a><a class="pill" href="https://www.arte.tv/fr/videos/126484-038-A/tracks/" target="_blank" rel="noopener">arte.tv ↗</a></div>
+      </div>
+    </article>
+    <article class="feat feat-sm rv">
+      <a class="feat-img" href="https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event" target="_blank" rel="noopener"><img src="assets/homegrown-feature.jpg" alt="Harsh at a laptop running Ableton with a controller, during a sound immersion at night." loading="lazy"></a>
+      <div class="feat-body">
+        <span class="mono" data-c="features.homegrown_label">Homegrown · April 2024</span>
+        <h3 data-c="features.homegrown_title">Classic meets avant-garde: Dhrupad × Ableton</h3>
+        <p data-c="features.homegrown_text">An article by Vaaswat Sarkar on our sound immersion at Harkat Studios, Mumbai, bringing Dhrupad together with electronic soundscapes made in Ableton.</p>
+        <div class="feat-links"><a class="pill" href="https://homegrown.co.in/homegrown-explore/classic-meets-avant-garde-dhrupad-x-abelton-are-coming-together-at-this-mumbai-event" target="_blank" rel="noopener">read on homegrown ↗</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ============ LISTEN ============ -->
 <section class="listen" id="listen">
   <div class="wrap">
-    <span class="kicker">07 / listen</span>
+    <span class="kicker">08 / listen</span>
     <h2>listen <span class="serif">&amp;</span> watch</h2>
     <div class="listen-grid">
       <div class="tracks" id="tracks"></div>
@@ -852,7 +889,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ WALL ============ -->
 <section class="wall" id="wall">
   <div class="wrap">
-    <span class="kicker">08 / photos</span>
+    <span class="kicker">09 / photos</span>
     <h2>photos</h2>
     <div class="wall-grid" id="wallGrid"></div>
   </div>
@@ -861,7 +898,7 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
 <!-- ============ OFFER ============ -->
 <section class="offer" id="work">
   <div class="wrap">
-    <span class="kicker">09 / work with us</span>
+    <span class="kicker">10 / work with us</span>
     <h2>work <span class="serif">with</span> us</h2>
     <div class="offer-grid">
       <div class="card rv"><img class="cimg" src="assets/deck-palace.jpg" alt="A pause.dxa set in a palace courtyard under pink-lit arches, audience in silhouette." loading="lazy"><h3 data-c="work_with_us.card_1_title">Live performances</h3><p data-c="work_with_us.card_1_text">Sets of one to two hours for festivals, venues and cultural spaces.</p></div>
@@ -897,7 +934,6 @@ h2{font-weight:350;letter-spacing:-.025em;line-height:.98;font-size:clamp(44px,7
       <a href="https://soundcloud.com/dxa770" target="_blank" rel="noopener">SoundCloud ↗</a>
       <a href="https://pausedxa.bandcamp.com/" target="_blank" rel="noopener">Bandcamp ↗</a>
       <a href="https://youtube.com/@pause.dxa1" target="_blank" rel="noopener">YouTube ↗</a>
-      <a href="https://linktr.ee/pause.dxa" target="_blank" rel="noopener">Linktree ↗</a>
     </div>
   </div>
 </section>
@@ -1093,7 +1129,7 @@ document.querySelectorAll('[data-sc]').forEach(b => b.addEventListener('click', 
 /* ---------------- youtube (click to load) ---------------- */
 document.querySelectorAll('.vid').forEach(v => v.querySelector('button').addEventListener('click', () => {
   stopAllMedia();
-  v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0&enablejsapi=1" title="pause.dxa video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0&enablejsapi=1${v.dataset.start ? `&start=${v.dataset.start}` : ``}" title="pause.dxa video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
 }));
 
 /* ---------------- wall ---------------- */
