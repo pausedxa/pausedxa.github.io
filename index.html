@@ -1257,7 +1257,7 @@ document.querySelector('.hero').addEventListener('pointermove', e => {
 const btn = document.getElementById('droneBtn'), ic = document.getElementById('droneIc');
 let ac, master, analyser, nodes = [], playing = false, droneBuf = null, meterRaf = 0;
 const loadDrone = () => droneBuf ? Promise.resolve(droneBuf)
-  : fetch('assets/audio/velvet-frequency-excerpt-2.m4a').then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); })
+  : fetch('assets/audio/velvet-loop.m4a').then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); })
       .then(b => ac.decodeAudioData(b)).then(buf => (droneBuf = buf));
 function synthVoices(dest){
   const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = 6;
@@ -1286,12 +1286,11 @@ async function startDrone(){
   try {
     const buf = await loadDrone();
     if (!playing) return;
-    // "A Velvet Frequency" excerpt (4:38–5:48): five seconds of drone, then the voice. Plays once.
-    const src = ac.createBufferSource(); src.buffer = buf;
-    src.onended = () => { if (playing && nodes.includes(src)) stopDrone(); };
+    // "A Velvet Frequency" from about 0:56, two minutes, end crossfaded into the start so it loops seamlessly.
+    const src = ac.createBufferSource(); src.buffer = buf; src.loop = true;
     src.connect(master); src.start(0); nodes.push(src); level = .9;
   } catch (e) { if (!playing) return; synthVoices(master); }
-  master.gain.linearRampToValueAtTime(level, ac.currentTime + .4);
+  master.gain.linearRampToValueAtTime(level, ac.currentTime + 4);
   // the sand listens: louder moments shake it harder, brighter moments change the pattern
   const data = new Uint8Array(analyser.frequencyBinCount); let lastSwitch = 0;
   const meter = t => {
